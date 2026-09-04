@@ -13,30 +13,8 @@
 <meta property="og:url" content="https://greggle.app/">
 <meta property="og:image" content="https://greggle.app/board.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="site.css">
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #eceef1; color: #16181b; font-family: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.55; }
-  a { color: #082da3; } a:hover { color: #0b3fd4; }
-  p { margin: 0; }
-  h1, h2 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
-  h3 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
-  .eyebrow { font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #676c74; }
-  .stated { font-weight: 700; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #676c74; }
-  .dim { color: #51555c; }
-  .card { background: #fbfcfd; border: 1px solid #e4e7ea; border-radius: 18px; }
-  .btn, .btn-quiet { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; }
-  .btn { background: #0b3fd4; color: #ffffff; }
-  .btn:hover { background: #082da3; color: #ffffff; }
-  .btn-quiet { background: #fbfcfd; border: 1px solid #d6dade; color: #16181b; }
-  .btn-quiet:hover { border-color: #0b3fd4; color: #16181b; }
-  :focus-visible { outline: 3px solid #082da3; outline-offset: 2px; border-radius: 6px; }
-
-  .shell { padding: 0 48px 64px; }
-  section, .bar { max-width: 1120px; margin: 0 auto; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
-  .brand { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
-  .brand .mark { width: 30px; height: 30px; }
-
   .hero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center; padding: 56px 0 40px; }
   .hero-copy { display: flex; flex-direction: column; gap: 20px; }
   .hero h1 { font-size: 46px; line-height: 1.1; letter-spacing: -0.028em; text-wrap: pretty; }
@@ -49,26 +27,24 @@
   .shot img { max-width: 100%; border-radius: 18px; border: 1px solid #e4e7ea; }
   .shot .stated { text-align: center; }
 
-  .sect { padding: 48px 0 24px; }
-  .sect-head { display: flex; flex-direction: column; gap: 10px; max-width: 720px; }
-  .sect-head h2 { font-size: 34px; line-height: 1.08; text-wrap: pretty; }
-
-  .grid { display: grid; gap: 16px; margin-top: 24px; }
   .grid-moves { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .grid-kinds { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .grid-featured { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .grid .card { display: flex; flex-direction: column; gap: 8px; padding: 22px; }
   .grid-kinds .card { padding: 20px; }
   .grid-kinds h3 { font-size: 19px; }
   .grid-featured h3 { font-size: 17px; }
-  .grid .card .dim { font-size: 14px; }
-  .origin { color: #082da3; }
+  .grid-featured .card { position: relative; }
+  .grid-featured h3 a { color: #16181b; text-decoration: none; }
+  .grid-featured h3 a:hover { color: #082da3; }
+  .grid-featured h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 18px; }
+  .grid-featured .card:hover { border-color: #0b3fd4; }
 
   .rest { margin-top: 18px; padding: 10px 24px 16px; }
   .rest .stated { display: block; padding: 12px 0 4px; }
   .rest-row { display: flex; gap: 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #e4e7ea; }
   .rest-row b { font-weight: 650; font-size: 14px; flex: 0 0 250px; }
   .rest-row span { color: #51555c; font-size: 14px; }
+  .rest-more { display: block; padding-top: 14px; font-size: 14px; font-weight: 600; text-decoration: none; }
 
   .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 40px 0; max-width: 1120px; margin: 0 auto; }
   .pair > div { display: flex; flex-direction: column; gap: 12px; padding: 32px; }
@@ -79,33 +55,19 @@
   .night h2 { color: #f1f3f5; }
   .night p { color: #b3b9c0; }
 
-  .cta { padding: 24px 0; }
-  .cta .card { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 44px; }
-  .cta h2 { font-size: 36px; line-height: 1.05; max-width: 560px; text-wrap: pretty; }
-  .cta .dim { max-width: 560px; }
-
-  footer { max-width: 1120px; margin: 24px auto 0; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid #d6dade; padding-top: 20px; }
-  footer a { color: #676c74; text-decoration: none; }
-  footer a:hover { color: #082da3; }
-
   @media (max-width: 960px) {
     .grid-kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-featured, .grid-moves { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
-    .shell { padding: 0 20px 48px; }
     .hero { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 32px 0 24px; }
     .hero h1 { font-size: 34px; }
     .hero-art { order: -1; }
     .hero-art .mark { width: 160px; height: 160px; }
-    .sect { padding: 36px 0 16px; }
-    .sect-head h2 { font-size: 27px; }
     .grid-moves, .grid-featured, .grid-kinds { grid-template-columns: minmax(0, 1fr); }
     .pair { grid-template-columns: minmax(0, 1fr); padding: 28px 0; }
     .rest-row { flex-direction: column; gap: 2px; }
     .rest-row b { flex: none; }
-    .cta .card { padding: 28px 22px; }
-    .cta h2 { font-size: 28px; }
   }
 </style>
 </head>
@@ -113,8 +75,11 @@
 <div class="shell">
 
   <header class="topbar bar">
-    <div class="brand"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></div>
-    <a class="btn" style="min-height: 42px; padding: 8px 20px; font-size: 15px" href="https://www.greggle.app/">Open Greggle</a>
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></a>
+    <nav class="topnav">
+      <a class="navlink" href="/methods/">Ways of thinking</a>
+      <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
+    </nav>
   </header>
 
   <section class="hero">
@@ -124,7 +89,7 @@
       <p class="dim hero-lead">Name something you are trying to work out. Greggle cuts it onto a board of interlocking steps. Open any step and it becomes a board of its own &mdash; keep going until every piece is something you can actually go and do.</p>
       <div class="hero-ctas">
         <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
-        <a class="btn-quiet" href="#ways">See the ways of thinking</a>
+        <a class="btn-quiet" href="/methods/">See the ways of thinking</a>
       </div>
     </div>
     <div class="hero-art"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg></div>
@@ -171,12 +136,12 @@
       <p class="dim">These are the methods factories, consultancies and labs have used for decades &mdash; the ones normally locked inside textbooks and training courses. Greggle lays them out on your board and walks you through them. Pick one and it proposes a cut; nothing is added until you have reviewed it.</p>
     </div>
     <div class="grid grid-featured">
-      <div class="card"><h3>5 Whys</h3><p class="stated origin">Began on Toyota&rsquo;s factory floor in the 1950s</p><p class="dim">Ask why of the answer, five times, until you reach a cause you can actually act on.</p></div>
-      <div class="card"><h3>Working Backwards</h3><p class="stated origin">How Amazon starts new products</p><p class="dim">Define what done looks like and the evidence that would prove it, then walk back to now.</p></div>
-      <div class="card"><h3>Pre-mortem</h3><p class="stated origin">Psychologist Gary Klein&rsquo;s insurance against wishful thinking</p><p class="dim">It is twelve months from now and this failed. Work out why, then prevent it.</p></div>
-      <div class="card"><h3>First Principles</h3><p class="stated origin">Aristotle&rsquo;s method</p><p class="dim">Find the truths nothing else rests on, then build up from them alone.</p></div>
-      <div class="card"><h3>Force Field Analysis</h3><p class="stated origin">Psychologist Kurt Lewin, 1940s</p><p class="dim">What is pushing for the change, what is holding it back, and which single restraint you could actually remove.</p></div>
-      <div class="card"><h3>Options and Criteria</h3><p class="stated origin">The decision matrix, kept honest</p><p class="dim">Write down what a good answer would have to do before you look at the answers.</p></div>
+      <div class="card"><h3><a href="/methods/five-whys/">5 Whys</a></h3><p class="stated origin">Began on Toyota&rsquo;s factory floor in the 1950s</p><p class="dim">Ask why of the answer, five times, until you reach a cause you can actually act on.</p></div>
+      <div class="card"><h3><a href="/methods/working-backwards/">Working Backwards</a></h3><p class="stated origin">How Amazon starts new products</p><p class="dim">Define what done looks like and the evidence that would prove it, then walk back to now.</p></div>
+      <div class="card"><h3><a href="/methods/pre-mortem/">Pre-mortem</a></h3><p class="stated origin">Psychologist Gary Klein&rsquo;s insurance against wishful thinking</p><p class="dim">It is twelve months from now and this failed. Work out why, then prevent it.</p></div>
+      <div class="card"><h3><a href="/methods/first-principles/">First Principles</a></h3><p class="stated origin">Aristotle&rsquo;s method</p><p class="dim">Find the truths nothing else rests on, then build up from them alone.</p></div>
+      <div class="card"><h3><a href="/methods/force-field-analysis/">Force Field Analysis</a></h3><p class="stated origin">Psychologist Kurt Lewin, 1940s</p><p class="dim">What is pushing for the change, what is holding it back, and which single restraint you could actually remove.</p></div>
+      <div class="card"><h3><a href="/methods/options-and-criteria/">Options and Criteria</a></h3><p class="stated origin">The decision matrix, kept honest</p><p class="dim">Write down what a good answer would have to do before you look at the answers.</p></div>
     </div>
     <div class="card rest">
       <span class="stated">and eight more</span>
@@ -188,6 +153,7 @@
       <div class="rest-row"><b>Strategic Challenge Map</b><span>categorise the challenges, evidence each one, judge what you can move</span></div>
       <div class="rest-row"><b>Theory of Constraints</b><span>Eliyahu Goldratt &mdash; find where the whole flow narrows, and serve it</span></div>
       <div class="rest-row" style="border-bottom: 0"><b>Answer First</b><span>the consulting habit &mdash; give the answer in the first sentence, reasons beneath</span></div>
+      <a class="rest-more" href="/methods/">All fourteen: where each came from, why it works, how to run it &rarr;</a>
     </div>
   </section>
 
@@ -214,7 +180,7 @@
 
   <footer>
     <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
-    <span class="stated"><a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
   </footer>
 </div>
 </body>

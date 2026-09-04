@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Options and Criteria · a way of thinking · Greggle</title>
+<meta name="description" content="Where the decision matrix came from, why the order of the steps is the whole method, and how to run it honestly: from Franklin&#x27;s prudential algebra to Kepner-Tregoe.">
+<link rel="canonical" href="https://greggle.app/methods/options-and-criteria/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:title" content="Options and Criteria · a way of thinking · Greggle">
+<meta property="og:description" content="Where the decision matrix came from, why the order of the steps is the whole method, and how to run it honestly: from Franklin&#x27;s prudential algebra to Kepner-Tregoe.">
+<meta property="og:url" content="https://greggle.app/methods/options-and-criteria/">
+<meta property="og:image" content="https://greggle.app/board.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar bar">
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></a>
+    <nav class="topnav">
+      <a class="navlink" href="/methods/" aria-current="page">Ways of thinking</a>
+      <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
+    </nav>
+  </header>
+
+  <article class="method">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; <a href="/methods/">Ways of thinking</a> &middot; Options and Criteria</p>
+      <span class="eyebrow">A way of thinking &middot; best for a Decision</span>
+      <h1>Options and Criteria</h1>
+      <p class="dim lead">Write down what a good answer would have to do before you look at the answers.</p>
+    </header>
+
+    <div class="card facts">
+      <div><span class="stated">Origin</span><p>Franklin, 1772; Kepner and Tregoe, 1965</p></div>
+      <div><span class="stated">Best for</span><p>a Decision, or an Opportunity</p></div>
+      <div><span class="stated">Takes</span><p>Half an hour</p></div>
+      <div><span class="stated">Needs</span><p>Criteria written before the options</p></div>
+    </div>
+
+    <div class="method-body">
+      <div class="prose">
+        <section id="origin"><h2>Where it came from</h2>
+<p>Older than any company. In September 1772 Benjamin Franklin wrote to his friend Joseph Priestley, who was agonising over a job offer, and described what he called his moral or prudential algebra. Draw a line down a sheet of paper. Write the reasons for on one side, the reasons against on the other, over three or four days as they occur to you. Then strike out pairs of equal weight, a "for" against an "against", two weak ones against one strong one, until one side is empty. What remains is the answer, and it is an answer you can explain.</p>
+<p>Charles Kepner and Benjamin Tregoe, two researchers who met at the RAND Corporation in the 1950s, turned the same instinct into a formal method for managers, published in The Rational Manager in 1965. Their decision analysis separates the criteria into musts, which any option has to satisfy or it is out, and wants, which are weighted and scored. Stuart Pugh&rsquo;s concept selection matrix, from 1981, is the engineering version, where options are scored against a reference design rather than against each other.</p>
+<p>Everyone has seen the grid. What almost nobody does is fill it in in the right order.</p></section>
+        <section id="works"><h2>Why it works</h2>
+<p>The matrix is almost beside the point. The sequence is the method. If you list the options first, the one you already like starts writing its own criteria: it is fast, so speed becomes a criterion; it is cheap, so cost becomes one. By the time you score, the answer was decided before the grid existed, and the grid is just an alibi.</p>
+<p>Writing down what a good answer would have to do, before any answer is on the table, stops that. It also gives you the must-haves, which do most of the work. Options that fail a must are gone, and often that leaves two, which a person can choose between honestly without any scoring at all.</p></section>
+        <section id="when"><h2>When to reach for it, and when not to</h2>
+<p>Reach for it when there is a genuine choice between several things and you can feel your preference pulling you before you have thought. It suits a Decision above all, and an Opportunity where the choice is whether to pursue it at all, with "do nothing" as one of the options.</p>
+<p>It is the wrong tool when there is only one option and the question is whether to take it; that is Force Field Analysis. It is also weak on a choice whose outcome depends heavily on things outside your control, where Scenario Planning does better. On a Greggle board, Options and Criteria is offered on a Decision and on an Opportunity.</p></section>
+        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol><li>Write the decision in one line. "Which subjects next year", not "what should I do with my life".</li><li>Before listing any option, write what a good outcome must have. These are the musts. An option that fails one is out, regardless of everything else.</li><li>Now write what a good outcome would ideally have. These are the wants. Give each a weight: how much it matters, out of five.</li><li>Only now list the options. Include the boring one and the one you are secretly hoping for.</li><li>Strike out any option that fails a must. Score what is left against each want, out of five, and multiply by the weight.</li><li>Look at the result and ask whether it surprises you. If it does, work out whether the criteria are wrong or your gut is. Don&rsquo;t edit the criteria to fix the answer; if you must change them, say why and start again.</li></ol></section>
+        <section id="board"><h2>On a Greggle board</h2>
+          <p>Pick Options and Criteria on a Decision board and Greggle proposes the criteria as the first step, before the options, so the order is protected for you.</p>
+          <div class="board">
+<div class="tile"><span class="stated">the decision</span><b>What is being chosen</b><span>One line. One choice.</span></div>
+<div class="tile"><span class="stated">musts</span><b>What any answer has to have</b><span>Fail one of these and the option is out. Written before any option.</span></div>
+<div class="tile"><span class="stated">wants</span><b>What a good answer would have</b><span>Each with a weight out of five. Open this and each want is a step.</span></div>
+<div class="tile"><span class="stated">options</span><b>Only now, the options</b><span>Including the boring one and the one you are hoping for.</span></div>
+<div class="tile"><span class="stated">the score</span><b>Strike out, then score what is left</b><span>Musts first. Then wants times weights.</span></div>
+<div class="tile action"><span class="stated">action</span><b>The choice, and why</b><span>One sentence. Marked as an action.</span></div>
+          </div>
+          <p class="note">Nothing is added until you have looked at it. Open any step and it becomes a board of its own. Steps that cannot sensibly be cut smaller get marked as actions, and every action collects in one flat list.</p>
+        </section>
+        <section id="example"><h2>A worked example</h2>
+<div class="card example">
+  <span class="stated">a Decision &middot; which subjects to take next year</span>
+  <div class="qa">
+    <div><b>Musts</b><span>Keeps the two university courses I am considering open. Fits the timetable without a clash. I have at least a B in it now, or it is new.</span></div>
+    <div><b>Wants</b><span>I would enjoy it (5). A teacher I work well with (3). Friends in the class (1). Useful whatever I end up doing (4).</span></div>
+    <div><b>Options</b><span>Physics, Chemistry, History, Economics, Art, Further Maths.</span></div>
+    <div><b>Musts applied</b><span>Art clashes with Chemistry. Further Maths needs an A now and I have a B. Both out. History doesn&rsquo;t keep either course open on its own but doesn&rsquo;t close one either, so it stays.</span></div>
+  </div>
+  <div class="tablewrap"><table>
+    <tr><th>Option</th><th>Enjoy (5)</th><th>Teacher (3)</th><th>Friends (1)</th><th>Useful (4)</th><th>Total</th></tr>
+    <tr><td>Physics</td><td>3 = 15</td><td>4 = 12</td><td>2 = 2</td><td>5 = 20</td><td>49</td></tr>
+    <tr><td>Chemistry</td><td>2 = 10</td><td>2 = 6</td><td>4 = 4</td><td>5 = 20</td><td>40</td></tr>
+    <tr><td>History</td><td>5 = 25</td><td>5 = 15</td><td>3 = 3</td><td>3 = 12</td><td>55</td></tr>
+    <tr><td>Economics</td><td>4 = 20</td><td>3 = 9</td><td>2 = 2</td><td>4 = 16</td><td>47</td></tr>
+  </table></div>
+  <div class="qa">
+    <div><b>Does it surprise you?</b><span>History winning did. The gut said Physics and Chemistry, because that is what "serious" looks like. But the musts already said the courses stay open with Physics alone, and the wants say History is the one I would actually turn up to. Physics and History, then, with Economics as the third.</span></div>
+  </div>
+  <p class="dim">If the surprise had felt wrong rather than interesting, the honest move would be to ask which want was missing, write it down, say why, and score again. Not to nudge History&rsquo;s numbers until Chemistry won.</p>
+</div></section>
+        <section id="falls"><h2>Where it falls down</h2>
+<p>Weights and scores can be tuned until the favourite wins, and everyone who has used a decision matrix has done this at least once. The protection is writing the criteria first and refusing to edit them afterwards without saying out loud what changed and why.</p>
+<p>The grid also gives an impression of precision it doesn&rsquo;t have. A total of 55 against 49 is not a six-point margin of truth. It is a ranking, and it tells you History is probably ahead and Physics and Economics are close. Treat the numbers as a way of seeing, not as the answer.</p></section>
+        <section id="pairs"><h2>Pairs well with</h2><ul><li><a href="/methods/first-principles/">First Principles</a>. When you can&rsquo;t think of the criteria, go back to what is actually true about the situation. The truths are the criteria.</li><li><a href="/methods/#scenario-planning">Scenario Planning</a>. If the best option changes depending on how the world turns out, score the options in each future, not just one.</li><li><a href="/methods/#answer-first">Answer First</a>. Once chosen, say it in one sentence with the reasons beneath. The matrix is the evidence, not the answer.</li></ul></section>
+        <section id="reading" class="reading"><h2>Further reading</h2><ul><li>Benjamin Franklin, letter to Joseph Priestley, 19 September 1772. One page, and worth reading in full.</li><li>Charles H. Kepner and Benjamin B. Tregoe, The Rational Manager, 1965. Decision analysis is the middle third.</li><li>Stuart Pugh, Total Design, 1991, for concept selection; the method dates from his 1981 conference paper.</li></ul></section>
+      </div>
+      <aside class="side">
+        <div class="card toc"><h3>On this page</h3><ul><li><a href="#origin">Where it came from</a></li><li><a href="#works">Why it works</a></li><li><a href="#when">When to reach for it</a></li><li><a href="#how">How to run it</a></li><li><a href="#board">On a Greggle board</a></li><li><a href="#example">A worked example</a></li><li><a href="#falls">Where it falls down</a></li><li><a href="#pairs">Pairs well with</a></li><li><a href="#reading">Further reading</a></li></ul></div>
+        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">Say what kind of thing it is (a Decision or an Opportunity), then pick Options and Criteria. Greggle asks for the criteria before it will take an option.</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+      </aside>
+    </div>
+
+    <section class="method-cta">
+      <div class="card">
+        <h2>Decide what good looks like. Then look at the options.</h2>
+        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+      </div>
+      <div class="nextprev"><a href="/methods/first-principles/">&larr; First Principles</a><a href="/methods/force-field-analysis/">Force Field Analysis &rarr;</a></div>
+    </section>
+  </article>
+
+  <footer>
+    <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+  </footer>
+</div>
+</body>
+</html>

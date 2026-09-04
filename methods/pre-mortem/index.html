@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-mortem · a way of thinking · Greggle</title>
+<meta name="description" content="Where the pre-mortem came from, the research behind it, and how to run one: Gary Klein&#x27;s method for finding the flaws in a plan before it starts.">
+<link rel="canonical" href="https://greggle.app/methods/pre-mortem/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:title" content="Pre-mortem · a way of thinking · Greggle">
+<meta property="og:description" content="Where the pre-mortem came from, the research behind it, and how to run one: Gary Klein&#x27;s method for finding the flaws in a plan before it starts.">
+<meta property="og:url" content="https://greggle.app/methods/pre-mortem/">
+<meta property="og:image" content="https://greggle.app/board.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar bar">
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></a>
+    <nav class="topnav">
+      <a class="navlink" href="/methods/" aria-current="page">Ways of thinking</a>
+      <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
+    </nav>
+  </header>
+
+  <article class="method">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; <a href="/methods/">Ways of thinking</a> &middot; Pre-mortem</p>
+      <span class="eyebrow">A way of thinking &middot; best for a Project or a Risk</span>
+      <h1>Pre-mortem</h1>
+      <p class="dim lead">It is twelve months from now and this failed. Work out why, then prevent it.</p>
+    </header>
+
+    <div class="card facts">
+      <div><span class="stated">Origin</span><p>Gary Klein, 2007</p></div>
+      <div><span class="stated">Best for</span><p>a Project or a Risk, before it starts</p></div>
+      <div><span class="stated">Takes</span><p>Twenty minutes</p></div>
+      <div><span class="stated">Needs</span><p>Everyone who will do the work</p></div>
+    </div>
+
+    <div class="method-body">
+      <div class="prose">
+        <section id="origin"><h2>Where it came from</h2>
+<p>Gary Klein is a psychologist who spent his career studying how firefighters, nurses and soldiers make decisions under pressure, and he noticed that once a plan existed, the people on it stopped looking for its flaws. He published the pre-mortem in Harvard Business Review in September 2007 as a short, almost trivially simple fix. Tell the team the plan has failed, and ask them why.</p>
+<p>It rests on a 1989 experiment by Deborah Mitchell, Jay Russo and Nancy Pennington. They asked people to explain a future event. Some were told it might happen; others were told it had happened, and to explain it in hindsight. The second group came up with about thirty per cent more reasons, and more specific ones. They called it prospective hindsight. Certainty, even pretend certainty, unlocks reasons that possibility doesn&rsquo;t.</p>
+<p>Daniel Kahneman gave the pre-mortem a page of Thinking, Fast and Slow and has recommended it as his preferred check on overconfidence. It costs almost nothing, which is why it is worth running on almost everything.</p></section>
+        <section id="works"><h2>Why it works</h2>
+<p>Doubt feels disloyal. Once a group has agreed a plan, pointing out how it might fail sounds like an accusation against whoever proposed it, so people don&rsquo;t. The pre-mortem makes the failure a premise instead of a prediction. You aren&rsquo;t saying it might fail. You have been told it did, and your job is to be the person who explains why. Everyone gets permission to be the pessimist at once.</p>
+<p>The silent writing matters as much as the framing. If the room talks, the first confident voice sets the list and everyone else adds variations. If everyone writes alone first, you get the quiet person&rsquo;s reason, which is often the one nobody else saw.</p></section>
+        <section id="when"><h2>When to reach for it, and when not to</h2>
+<p>Reach for it when a plan exists and hasn&rsquo;t started. That is the window. Run it too early and there is nothing to break; run it once the work is under way and it turns into a list of excuses for what is already going wrong. On a Greggle board, it is offered on a Project and on a Risk.</p>
+<p>It is also useful on a decision you have nearly made. Tell yourself you chose the thing and it went badly, and see what comes to mind. If nothing does, that is worth knowing too.</p></section>
+        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol><li>State the plan in a few lines, so everyone is imagining the same thing failing.</li><li>Announce it. "It is a year from today. This went badly. Not slightly, badly." Say it as a fact.</li><li>Everyone writes, alone and in silence, every reason they can think of. Two minutes. Nobody talks.</li><li>Go round the room. Each person reads one reason. Keep going round until the lists are empty. No discussion yet, and no defending the plan.</li><li>Now pick. Which two or three reasons are both likely and preventable? Those are the ones that matter.</li><li>Change the plan so those can&rsquo;t happen, or so you would see them coming. Write each change as an action.</li></ol></section>
+        <section id="board"><h2>On a Greggle board</h2>
+          <p>Pick Pre-mortem on a Project board and Greggle proposes the failure as the first step, then the reasons, then the prevention. Nothing is written for you.</p>
+          <div class="board">
+<div class="tile"><span class="stated">the plan</span><b>What we are about to do</b><span>A few lines, so everyone imagines the same plan failing.</span></div>
+<div class="tile"><span class="stated">the news</span><b>A year on, it failed badly</b><span>Stated as a fact, not a worry. This is the step people skip.</span></div>
+<div class="tile"><span class="stated">reasons</span><b>Why it failed</b><span>Everyone&rsquo;s reasons, one per line. Open this step and each reason can become a board.</span></div>
+<div class="tile"><span class="stated">the ones that count</span><b>Likely and preventable</b><span>Two or three. The rest are noted and left.</span></div>
+<div class="tile action"><span class="stated">action</span><b>Change the plan so this can&rsquo;t happen</b><span>One action per reason that counts.</span></div>
+<div class="tile action"><span class="stated">action</span><b>Plant a signpost</b><span>The early sign that would tell you it is happening anyway.</span></div>
+          </div>
+          <p class="note">Nothing is added until you have looked at it. Open any step and it becomes a board of its own. Steps that cannot sensibly be cut smaller get marked as actions, and every action collects in one flat list.</p>
+        </section>
+        <section id="example"><h2>A worked example</h2>
+<div class="card example">
+  <span class="stated">a Project &middot; a stall at the Saturday market</span>
+  <p><b>The plan.</b> Rent a stall for four Saturdays in November selling the baked things that sell well at school. Split the profit three ways.</p>
+  <p><b>The news.</b> It is next spring. The stall lost money and two of the three of you aren&rsquo;t speaking.</p>
+  <div class="qa">
+    <div><b>Reasons</b><span>It rained on two of the four Saturdays and nobody came. We baked too much on the first day and threw half away. Only one of us could actually get there at 6am with the trays. We never agreed what to do if someone couldn&rsquo;t make it. The council wanted a food hygiene certificate we didn&rsquo;t have. The person whose kitchen we used got fed up with the mess. The pricing was guessed and we sold out of the cheap thing and nothing else.</span></div>
+    <div><b>Likely and preventable</b><span>The 6am problem, the hygiene certificate, and baking blind on day one.</span></div>
+    <div><b>Actions</b><span>Check the council&rsquo;s rules before paying for the stall. Do the first Saturday with half the stock and count what sells. Write down, now, who does what if one of us is ill, and what happens to their share.</span></div>
+    <div><b>Signpost</b><span>If the first Saturday&rsquo;s takings don&rsquo;t cover the stall fee, stop after the second and talk before the third.</span></div>
+  </div>
+  <p class="dim">The rain isn&rsquo;t preventable, so it doesn&rsquo;t make the cut. Notice that the reason most likely to end friendships was the one about sharing, and it took a pretend failure to say it out loud.</p>
+</div></section>
+        <section id="falls"><h2>Where it falls down</h2>
+<p>Done as a discussion instead of silent writing first, the loudest voice sets the list. Done by one person alone, it still works, but you only get one person&rsquo;s blind spots. Done too late, it becomes a post-mortem with extra steps.</p>
+<p>The other failure is stopping after the list. A pre-mortem that produces twelve reasons and no changes to the plan was a nice conversation. The value is entirely in the two or three actions at the end, and in the signposts that would tell you the failure is arriving anyway.</p></section>
+        <section id="pairs"><h2>Pairs well with</h2><ul><li><a href="/methods/working-backwards/">Working Backwards</a>. Write the ending first, plan back to now, then run a pre-mortem on the plan. One walk forward and one back.</li><li><a href="/methods/#scenario-planning">Scenario Planning</a>. When the reasons for failure are outside your control, the weather or the council, build the futures instead of trying to prevent them.</li><li><a href="/methods/five-whys/">5 Whys</a>. A pre-mortem reason that surprises you deserves five whys of its own.</li></ul></section>
+        <section id="reading" class="reading"><h2>Further reading</h2><ul><li>Gary Klein, "Performing a Project Premortem", Harvard Business Review, September 2007. Two pages.</li><li>Deborah J. Mitchell, J. Edward Russo and Nancy Pennington, "Back to the future: Temporal perspective in the explanation of events", Journal of Behavioral Decision Making, 1989.</li><li>Daniel Kahneman, Thinking, Fast and Slow, 2011, chapter 24.</li></ul></section>
+      </div>
+      <aside class="side">
+        <div class="card toc"><h3>On this page</h3><ul><li><a href="#origin">Where it came from</a></li><li><a href="#works">Why it works</a></li><li><a href="#when">When to reach for it</a></li><li><a href="#how">How to run it</a></li><li><a href="#board">On a Greggle board</a></li><li><a href="#example">A worked example</a></li><li><a href="#falls">Where it falls down</a></li><li><a href="#pairs">Pairs well with</a></li><li><a href="#reading">Further reading</a></li></ul></div>
+        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">Say what kind of thing it is (a Project or a Risk), then pick Pre-mortem. Greggle states the failure and asks you why.</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+      </aside>
+    </div>
+
+    <section class="method-cta">
+      <div class="card">
+        <h2>Tell yourself it failed. Then find out why.</h2>
+        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+      </div>
+      <div class="nextprev"><a href="/methods/working-backwards/">&larr; Working Backwards</a><a href="/methods/">All fourteen &rarr;</a></div>
+    </section>
+  </article>
+
+  <footer>
+    <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+  </footer>
+</div>
+</body>
+</html>

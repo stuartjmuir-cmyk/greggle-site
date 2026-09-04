@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Force Field Analysis · a way of thinking · Greggle</title>
+<meta name="description" content="Where force field analysis came from, why removing a restraint beats pushing harder, and how to run it: Kurt Lewin&#x27;s method for shifting something that has stuck.">
+<link rel="canonical" href="https://greggle.app/methods/force-field-analysis/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:title" content="Force Field Analysis · a way of thinking · Greggle">
+<meta property="og:description" content="Where force field analysis came from, why removing a restraint beats pushing harder, and how to run it: Kurt Lewin&#x27;s method for shifting something that has stuck.">
+<meta property="og:url" content="https://greggle.app/methods/force-field-analysis/">
+<meta property="og:image" content="https://greggle.app/board.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar bar">
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></a>
+    <nav class="topnav">
+      <a class="navlink" href="/methods/" aria-current="page">Ways of thinking</a>
+      <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
+    </nav>
+  </header>
+
+  <article class="method">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; <a href="/methods/">Ways of thinking</a> &middot; Force Field Analysis</p>
+      <span class="eyebrow">A way of thinking &middot; best for a Decision or a stalled Goal</span>
+      <h1>Force Field Analysis</h1>
+      <p class="dim lead">What is pushing for the change, what is holding it back, and which single restraint you could actually remove.</p>
+    </header>
+
+    <div class="card facts">
+      <div><span class="stated">Origin</span><p>Kurt Lewin, 1940s</p></div>
+      <div><span class="stated">Best for</span><p>a Decision about a change, a Goal that has stalled</p></div>
+      <div><span class="stated">Takes</span><p>Twenty minutes</p></div>
+      <div><span class="stated">Needs</span><p>Honesty about what is holding you back</p></div>
+    </div>
+
+    <div class="method-body">
+      <div class="prose">
+        <section id="origin"><h2>Where it came from</h2>
+<p>Kurt Lewin was a German psychologist who left Berlin for America in 1933 and, in the fourteen years before his death in 1947, founded most of what is now called social psychology. He thought of any situation, a person, a group, a factory floor, as a field of forces held in balance. Some push towards a change; some hold it back. Nothing moves while they balance. Something moves when they don&rsquo;t.</p>
+<p>His observation, which is the whole method, is that there are two ways to unbalance the field, and they are not equal. You can push harder. Or you can remove something that is holding the change back. Pushing harder works briefly and raises resistance, because the restraining forces push back in proportion. Removing a restraint lets the change happen with the push you already have. Lewin&rsquo;s papers were collected as Field Theory in Social Science in 1951, after he died. The analysis, drawn as two columns of arrows pointing at a line, has been used in change management ever since.</p></section>
+        <section id="works"><h2>Why it works</h2>
+<p>It makes you write the things holding you back in a separate column from the things pushing you forward, and then it makes you choose one restraint to remove. Most people, when something has stalled, only ever add more push: more motivation, more reminders, more pressure. The restraints are still there, so the thing stays stalled and now everyone is tired.</p>
+<p>Naming the restraints one by one, and scoring them, shows that they are not all equal and that at least one is usually cheap to remove. That one is the action.</p></section>
+        <section id="when"><h2>When to reach for it, and when not to</h2>
+<p>Reach for it when you are deciding whether to change something, or when a goal you have been pushing towards has stopped moving. It suits a change that involves other people particularly well, because the restraints are usually other people&rsquo;s, and this makes you write them down as forces rather than as villains.</p>
+<p>It is the wrong tool for choosing between several options; that is Options and Criteria. It is also weak on a change you don&rsquo;t yet want, since the whole method assumes the push exists. On a Greggle board, it is offered on a Decision and on a Goal.</p></section>
+        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol><li>Write the change in one line at the top. Not the goal, the change: what would be different.</li><li>Left column, everything pushing for it. Reasons, people, deadlines, things that have already started to shift.</li><li>Right column, everything holding it back. Be honest, and include the ones that are about you.</li><li>Score every force out of five for how strong it is. Don&rsquo;t add the columns up; the scores are for ranking, not arithmetic.</li><li>Look only at the right column. For each restraint, ask what it would take to weaken it. Find the one you could weaken most for the least.</li><li>That is your first action. Do it, then look at the field again, because removing one restraint often changes the others.</li></ol></section>
+        <section id="board"><h2>On a Greggle board</h2>
+          <p>Pick Force Field Analysis on a Goal or Decision board and Greggle proposes the change, the two columns, and the one restraint to remove. You supply the forces.</p>
+          <div class="board">
+<div class="tile"><span class="stated">the change</span><b>What would be different</b><span>One line. The thing itself, not the reason for it.</span></div>
+<div class="tile"><span class="stated">pushing for it</span><b>The driving forces</b><span>Open this and each force becomes a step, with a score out of five.</span></div>
+<div class="tile"><span class="stated">holding it back</span><b>The restraining forces</b><span>The honest list, including the ones about you.</span></div>
+<div class="tile"><span class="stated">the weakest link</span><b>The restraint that costs least to remove</b><span>One. Chosen from the right-hand column only.</span></div>
+<div class="tile action"><span class="stated">action</span><b>Remove it</b><span>Marked as an action. The first thing to actually do.</span></div>
+<div class="tile"><span class="stated">then</span><b>Look at the field again</b><span>Restraints move when one is removed. Re-score before the next.</span></div>
+          </div>
+          <p class="note">Nothing is added until you have looked at it. Open any step and it becomes a board of its own. Steps that cannot sensibly be cut smaller get marked as actions, and every action collects in one flat list.</p>
+        </section>
+        <section id="example"><h2>A worked example</h2>
+<div class="card example">
+  <span class="stated">a Goal &middot; make the first team this season</span>
+  <p><b>The change.</b> I am picked for the first team for the second half of the season.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Pushing for it</th><th>Score</th><th>Holding it back</th><th>Score</th></tr>
+    <tr><td>Fitness is better than last year</td><td>4</td><td>Tuesday training clashes with my shift at the shop</td><td>5</td></tr>
+    <tr><td>The coach has said I am close</td><td>4</td><td>No lift to Saturday away matches</td><td>4</td></tr>
+    <tr><td>Two first-team players leave at Christmas</td><td>5</td><td>The current player in my position is popular</td><td>3</td></tr>
+    <tr><td>A friend already on the team who talks me up</td><td>2</td><td>I get nervous in trials and play worse than in training</td><td>4</td></tr>
+  </table></div>
+  <div class="qa">
+    <div><b>The weakest link</b><span>The shift clash scores highest and is the cheapest to move. It is one conversation with the shop about swapping Tuesday for Sunday. The nerves score high too but are slow to change. The popular player isn&rsquo;t a restraint you should try to remove at all.</span></div>
+    <div><b>Action</b><span>Ask the manager this week about moving the Tuesday shift. If yes, be at every Tuesday training until Christmas.</span></div>
+    <div><b>Then</b><span>With Tuesdays sorted, the lift problem may solve itself, because someone at Tuesday training drives to Saturday matches.</span></div>
+  </div>
+  <p class="dim">Left to itself, the instinct is to add push: train harder, want it more. The field says the fastest way to move is to stop missing Tuesdays.</p>
+</div></section>
+        <section id="falls"><h2>Where it falls down</h2>
+<p>The scores invite false precision. People add up the columns, get 15 against 16, and conclude the change is impossible by one point. The scores exist to rank the restraints and nothing else.</p>
+<p>It is also easy to fill the right-hand column with other people and leave yourself out. The restraint that is about you, the nerves in the example, is often the one that matters most in the long run even if it isn&rsquo;t the one to remove first. Write it down anyway.</p></section>
+        <section id="pairs"><h2>Pairs well with</h2><ul><li><a href="/methods/#stakeholder-and-influence-map">Stakeholder and Influence Map</a>. When most of the restraints are people, map them properly: what does each one actually want?</li><li><a href="/methods/five-whys/">5 Whys</a>. A restraint that scores five deserves to be asked why, five times. It may not be what it looks like.</li><li><a href="/methods/options-and-criteria/">Options and Criteria</a>. If the field shows the change is worth making, and there are several ways to make it, choose between them with criteria written first.</li></ul></section>
+        <section id="reading" class="reading"><h2>Further reading</h2><ul><li>Kurt Lewin, Field Theory in Social Science, 1951, edited by Dorwin Cartwright. The force field is in the papers on group decision and social change.</li><li>Kurt Lewin, "Frontiers in Group Dynamics", Human Relations, 1947. Where unfreezing, moving and refreezing first appear.</li></ul></section>
+      </div>
+      <aside class="side">
+        <div class="card toc"><h3>On this page</h3><ul><li><a href="#origin">Where it came from</a></li><li><a href="#works">Why it works</a></li><li><a href="#when">When to reach for it</a></li><li><a href="#how">How to run it</a></li><li><a href="#board">On a Greggle board</a></li><li><a href="#example">A worked example</a></li><li><a href="#falls">Where it falls down</a></li><li><a href="#pairs">Pairs well with</a></li><li><a href="#reading">Further reading</a></li></ul></div>
+        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">Say what kind of thing it is (a Goal or a Decision), then pick Force Field Analysis. Greggle sets up the two columns.</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+      </aside>
+    </div>
+
+    <section class="method-cta">
+      <div class="card">
+        <h2>Stop pushing harder. Remove one thing that is holding it back.</h2>
+        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+      </div>
+      <div class="nextprev"><a href="/methods/options-and-criteria/">&larr; Options and Criteria</a><a href="/methods/working-backwards/">Working Backwards &rarr;</a></div>
+    </section>
+  </article>
+
+  <footer>
+    <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+  </footer>
+</div>
+</body>
+</html>
