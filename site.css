@@ -150,3 +150,22 @@ footer a:hover { color: #082da3; }
   .cta h2 { font-size: 28px; }
   .method-cta h2 { font-size: 26px; }
 }
+
+/* Essay and about pages */
+.essay { max-width: 720px; margin: 0 auto; }
+.essay .method-head { padding-bottom: 8px; }
+.essay .prose { padding-top: 8px; }
+.essay .prose p + p { margin-top: 0; }
+.essay .prose section { gap: 14px; }
+.essay .prose h2 { padding-top: 20px; }
+.essay .pull { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: #082da3; border-left: 4px solid #0b3fd4; padding: 4px 0 4px 18px; margin: 6px 0; text-wrap: pretty; }
+.essay .rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
+.essay .rules .tile { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; background: #fbfcfd; border: 1px solid #e4e7ea; border-radius: 14px; }
+.essay .rules .tile b { font-size: 15px; font-weight: 650; }
+.essay .rules .tile span { font-size: 14px; color: #51555c; }
+.essay .facts { margin-top: 8px; }
+.essay .facts p { font-weight: 500; font-size: 14.5px; }
+@media (max-width: 720px) {
+  .essay .pull { font-size: 19px; }
+  .essay .rules { grid-template-columns: minmax(0, 1fr); }
+}

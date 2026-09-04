@@ -545,8 +545,8 @@ Phase two, done apart from screenshots. The remaining eight method pages,
 written from the app's framework files. Still to do: board screenshots for all
 fourteen, taken from real boards in the app the way the front page's was.
 
-Phase three. The essay page and the about page. The essay should be written
-last, once the fourteen pages exist and the argument can point at them.
+Phase three, done. The essay page at /why/ and the about page at /about/,
+both linked from every page's navigation and footer.
 
 Phase four. Cards. One PDF per method, linked from each method page. The kinds
 page. Then whichever of the extension ideas in section 5 has earned it.
@@ -577,6 +577,12 @@ methods are suggested for each kind are in `src/domain/vocabulary.ts`.
   and on what examples? The worked examples in section 4 could be the boards.
   The app runs locally with `npm run dev`, so this can be done headlessly once
   the site's session can install its dependencies.
+- Trademarks. The app deliberately ships Answer First without the name the
+  method is famous by, or its owner's name, because that name is registered
+  for software (see the app's decision note 04). The site's Answer First and
+  Issue Tree pages cite the book and its author as sources, which is
+  ordinary editorial citation rather than naming a product, but it is a
+  judgement call and worth a look before the site is promoted.
 - Voice on origin stories: how much history is too much? The brief above gives
   each about a paragraph. The pages could go longer for the good stories (Shell
   in 1973, Goldratt writing a novel) and shorter for the rest.

@@ -12,7 +12,7 @@ MARK = '<svg class="mark"' + MARK + "</svg>"
 def curly(s):
     return re.sub(r"(\w)'(\w)", r"\1&rsquo;\2", s)
 
-def head(title, desc, canon, image="https://greggle.app/board.jpg"):
+def head(title, desc, canon, image="https://greggle.app/board.jpg", current="methods"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -36,7 +36,9 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg"):
   <header class="topbar bar">
     <a class="brand" href="/">{MARK} <span>Greggle</span></a>
     <nav class="topnav">
-      <a class="navlink" href="/methods/" aria-current="page">Ways of thinking</a>
+      <a class="navlink" href="/methods/"{' aria-current="page"' if current == "methods" else ''}>Ways of thinking</a>
+      <a class="navlink" href="/why/"{' aria-current="page"' if current == "why" else ''}>Why</a>
+      <a class="navlink" href="/about/"{' aria-current="page"' if current == "about" else ''}>About</a>
       <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
     </nav>
   </header>
@@ -45,7 +47,7 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg"):
 FOOT = """
   <footer>
     <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
-    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="/why/">why</a> &middot; <a href="/about/">about</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></span>
   </footer>
 </div>
 </body>
@@ -1208,4 +1210,121 @@ for m in METHODS:
 write_index()
 for m in METHODS:
     write_method(m)
-print("wrote", len(METHODS) + 1, "pages")
+
+# ---------------------------------------------------------------------------
+def write_page(slug, title, desc, current, body):
+    out = head(title, desc, f"https://greggle.app/{slug}/", current=current) + body + FOOT
+    d = os.path.join(ROOT, slug); os.makedirs(d, exist_ok=True)
+    with open(os.path.join(d, "index.html"), "w") as f:
+        f.write(out)
+
+ESSAY = """
+  <article class="essay">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; Why</p>
+      <span class="eyebrow">The idea behind it</span>
+      <h1>Why methods, and not answers.</h1>
+      <p class="dim lead">Every one of the fourteen ways of thinking is a set of questions, and only the person asking can answer them. That is the whole design, and it is the opposite of where most software is going.</p>
+    </header>
+    <div class="prose">
+      <section id="questions">
+        <h2>The answer is already in the room</h2>
+        <p>Nobody else knows why your band misses practice. No search engine knows what a good answer to your subject choice would have to do. Toyota's fifth why has to come out of the head of the person who was standing at the machine, and Shell's scenarios were only useful because the people who had to act on them had built them. Every method on this site works the same way. It doesn't supply content. It supplies the shape that gets the content out of you.</p>
+        <p>That is why the methods are old, and why none of them were invented here. A method that has been used on factory floors and in boardrooms for fifty years has had every shortcut tried and every lazy version found out. What survives is a short list of questions in a particular order, and the order is usually the whole thing. Write the criteria before the options. State the failure as a fact before you list the causes. Ask why of the answer, not of the problem. Get the order wrong and the method quietly becomes a way of justifying what you already thought.</p>
+        <p class="pull">A method is a set of questions in an order that stops you lying to yourself. The answers were always yours.</p>
+      </section>
+      <section id="opposite">
+        <h2>The opposite direction</h2>
+        <p>The default now is to ask a machine for the answer. That works well when the answer exists outside you: a date, a formula, how to fix a fence post. It works badly, and sometimes harmfully, when it doesn't. A plan for your own life written by something that has never met you is a plausible-sounding plan for someone else. It will be fluent, tidy, and wrong in ways you can't see, because the wrongness is in the assumptions it made about you, and you never got to look at those.</p>
+        <p>Greggle takes a side here, and the side shows in how it's built. Pick a method and it proposes a cut of your board, and then it adds nothing until you have looked at every step and ticked or unticked it. It shows the counts, three of eleven, rather than a percentage, because a percentage flatters a plan and a count doesn't. And it holds nothing on a server, because there isn't one. Those aren't privacy features bolted on afterwards. They are what a tool looks like when it believes the knowledge is in the user.</p>
+      </section>
+      <section id="assistant">
+        <h2>What about an assistant?</h2>
+        <p>Honest answer: the app is built so that one could be added later, and there isn't one in this version. There is no network code in it at all, and no place to put a key. But the boundary an assistant would sit behind already exists, and it says a lot about what an assistant would be for. It would be asked the same two questions the method library is asked today: propose a cut of this step, and read this branch back and say what is missing. Its suggestions would arrive on the same review screen a method's do, one at a time, to accept, edit or reject. And the settings screen already shows, word for word, what it would be told about a step, so you could read that before every call instead of trusting a promise.</p>
+        <p>That is a different job from writing your answer. It's the job of a good colleague who asks "what would have to be true?" and then shuts up. If an assistant is ever switched on, that's the job it gets.</p>
+      </section>
+      <section id="next">
+        <h2>Where this goes</h2>
+        <p>If the belief is that the knowledge is in the person, the app is one expression of it and not the only one. The wider thing is a set of tools, methods and systems for people who want to solve problems, finish things and plan what they're going to do, using what they already know. Some of the directions, roughly in the order they're likely to happen.</p>
+        <p><b>The library.</b> This site is the first extension. A page that lets someone run a pre-mortem on paper, with no app at all, is already a tool. <a href="/methods/">The fourteen are here.</a></p>
+        <p><b>Cards.</b> Each method as a single printable page: the steps, the questions, a blank grid where one is needed. Pen and paper is the most offline the work can get, and a card on a kitchen table is how a method gets used by a family rather than by whoever owns the laptop.</p>
+        <p><b>More kinds of thing.</b> Seven kinds is a good start and the gaps are obvious: a habit to build or break, a skill to learn, a conversation you're dreading, a piece of writing. Each brings its own questions and its own natural methods, and none of those were invented here either. Gabriele Oettingen's WOOP for a habit. Chris Argyris's ladder of inference for a conversation.</p>
+        <p><b>The knowledge audit.</b> Every method assumes you know things, and most people have never been asked to write down what they know about their own situation. A method for that, run before any other: what do I know for certain, what do I believe, what am I assuming, what would I need to find out and from whom. Donna Ogle's KWL chart from 1986 is the classroom version. This is the method that would feed all the others, and it's the one that most sharply separates a tool built on the user's knowledge from one built on retrieval.</p>
+        <p><b>The review loop.</b> Greggle can already read a board back and say what's missing. The next thing to read back is the past. A decision journal records what you decided, what you expected and how sure you were, and then, months later, what actually happened. Over a year it teaches a person where their own judgement is reliable and where it isn't, which is knowledge nobody else can give them. Finished boards are the raw material. It stays on the device like everything else.</p>
+        <p><b>Fading.</b> The most interesting version of the tool is one that plans its own obsolescence. The first time someone runs a pre-mortem, the app walks them through every question. The fifth time, it offers the board and stays quiet. By the tenth, they run it in their head in a meeting and don't open anything. Teachers call this cognitive apprenticeship: model, coach, then fade the scaffolding. A tool that measured its success by how little people needed it would be unusual. It's also exactly what a tool built on the user's own knowledge ought to want.</p>
+      </section>
+      <section id="rules">
+        <h2>The rule</h2>
+        <p>The thread through all of these is the rule the app already follows. If a proposed feature breaks one of these, it belongs to a different product.</p>
+        <div class="rules">
+          <div class="tile"><b>Elicit, don't generate</b><span>Ask the question. The person answers it.</span></div>
+          <div class="tile"><b>Show the count, not the score</b><span>Three of eleven. A percentage flatters.</span></div>
+          <div class="tile"><b>Add nothing unreviewed</b><span>Every proposal is looked at, step by step, before it lands.</span></div>
+          <div class="tile"><b>Keep the work where the person is</b><span>On the device, in a file they own.</span></div>
+        </div>
+      </section>
+    </div>
+    <section class="method-cta">
+      <div class="card">
+        <h2>Pick a method. The answers are yours.</h2>
+        <p class="dim">Fourteen ways of thinking, each with where it came from and how to run it on paper.</p>
+        <a class="btn" href="/methods/">See the fourteen</a>
+      </div>
+    </section>
+  </article>
+"""
+
+ABOUT = """
+  <article class="essay">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; About</p>
+      <span class="eyebrow">About</span>
+      <h1>What Greggle is, who made it, and what it promises.</h1>
+      <p class="dim lead">A free tool for breaking a big thing into pieces small enough to just do, built by one person, with nothing to sign up for.</p>
+    </header>
+    <div class="prose">
+      <section id="what">
+        <h2>What it is</h2>
+        <p>Greggle is a web app. You name something you are working on, say what kind of thing it is, and it gives you a board of interlocking steps. Open any step and it becomes a board of its own. Keep going until every piece is something you can actually go and do, mark those as actions, and they collect in one flat list. Along the way it offers <a href="/methods/">fourteen ways of thinking</a>, each of which proposes a cut of your board that you review before anything is added, and a check that reads a branch back and says what is missing.</p>
+        <p>It runs in the browser and can be installed like any other app on a phone or a computer. Once installed it works with no internet connection at all. The ideas behind it are on <a href="/why/">the why page</a>.</p>
+      </section>
+      <section id="who">
+        <h2>Who made it</h2>
+        <p>Stuart Muir. Greggle is a one-person project, and the person is reachable: <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> goes to him. If a method is wrong on this site, if a page is unclear, or if the app does something it shouldn't, that is the address. The app has a feedback section in its settings as well.</p>
+      </section>
+      <section id="promise">
+        <h2>The promise, and what enforces it</h2>
+        <p>Nothing you write leaves your device. That claim is made by a lot of software and usually means "we intend not to send it anywhere". Greggle's version is enforced by your browser rather than intended by the author. The app's security policy forbids outbound connections outright, so the page cannot fetch, post or send a beacon anywhere, including back to its own server. It loads no fonts, scripts, images or trackers from anywhere. An automated test asserts that the app makes no request to any other origin, and another asserts that the policy is present every time it is built.</p>
+        <p>There is no account because there is no server to hold one, and no analytics because nothing could send them. Your work lives in your browser and, if you choose, in a file you own. Putting that file in a cloud folder is how the same work reaches your other devices; choosing and writing a file is a conversation between the page and your own computer, not a connection to anywhere. It also means nothing is backed up for you, which the app says plainly rather than hiding.</p>
+        <div class="card facts">
+          <div><span class="stated">Account</span><p>None. Nothing to sign up for.</p></div>
+          <div><span class="stated">Network</span><p>Blocked by policy, and tested.</p></div>
+          <div><span class="stated">Your work</span><p>In your browser, and a file you own.</p></div>
+          <div><span class="stated">Price</span><p>Free.</p></div>
+        </div>
+      </section>
+      <section id="not">
+        <h2>What it is not</h2>
+        <p>It is not open source. The app's source is private and the product is commercial, even though the app is free to use. The methods it offers are not Greggle's to own, and this site says where each one came from. One of them is described in the app under a plain name rather than the one it is famous by, because that name is a registered trademark for software; the method underneath is the same and belongs to nobody.</p>
+        <p>There is no assistant in this version. The app is built so that one could be added later, behind a boundary that would show you exactly what it was told before every call, and the settings screen already lets you read that. Today the honest description is: no network code, and no place to put a key.</p>
+      </section>
+      <section id="site">
+        <h2>About this website</h2>
+        <p>The site is plain static pages with no scripts and no analytics. The one thing it fetches from elsewhere is the typeface, from Google Fonts, and it falls back to a system font if that fails. The board on the front page is a real board from the app. The method pages were checked against the definitions that actually run in the app, and the further reading on each page is the primary source where one exists.</p>
+        <p>Copyright Stuart Muir. The site is published so that people can read it, not so that it can be reused: please don't redistribute its text or host a copy without asking. Asking is easy; the address is above.</p>
+      </section>
+    </div>
+    <section class="method-cta">
+      <div class="card">
+        <h2>Start with the thing you have been putting off.</h2>
+        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+      </div>
+    </section>
+  </article>
+"""
+
+write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
+write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
+
+print("wrote", len(METHODS) + 3, "pages")
