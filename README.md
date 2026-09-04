@@ -19,3 +19,10 @@ stamped out by `tools/gen-methods.py`, which holds the copy for every built
 page; running it again overwrites those files, so edit the copy there if the
 script is going to be run again, or edit the HTML directly and leave the script
 alone.
+
+Each method also has a printable card at `methods/<slug>/card/index.html`, styled
+by `card.css` for one A4 page, and a `card.pdf` beside it. The PDFs are rendered
+from the card pages by `tools/make-cards.js` (serve the site root, then
+`node tools/make-cards.js <port>`; it needs `playwright-core` and a Chromium).
+They were last rendered without the web font, so they use the fallback sans;
+re-render them on a machine with internet access to get Instrument Sans.

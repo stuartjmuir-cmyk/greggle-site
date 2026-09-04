@@ -1,0 +1,43 @@
+/* Printable method cards: one A4 page each. */
+@page { size: A4; margin: 12mm; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #d9dce0; color: #16181b; font-family: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 9.5pt; line-height: 1.35; }
+p, h1, h2, h3, ol { margin: 0; }
+.screenbar { max-width: 186mm; margin: 0 auto; padding: 14px 0 10px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: #51555c; flex-wrap: wrap; }
+.screenbar a { color: #082da3; }
+.sheet { width: 186mm; min-height: 273mm; margin: 0 auto 24px; background: #ffffff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 6px 30px rgba(0,0,0,0.12); }
+.cardhead { display: flex; justify-content: space-between; align-items: center; padding-bottom: 3mm; border-bottom: 1.5px solid #16181b; }
+.cardhead .brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 11pt; letter-spacing: -0.02em; }
+.cardhead .brand .mark { width: 7mm; height: 7mm; }
+.cardhead .url { font-size: 8pt; color: #51555c; }
+.cardtitle { padding: 4mm 0 2mm; display: flex; flex-direction: column; gap: 1.5mm; }
+.cardtitle h1 { font-size: 22pt; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+.cardtitle .lead { font-size: 10.5pt; color: #51555c; text-wrap: pretty; }
+.cardtitle .meta { font-size: 7.5pt; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700; color: #676c74; padding-top: 1mm; }
+.cardbody { display: grid; grid-template-columns: 62mm minmax(0, 1fr); gap: 6mm; flex: 1; padding-top: 2mm; }
+.steps h2, .work h2 { font-size: 7.5pt; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700; color: #082da3; padding-bottom: 1.5mm; }
+.steps ol { padding-left: 4mm; display: flex; flex-direction: column; gap: 1.8mm; font-size: 8.4pt; line-height: 1.32; }
+.steps li::marker { font-weight: 700; color: #082da3; }
+.steps .falls { margin-top: 4mm; padding-top: 2.5mm; border-top: 1px solid #d6dade; font-size: 8pt; color: #51555c; }
+.steps .falls b { color: #16181b; }
+.work { display: flex; flex-direction: column; gap: 2.2mm; }
+.row { display: flex; gap: 2.2mm; flex: 1 1 auto; }
+.box { flex: 1; border: 1px solid #9aa0a8; border-radius: 2mm; padding: 1.6mm 2mm; display: flex; flex-direction: column; gap: 0.6mm; break-inside: avoid; }
+.box b { font-size: 8pt; font-weight: 650; }
+.box span { font-size: 7pt; color: #676c74; line-height: 1.25; }
+.box.lines { background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 5.5mm, #e4e7ea 5.5mm, #e4e7ea calc(5.5mm + 1px)); background-position: 0 9mm; }
+.box.tint { background-color: #f3f5f7; }
+.box.accent { border-color: #0b3fd4; }
+.box.accent b { color: #082da3; }
+.cardfoot { margin-top: 3mm; padding-top: 2.5mm; border-top: 1px solid #d6dade; display: flex; justify-content: space-between; gap: 6mm; font-size: 7.5pt; color: #51555c; }
+@media screen and (max-width: 800px) {
+  body { font-size: 9pt; }
+  .sheet { width: auto; min-height: 0; margin: 0 8px 24px; padding: 6mm; }
+  .cardbody { grid-template-columns: minmax(0, 1fr); }
+  .screenbar { padding: 14px 12px 10px; }
+}
+@media print {
+  body { background: #ffffff; }
+  .screenbar { display: none; }
+  .sheet { width: auto; height: 272mm; min-height: 0; margin: 0; box-shadow: none; }
+}

@@ -47,7 +47,7 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg", current="met
 FOOT = """
   <footer>
     <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
-    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="/why/">why</a> &middot; <a href="/about/">about</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="/kinds/">kinds</a> &middot; <a href="/why/">why</a> &middot; <a href="/about/">about</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></span>
   </footer>
 </div>
 </body>
@@ -97,6 +97,172 @@ def link_to(name):
             return f'<a href="/methods/{slug}/">{n}</a>' if built else f'<a href="/methods/#{slug}">{n}</a>'
     raise KeyError(name)
 
+CARDS = {
+ "five-whys": [
+  [("The problem, as an observed fact", "What went wrong, and how do you know", 14, "lines")],
+  [("Why did that happen?", "Because... a cause, not the event in other words", 13, "lines")],
+  [("And why did that happen?", "Asked of the answer above", 13, "lines")],
+  [("And why did that happen?", "", 13, "lines")],
+  [("And why did that happen?", "", 13, "lines")],
+  [("And why did that happen?", "Can you act on this cause? Yes: root cause. No: redo from the first why", 13, "lines")],
+  [("The fix that breaks the chain", "Something you could change tomorrow", 16, "lines accent")],
+ ],
+ "working-backwards": [
+  [("What done looks like", "A state of the world, dated. Who says it is done. The evidence that would prove it", 26, "lines")],
+  [("Milestone: the week before", "True at this point / how you'd see it / what must already be true just before", 20, "lines")],
+  [("Milestone: before that", "Same three questions. Fixed, target or undated?", 20, "lines")],
+  [("Milestone: before that", "Keep walking until it touches today", 20, "lines")],
+  [("Where you actually are", "And what the chain still assumes", 18, "lines")],
+  [("The first move, this week", "", 14, "lines accent")],
+ ],
+ "pre-mortem": [
+  [("The plan, and when you'd know whether it worked", "", 18, "lines")],
+  [("It is a year from now. This failed badly. Why?", "Past tense. Each: how likely, really? How bad: fatal, serious, annoying?", 62, "lines"), ("What to do about it now", "Each: which cause it answers. Prevent, reduce, or accept and say why", 62, "lines")],
+  [("Signposts", "The early sign that a cause is arriving anyway", 22, "lines accent")],
+ ],
+ "first-principles": [
+  [("The situation", "What you know is true, and what you believe is true", 16, "lines")],
+  [("Phase 1: the assumptions", "One sentence each. Where from: convention, imitation, precedent, fear, default. Load-bearing?", 34, "lines")],
+  [("Phase 2: what survives", "Three tests: true if everyone else vanished / true if you'd never tried / sayable without 'that's how it's done'", 30, "lines")],
+  [("A: speed", "Chain from principle to action", 26, "lines"), ("B: impact", "", 26, "lines"), ("C: simplicity", "", 26, "lines")],
+  [("Phase 4: the high-leverage move", "Why conventional thinking hides it. The first concrete step", 22, "lines accent")],
+ ],
+ "force-field-analysis": [
+  [("The change, from what to what", "And what happens if nothing changes", 18, "lines")],
+  [("Pushing for it", "Force / strong, moderate, weak / whose force", 74, "lines"), ("Holding it back", "Force / strength / removed, weakened, neither / who would move it", 74, "lines")],
+  [("The one to remove", "Which restraint. How. What moves once it's gone. One restraint, one method, one name", 26, "lines accent")],
+ ],
+ "options-and-criteria": [
+  [("The choice", "What is being chosen, by when, what is not on the table", 16, "lines")],
+  [("What a good answer must do, written first", "Each: must, or would like? How you'd tell. Overlaps another?", 34, "lines")],
+  [("The options, one of them doing nothing", "Each: wins on which criteria / what it costs / fails a must?", 52, "lines")],
+  [("The call", "Which. Why over the runner-up. What would reverse it", 22, "lines accent")],
+ ],
+ "issue-tree": [
+  [("The question", "Answerable and singular. Best answer today. The decision it informs", 18, "lines")],
+  [("Branch", "Would have to be true / how you'd test it / settles, narrows, barely moves", 46, "lines"), ("Branch", "Overlaps another? Which owns it?", 46, "lines"), ("Branch", "", 46, "lines")],
+  [("What this split leaves out", "And why cut it this way", 22, "lines")],
+  [("Test first", "By when. What result would change your mind", 24, "lines accent")],
+ ],
+ "cause-and-effect": [
+  [("The effect", "What happened, how you know, when first seen", 16, "lines")],
+  [("People", "Cause / what makes you think so / verified, suspected, ruled out", 34, "lines"), ("Process", "", 34, "lines")],
+  [("Technology", "", 34, "lines"), ("Materials and inputs", "", 34, "lines")],
+  [("Environment", "", 34, "lines"), ("Measurement", "The one people forget", 34, "lines")],
+  [("The most likely cause", "Why that one, in evidence. The test that would settle it", 20, "lines accent")],
+ ],
+ "objectives-and-key-results": [
+  [("The objective, no numbers", "Why this period. How long it covers", 18, "lines")],
+  [("Key result 1", "What will be true / number from, to / where it's read / committed or stretch", 22, "lines")],
+  [("Key result 2", "", 22, "lines")],
+  [("Key result 3", "", 22, "lines")],
+  [("Initiatives", "Each a bet, aimed at a named key result", 30, "lines")],
+  [("The review", "Date. What seventy per cent looks like. Who may drop what", 20, "lines accent")],
+ ],
+ "scenario-planning": [
+  [("The decision, the horizon, and what is already settled", "", 18, "lines")],
+  [("Uncertainties", "Both ends. Decisive, shapes, background. Two become axes, and must be independent", 30, "lines")],
+  [("World 1", "Axis ends. Name. How it comes about. What you'd do", 30, "lines"), ("World 2", "", 30, "lines")],
+  [("World 3", "", 30, "lines"), ("World 4", "The one you find implausible", 30, "lines")],
+  [("Signposts", "Sign / which world / where you'd see it", 22, "lines")],
+  [("Right in every world, and the bets", "When the signposts get read next", 18, "lines accent")],
+ ],
+ "stakeholder-and-influence-map": [
+  [("The decision", "What has to be decided. Who formally decides. By when", 16, "lines")],
+  [("Person", "Part / wants / influence / stands / what would move them / who has their ear / who talks to them", 22, "lines")],
+  [("Person", "", 22, "lines")],
+  [("Person", "", 22, "lines")],
+  [("Person", "", 22, "lines")],
+  [("Person", "Somebody is opposed. If nobody is, look again", 22, "lines")],
+  [("The approach", "Order of conversations. This week's. If the key one says no", 22, "lines accent")],
+ ],
+ "strategic-challenge-map": [
+  [("Context", "Keep running, change, pressure. What you must not position against", 18, "lines")],
+  [("Technological", "Challenge / evidence + date / remove, reduce, not touch / proof", 36, "lines"), ("Regulatory", "", 36, "lines")],
+  [("Competitive and commercial", "", 36, "lines"), ("Organisational", "Where 'does not touch it' is most often true", 36, "lines")],
+  [("Ranking, by urgency", "Deadlines and consequences, not interest", 22, "lines")],
+  [("Definition of proof", "Metrics a sceptic would demand, and how each is shown", 22, "lines accent")],
+ ],
+ "theory-of-constraints": [
+  [("The system", "What it gets through. The flow, start to end. How you'd measure it", 18, "lines")],
+  [("Candidates", "Signs of queueing / the constraint, a contributor, cleared", 30, "lines")],
+  [("Exploit: squeeze it, free", "What each move recovers", 30, "lines"), ("Subordinate", "What changes elsewhere. Whose numbers get worse", 30, "lines")],
+  [("Elevate, only if squeezing wasn't enough", "Capacity at the constraint specifically", 24, "lines")],
+  [("Has it moved?", "Where it lives now. What from this round must not become policy", 24, "lines accent")],
+ ],
+ "answer-first": [
+  [("Who it's for, and the question they're asking", "", 16, "lines")],
+  [("The answer, in one sentence", "", 14, "lines accent")],
+  [("Group 1: the claim", "Parallel or chain. Supports, each with evidence. Load-bearing?", 34, "lines"), ("Group 2", "", 34, "lines"), ("Group 3", "", 34, "lines")],
+  [("The thirty-second version", "The answer, the three claims, nothing else", 26, "lines")],
+  [("The strongest objection", "And which group answers it", 22, "lines")],
+ ],
+}
+
+def first_sentence(html_text):
+    t = re.sub(r"<[^>]+>", "", html_text).strip()
+    mm = re.match(r"(.+?[.!?])(\s|$)", t)
+    return mm.group(1) if mm else t
+
+def write_card(m):
+    slug = m["slug"]
+    rows = ""
+    for row in CARDS[slug]:
+        rows += '<div class="row">'
+        for label, sub, h, cls in row:
+            rows += f'<div class="box {cls}" style="min-height:{h}mm"><b>{curly(label)}</b>' + (f'<span>{curly(sub)}</span>' if sub else '') + '</div>'
+        rows += '</div>\n'
+    steps = "".join(f"<li>{curly(x)}</li>" for x in m["steps"])
+    out = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(m['name'])} card &middot; Greggle</title>
+<meta name="description" content="A one-page printable card for {html.escape(m['name'])}: the steps, and the blank grid to fill in with a pen.">
+<link rel="canonical" href="https://greggle.app/methods/{slug}/card/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/card.css">
+</head>
+<body>
+<div class="screenbar">
+  <span><a href="/methods/{slug}/">&larr; {html.escape(m['name'])}</a> &middot; one page, A4</span>
+  <span>Print it from your browser, or <a href="/methods/{slug}/card.pdf">download the PDF</a></span>
+</div>
+<div class="sheet">
+  <header class="cardhead">
+    <div class="brand">{MARK} <span>Greggle</span></div>
+    <span class="url">greggle.app/methods/{slug}/</span>
+  </header>
+  <div class="cardtitle">
+    <h1>{html.escape(m['name'])}</h1>
+    <p class="lead">{curly(m['lead'])}</p>
+    <p class="meta">Best for {curly(m['facts']['best'])} &middot; {curly(m['facts']['origin'])} &middot; takes {curly(m['facts']['takes']).lower()}</p>
+  </div>
+  <div class="cardbody">
+    <section class="steps">
+      <h2>How to run it</h2>
+      <ol>{steps}</ol>
+      <p class="falls"><b>Where it falls down.</b> {curly(first_sentence(m['falls']))}</p>
+    </section>
+    <section class="work">
+      <h2>With a pen</h2>
+{rows}    </section>
+  </div>
+  <footer class="cardfoot">
+    <span>The same method, walked through on a board, at greggle.app. Free, no account, works offline.</span>
+    <span>Where it came from and why it works: greggle.app/methods/{slug}/</span>
+  </footer>
+</div>
+</body>
+</html>
+"""
+    d = os.path.join(ROOT, "methods", slug, "card"); os.makedirs(d, exist_ok=True)
+    with open(os.path.join(d, "index.html"), "w") as f:
+        f.write(out)
+
 # ---------------------------------------------------------------------------
 def write_index():
     out = head("Fourteen ways of thinking", "The methods Greggle walks you through: where each came from, what it is for, and how to run it on paper or on a board.", "https://greggle.app/methods/")
@@ -133,6 +299,7 @@ def write_index():
   <section>
     <div class="card kinds-map">
       <span class="stated">What Greggle suggests first, by the kind of thing you are working on</span>
+      <p class="dim" style="font-size: 14px; padding-bottom: 6px"><a href="/kinds/">What the seven kinds are, and how to tell which one you have.</a></p>
       <div class="kinds-row"><b>a Goal</b><span>Pre-mortem, Working Backwards, Force Field Analysis, First Principles, Objectives and Key Results</span></div>
       <div class="kinds-row"><b>a Project</b><span>Pre-mortem, Working Backwards, Theory of Constraints, Stakeholder and Influence Map, Strategic Challenge Map</span></div>
       <div class="kinds-row"><b>a Challenge</b><span>Strategic Challenge Map, Issue Tree, Stakeholder and Influence Map, Scenario Planning, First Principles, Answer First</span></div>
@@ -204,7 +371,7 @@ def write_method(m):
         <section id="origin"><h2>Where it came from</h2>{curly(m['origin'])}</section>
         <section id="works"><h2>Why it works</h2>{curly(m['works'])}</section>
         <section id="when"><h2>When to reach for it, and when not to</h2>{curly(m['when'])}</section>
-        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol>{steps}</ol></section>
+        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol>{steps}</ol><p class="note">There is a <a href="/methods/{slug}/card/">one-page card</a> with these steps and a blank grid to fill in, made to print on A4. Or <a href="/methods/{slug}/card.pdf">the PDF</a>.</p></section>
         <section id="board"><h2>On a Greggle board</h2>
           <p>{curly(m['board_intro'])}</p>
           <div class="board">
@@ -222,6 +389,7 @@ def write_method(m):
       <aside class="side">
         <div class="card toc"><h3>On this page</h3><ul>{toc}</ul></div>
         <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">{curly(m['try'])}</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+        <div class="card"><h3>Or on paper</h3><p class="dim" style="font-size:14px">A one-page card with the steps and a blank grid, for A4.</p><a class="btn-quiet btn-small" href="/methods/{slug}/card/">Print the card</a></div>
       </aside>
     </div>
 
@@ -1324,7 +1492,62 @@ ABOUT = """
   </article>
 """
 
+KINDS = [
+ ("a Goal", "Something you are aiming at, without a fixed end date.", "Make the first team this season.", "The word the app uses is Goal, and there is no end date to plan back from, so the first thing suggested is a pre-mortem on the goal itself and the last is a set of key results that would prove you moved.", ["Pre-mortem","Working Backwards","Force Field Analysis","First Principles","Objectives and Key Results"]),
+ ("a Project", "Something you are setting out to do that finishes.", "The science fair project.", "A Project has an end, so the questions are about what done looks like and what could stop you getting there. Anything you make before choosing a kind is a Project until you say otherwise, and you can change it in one click.", ["Pre-mortem","Working Backwards","Theory of Constraints","Stakeholder and Influence Map","Strategic Challenge Map"]),
+ ("a Challenge", "Something difficult to win, where the outcome is not yours to control.", "The debating final.", "The outcome sits with someone else, a judge, a market, a panel, so the questions turn outward: what are the challenges, who decides, what could the world do, and how do you put the case.", ["Strategic Challenge Map","Issue Tree","Stakeholder and Influence Map","Scenario Planning","First Principles","Answer First"]),
+ ("a Problem", "Something that has gone wrong and needs diagnosing.", "The band keeps missing practice.", "Something has already happened, so the questions are about cause. The first thing asked is to state the problem as an observable fact, not a feeling, and then why, and why again.", ["5 Whys","Cause and Effect","Issue Tree","Theory of Constraints","First Principles"]),
+ ("a Decision", "A choice between options.", "Which subjects to take next year.", "There are options and the danger is that you already like one of them, so the questions insist on what a good answer must do before the options are allowed on the page.", ["Issue Tree","Options and Criteria","First Principles","Force Field Analysis","Pre-mortem","Answer First"]),
+ ("an Opportunity", "Something that might be worth pursuing, before you have decided to.", "A stall at the Saturday market.", "You haven't said yes yet, so the questions are about whether to: what is pushing for it and holding it back, what it would have to do to be worth it, and how it looks in four different futures.", ["Force Field Analysis","Options and Criteria","Scenario Planning","Stakeholder and Influence Map","Pre-mortem"]),
+ ("a Risk", "Something that could go wrong, and has not yet.", "What if the venue cancels?", "It hasn't happened, so the questions borrow from the methods for things that have: imagine it did and ask why, look across every category of cause, and find the one restraint you could remove.", ["Pre-mortem","Cause and Effect","Force Field Analysis"]),
+]
+
+KINDS_PAGE = """
+  <section>
+    <div class="page-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; Kinds of thing</p>
+      <span class="eyebrow">Seven kinds of thing</span>
+      <h1>Not everything breaks down the same way.</h1>
+      <p class="dim lead">A goal is not a problem, and a decision is not a risk. Greggle asks what kind of thing you are working on first, because the kind decides what good questions look like. It also decides the word the app uses from then on: <i>Delete this Problem?</i>, not <i>Delete this thing</i>.</p>
+      <p class="dim lead">All fourteen ways of thinking are always available. The kind decides which come first.</p>
+    </div>
+  </section>
+  <section class="group">
+    <div class="grid grid-kinds-page">
+{cards}
+    </div>
+  </section>
+  <section class="group">
+    <div class="card kinds-map">
+      <span class="stated">Not sure which it is?</span>
+      <div class="kinds-row"><b>Has it already gone wrong?</b><span>A Problem. If it could go wrong but hasn't, a Risk.</span></div>
+      <div class="kinds-row"><b>Are there options on the table?</b><span>A Decision. If the only option is whether to start at all, an Opportunity.</span></div>
+      <div class="kinds-row"><b>Does it finish?</b><span>A Project. If you'll still be aiming at it next year, a Goal.</span></div>
+      <div class="kinds-row"><b>Is the outcome someone else's to give?</b><span>A Challenge.</span></div>
+      <div class="kinds-row"><b>Still not sure?</b><span>Pick the nearest and change it later. It is one click, and nothing on the board is lost.</span></div>
+    </div>
+    <p class="dim" style="font-size: 15px; max-width: 720px; padding-top: 20px">Seven is a start, not a limit. A habit to build, a skill to learn, a conversation you are dreading and a piece of writing each want their own questions, and <a href="/why/#next">the why page</a> says which methods they would bring with them.</p>
+  </section>
+  <section class="cta">
+    <div class="card">
+      <h2>Say what kind of thing it is. Then cut it into steps.</h2>
+      <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+      <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+    </div>
+  </section>
+"""
+
+def write_kinds():
+    cards = ""
+    for name, desc, example, what, methods in KINDS:
+        links = ", ".join(link_to(n) for n in methods)
+        cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p></div>\n'
+    write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests.", "methods", KINDS_PAGE.replace("{cards}", cards))
+
+write_kinds()
+for m in METHODS:
+    write_card(m)
 write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
 write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
 
-print("wrote", len(METHODS) + 3, "pages")
+print("wrote", 2 * len(METHODS) + 4, "pages")

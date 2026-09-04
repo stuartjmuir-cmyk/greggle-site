@@ -169,3 +169,14 @@ footer a:hover { color: #082da3; }
   .essay .pull { font-size: 19px; }
   .essay .rules { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Kinds page */
+.grid-kinds-page { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 8px; }
+.grid-kinds-page .card { gap: 10px; }
+.grid-kinds-page h3 { font-size: 21px; }
+.grid-kinds-page .what { font-size: 14.5px; }
+.grid-kinds-page .methods { font-size: 14px; }
+.grid-kinds-page .methods a { text-decoration: none; }
+.grid-kinds-page .methods a:hover { text-decoration: underline; }
+.kinds-map { margin-top: 0; }
+@media (max-width: 720px) { .grid-kinds-page { grid-template-columns: minmax(0, 1fr); } }

@@ -548,8 +548,11 @@ fourteen, taken from real boards in the app the way the front page's was.
 Phase three, done. The essay page at /why/ and the about page at /about/,
 both linked from every page's navigation and footer.
 
-Phase four. Cards. One PDF per method, linked from each method page. The kinds
-page. Then whichever of the extension ideas in section 5 has earned it.
+Phase four, done. Cards: each method has a one-page A4 card at
+/methods/<slug>/card/, made to print from the browser, and a PDF beside it
+rendered by tools/make-cards.js. The kinds page at /kinds/. Next is whichever
+of the extension ideas in section 5 has earned it, and the board screenshots
+still owed from phase two.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.
