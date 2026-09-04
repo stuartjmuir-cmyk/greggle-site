@@ -245,13 +245,16 @@ method.
 Best for. A Decision. Also an Opportunity, to decide whether to pursue it.
 
 How to apply. Write the decision. List what a good outcome must have (must
-haves, which kill options) and what it would be nice to have (wants, which
-rank them). Only then list the options. Strike out any option failing a must.
-Score the rest against the wants. Look at the result and ask whether it
-surprises you; if it does, work out whether the criteria or the gut is wrong.
+haves, which kill options) and what it would be nice to have (wants). Only
+then list the options, one of them doing nothing. Strike out any option
+failing a must. For each survivor say what it wins on and what it costs, then
+make the call and write down what would reverse it. The app deliberately has
+no scoring arithmetic: a weighted total hides the judgement, so the page
+should not teach one.
 
-Falls down. Weights and scores can be tuned until the favourite wins. The
-protection is writing the criteria first and not editing them afterwards.
+Falls down. Weights and scores can be tuned until the favourite wins, which is
+why Greggle leaves them out. The protection is writing the criteria first and
+not editing them afterwards, and refusing any option with an empty cost line.
 
 ### Issue Tree
 
@@ -553,15 +556,27 @@ pages live, is fine; the index simply links the pages that exist.
 
 ## 7. Open questions
 
-- Can the app accept a link that opens with a method or a kind already chosen?
-  If so, every method page ends with a button that starts the reader in the
-  right place. If not, the button just opens the app, and this is worth adding
-  to the app's list.
-- Strategic Challenge Map: is the Rumelt lineage right, or is there another
-  source behind the app's version? The page should name whatever is true.
+Two of the original questions were settled by reading the app's source, which
+lives in the private `stuartjmuir-cmyk/Jigsaw` repository. Every method is a
+data file under `src/frameworks/data/`, with its opening question, its steps,
+the fields inside each step, and the checks the read-back runs. The six built
+pages were corrected against those files, and the eight remaining pages should
+be written from them rather than from memory. The kinds and the order in which
+methods are suggested for each kind are in `src/domain/vocabulary.ts`.
+
+- Deep links: the app reads nothing from the URL, so there is no way to open it
+  with a method or kind pre-selected. Every try-it button opens the app's front
+  door. Adding a query parameter to the app would be a small change and would
+  make the method pages measurably more useful; worth raising there.
+- Strategic Challenge Map: the app's own description is "a forensic breakdown
+  for a complex organisation or market" and names no source. The page should
+  say it is Greggle's own synthesis and leave Rumelt out unless Stuart says
+  the lineage is real.
 - Screenshots: the front page's board is a real board. Fourteen more real
   boards, one per method, means someone has to actually run all fourteen. Who,
   and on what examples? The worked examples in section 4 could be the boards.
+  The app runs locally with `npm run dev`, so this can be done headlessly once
+  the site's session can install its dependencies.
 - Voice on origin stories: how much history is too much? The brief above gives
   each about a paragraph. The pages could go longer for the good stories (Shell
   in 1973, Goldratt writing a novel) and shorter for the rest.
