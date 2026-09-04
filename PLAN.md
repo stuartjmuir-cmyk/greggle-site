@@ -541,9 +541,9 @@ Working Backwards, Pre-mortem, First Principles, Force Field Analysis, Options
 and Criteria). Front page links updated. A shared stylesheet pulled out of
 index.html so fourteen pages don't carry fourteen copies of it.
 
-Phase two, done apart from screenshots. The remaining eight method pages,
-written from the app's framework files. Still to do: board screenshots for all
-fourteen, taken from real boards in the app the way the front page's was.
+Phase two, done. The remaining eight method pages, written from the app's
+framework files, and a real board screenshot on every method page, taken by
+driving the app with the page's own worked example (tools/make-boards.js).
 
 Phase three, done. The essay page at /why/ and the about page at /about/,
 both linked from every page's navigation and footer.
@@ -551,8 +551,7 @@ both linked from every page's navigation and footer.
 Phase four, done. Cards: each method has a one-page A4 card at
 /methods/<slug>/card/, made to print from the browser, and a PDF beside it
 rendered by tools/make-cards.js. The kinds page at /kinds/. Next is whichever
-of the extension ideas in section 5 has earned it, and the board screenshots
-still owed from phase two.
+of the extension ideas in section 5 has earned it.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.
@@ -575,11 +574,6 @@ methods are suggested for each kind are in `src/domain/vocabulary.ts`.
   for a complex organisation or market" and names no source. The page should
   say it is Greggle's own synthesis and leave Rumelt out unless Stuart says
   the lineage is real.
-- Screenshots: the front page's board is a real board. Fourteen more real
-  boards, one per method, means someone has to actually run all fourteen. Who,
-  and on what examples? The worked examples in section 4 could be the boards.
-  The app runs locally with `npm run dev`, so this can be done headlessly once
-  the site's session can install its dependencies.
 - Trademarks. The app deliberately ships Answer First without the name the
   method is famous by, or its owner's name, because that name is registered
   for software (see the app's decision note 04). The site's Answer First and

@@ -26,3 +26,10 @@ from the card pages by `tools/make-cards.js` (serve the site root, then
 `node tools/make-cards.js <port>`; it needs `playwright-core` and a Chromium).
 They were last rendered without the web font, so they use the fallback sans;
 re-render them on a machine with internet access to get Instrument Sans.
+
+Each method page shows a real board, `methods/<slug>/board.jpg`, filled in with
+that page's worked example. They are taken by `tools/make-boards.js`, which drives
+the app in Chromium: build the app repository, serve it with
+`npx vite preview --port 4173`, then `node tools/make-boards.js [slug ...]`. The
+script hides the beta work-file banner for the picture, since it is not part of
+the method; everything else is the app as it runs.

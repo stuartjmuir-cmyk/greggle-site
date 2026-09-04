@@ -180,3 +180,8 @@ footer a:hover { color: #082da3; }
 .grid-kinds-page .methods a:hover { text-decoration: underline; }
 .kinds-map { margin-top: 0; }
 @media (max-width: 720px) { .grid-kinds-page { grid-template-columns: minmax(0, 1fr); } }
+
+/* Real board screenshots on method pages */
+.boardshot { margin: 6px 0 4px; display: flex; flex-direction: column; gap: 10px; }
+.boardshot img { max-width: 100%; height: auto; border-radius: 14px; border: 1px solid #e4e7ea; }
+.boardshot figcaption { text-align: center; }

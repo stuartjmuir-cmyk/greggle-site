@@ -327,7 +327,8 @@ def write_index():
 def write_method(m):
     slug = m["slug"]
     canon = f"https://greggle.app/methods/{slug}/"
-    out = head(f"{m['name']} · a way of thinking · Greggle", m["desc"], canon)
+    image = f"https://greggle.app/methods/{slug}/board.jpg" if os.path.exists(os.path.join(ROOT, "methods", slug, "board.jpg")) else "https://greggle.app/board.jpg"
+    out = head(f"{m['name']} · a way of thinking · Greggle", m["desc"], canon, image=image)
     toc = "".join(f'<li><a href="#{i}">{t}</a></li>' for i, t in [
         ("origin", "Where it came from"), ("works", "Why it works"), ("when", "When to reach for it"),
         ("how", "How to run it"), ("board", "On a Greggle board"), ("example", "A worked example"),
@@ -339,6 +340,9 @@ def write_method(m):
         cls = "tile action" if t.get("action") else "tile"
         tiles += f'<div class="{cls}"><span class="stated">{t["label"]}</span><b>{curly(t["name"])}</b><span>{curly(t["text"])}</span></div>\n'
     steps = "".join(f"<li>{curly(s)}</li>" for s in m["steps"])
+    shot = ""
+    if os.path.exists(os.path.join(ROOT, "methods", slug, "board.jpg")):
+        shot = f'<figure class="boardshot"><img src="/methods/{slug}/board.jpg" width="1280" height="820" alt="{html.escape(m["shot_alt"])}" loading="lazy"><figcaption class="stated">a real board &middot; {curly(m["shot_caption"])}</figcaption></figure>'
     checks = "".join(f"<li>{curly(c)}</li>" for c in m["checks"])
 
     # prev / next among built pages
@@ -374,6 +378,7 @@ def write_method(m):
         <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol>{steps}</ol><p class="note">There is a <a href="/methods/{slug}/card/">one-page card</a> with these steps and a blank grid to fill in, made to print on A4. Or <a href="/methods/{slug}/card.pdf">the PDF</a>.</p></section>
         <section id="board"><h2>On a Greggle board</h2>
           <p>{curly(m['board_intro'])}</p>
+          {shot}
           <div class="board">
 {tiles}          </div>
           <p class="note">Nothing is added until you have looked at it. Open any step and it becomes a board of its own. Steps that cannot sensibly be cut smaller get marked as actions, and every action collects in one flat list.</p>
@@ -413,7 +418,8 @@ def write_method(m):
 METHODS = []
 
 METHODS.append(dict(
-    slug="five-whys", name="5 Whys", kind="a Problem",
+    slug="five-whys",
+    shot_alt='The band keeps missing practice, five whys deep: the last why answered and marked as a cause you can act on', shot_caption='the band keeps missing practice, at the fifth why', name="5 Whys", kind="a Problem",
     desc="Where the 5 Whys came from, why it works, when to use it and how to run it: Toyota's method for finding the cause you can actually act on.",
     lead="Ask why of the answer, five times, until you reach a cause you can actually act on.",
     facts=dict(origin="Toyota, 1950s", best="a Problem", takes="Ten minutes", needs="One person who was there"),
@@ -480,7 +486,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="working-backwards", name="Working Backwards", kind="a Project or a Goal",
+    slug="working-backwards",
+    shot_alt='The science fair project, inside the walk back: three milestones, the first filled in with what is true, how you would see it and what it stands on', shot_caption='the science fair project, inside the walk back', name="Working Backwards", kind="a Project or a Goal",
     desc="Where Working Backwards came from, why it works, and how to run it: Amazon's way of defining done before you start, then walking back to now.",
     lead="Define what done looks like and the evidence that would prove it, then walk back to now, so every step exists because the one after it needs it.",
     facts=dict(origin="Amazon, early 2000s", best="a Project, a Goal", takes="An hour, then revisits", needs="Honesty about what done is, and who says so"),
@@ -550,7 +557,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="pre-mortem", name="Pre-mortem", kind="a Project or a Risk",
+    slug="pre-mortem",
+    shot_alt='A stall at the Saturday market, inside why it failed: four causes in the past tense, one rated very likely and serious', shot_caption='the market stall, inside why it failed', name="Pre-mortem", kind="a Project or a Risk",
     desc="Where the pre-mortem came from, the research behind it, and how to run one: Gary Klein's method for finding the flaws in a plan before it starts.",
     lead="It is twelve months from now and this failed. Work out why, then prevent it.",
     facts=dict(origin="Gary Klein, 2007", best="a Project or a Risk, before it starts", takes="Twenty minutes", needs="Everyone who will do the work"),
@@ -618,7 +626,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="first-principles", name="First Principles", kind="a Challenge or a Decision",
+    slug="first-principles",
+    shot_alt='The debating final, at the top: four phases, with the assumptions filled in underneath phase 1', shot_caption='the debating final, the four phases', name="First Principles", kind="a Challenge or a Decision",
     desc="Where first principles thinking came from, why it works, when it is the wrong tool, and how to run it: Aristotle's method for reasoning from what is actually true.",
     lead="Find the truths nothing else rests on, then build up from them alone.",
     facts=dict(origin="Aristotle, fourth century BC", best="a Challenge, a Decision, a Problem, a Goal", takes="An hour, done properly", needs="A willingness to look stupid"),
@@ -684,7 +693,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="force-field-analysis", name="Force Field Analysis", kind="a Decision or a stalled Goal",
+    slug="force-field-analysis",
+    shot_alt='Make the first team, inside what is holding it back: three restraints, the shift clash rated strong and removable with a name beside it', shot_caption='the first team, inside what is holding it back', name="Force Field Analysis", kind="a Decision or a stalled Goal",
     desc="Where force field analysis came from, why removing a restraint beats pushing harder, and how to run it: Kurt Lewin's method for shifting something that has stuck.",
     lead="What is pushing for the change, what is holding it back, and which single restraint you could actually remove.",
     facts=dict(origin="Kurt Lewin, 1940s", best="a Decision, a Goal that has stalled, an Opportunity, a Risk", takes="Twenty minutes", needs="Honesty about what is holding you back, and a name"),
@@ -761,7 +771,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="options-and-criteria", name="Options and Criteria", kind="a Decision",
+    slug="options-and-criteria",
+    shot_alt='Which subjects to take next year, inside the criteria: three written before any option, the first a must with how you would tell', shot_caption='which subjects, inside the criteria', name="Options and Criteria", kind="a Decision",
     desc="Where the decision matrix came from, why the order of the steps is the whole method, and why Greggle leaves out the arithmetic: from Franklin's prudential algebra to a judgement you can defend.",
     lead="Write down what a good answer would have to do before you look at the answers, then say honestly what each one costs.",
     facts=dict(origin="Franklin, 1772; Kepner and Tregoe, 1965", best="a Decision, an Opportunity", takes="Half an hour", needs="Criteria written before the options"),
@@ -833,7 +844,8 @@ METHODS.append(dict(
 
 
 METHODS.append(dict(
-    slug="issue-tree", name="Issue Tree", kind="a Challenge, a Problem or a Decision",
+    slug="issue-tree",
+    shot_alt='Should we run the stall again in December, inside the split: three branches that do not overlap, the first with its test and its verdict', shot_caption='the December stall, inside the split', name="Issue Tree", kind="a Challenge, a Problem or a Decision",
     desc="Where the issue tree came from, what MECE actually means, and how to build one: the consulting method for splitting a question into parts that do not overlap and leave nothing out.",
     lead="State the question, split it into parts that do not overlap and leave nothing out, then test the parts that would actually change the answer.",
     facts=dict(origin="McKinsey, 1960s", best="a Challenge, a Problem, a Decision", takes="An hour for the first split", needs="A question, and your best answer to it today"),
@@ -900,7 +912,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="cause-and-effect", name="Cause and Effect", kind="a Problem",
+    slug="cause-and-effect",
+    shot_alt='The science fair sensor, inside where the causes might be: six categories, measurement holding the cause that explains everything', shot_caption='the sensor, the six categories', name="Cause and Effect", kind="a Problem",
     desc="Where the fishbone diagram came from, why going wide beats going deep first, and how to run it: Kaoru Ishikawa's method for finding every class of cause before you commit to one.",
     lead="Go wide across the categories before you go deep, so that a whole class of cause is not simply forgotten.",
     facts=dict(origin="Kaoru Ishikawa, 1960s", best="a Problem, a Risk", takes="Forty minutes", needs="Evidence, or the honesty to mark a guess as a guess"),
@@ -969,7 +982,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="objectives-and-key-results", name="Objectives and Key Results", kind="a Goal",
+    slug="objectives-and-key-results",
+    shot_alt='Get properly good at guitar, inside the key results: three, the first with its number, where it is read, and committed', shot_caption='guitar, inside the key results', name="Objectives and Key Results", kind="a Goal",
     desc="Where OKRs came from, why the discipline lives entirely in the key results, and how to write a set that can be scored honestly: from Andy Grove's Intel to one person's goal.",
     lead="One qualitative objective, a handful of numbers that would prove it, and the bets you are making to move them.",
     facts=dict(origin="Andy Grove, Intel, 1970s", best="a Goal", takes="An hour, then a quarter", needs="A number, and an agreed place to read it"),
@@ -1037,7 +1051,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="scenario-planning", name="Scenario Planning", kind="a Challenge or an Opportunity",
+    slug="scenario-planning",
+    shot_alt='The Saturday job, inside the four worlds: Full Saturdays, Free and easy, Pitch and pen and Desk-bound, the first with its route from today', shot_caption='the Saturday job, the four worlds', name="Scenario Planning", kind="a Challenge or an Opportunity",
     desc="Where scenario planning came from, how Shell saw the 1973 oil shock coming, and how to build four worlds and the signposts that tell you which one is arriving.",
     lead="Pick the two uncertainties that matter most and are genuinely independent, build the four worlds they produce, then plant the signposts that tell you which one you are entering.",
     facts=dict(origin="Herman Kahn, RAND, 1950s; Pierre Wack, Shell, 1970s", best="a Challenge, an Opportunity, a Decision", takes="Two hours, then a date to revisit", needs="A decision, a horizon, and honesty about what is already settled"),
@@ -1105,7 +1120,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="stakeholder-and-influence-map", name="Stakeholder and Influence Map", kind="a Project, a Challenge or an Opportunity",
+    slug="stakeholder-and-influence-map",
+    shot_alt='Get the band the school hall, inside the people: deputy head, site manager, head of music and drama club lead, the site manager opposed with a name beside him', shot_caption='the school hall, inside the people', name="Stakeholder and Influence Map", kind="a Project, a Challenge or an Opportunity",
     desc="Where stakeholder mapping came from, why influence and position are different questions, and how to map a room honestly: who decides, who can block it, and what each of them actually wants.",
     lead="Who decides, who can block it, what each of them actually wants, and what it would take to move them.",
     facts=dict(origin="Freeman, 1984; Mendelow, 1981", best="a Project, a Challenge, an Opportunity", takes="Half an hour", needs="Candour, and a name beside every blocker"),
@@ -1171,7 +1187,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="strategic-challenge-map", name="Strategic Challenge Map", kind="a Challenge or a Project",
+    slug="strategic-challenge-map",
+    shot_alt='Let the canteen take cards, inside the forensic analysis: technological, regulatory, competitive and organisational, the last selected', shot_caption='the canteen, the four categories', name="Strategic Challenge Map", kind="a Challenge or a Project",
     desc="What the Strategic Challenge Map is, why every challenge needs evidence with a date, and how to run it: Greggle's own method for proposing a change into a complex organisation without losing a sceptical reader.",
     lead="Categorise the challenges, evidence each one with a date, judge what you can actually move, then say what would count as proof.",
     facts=dict(origin="Greggle's own synthesis", best="a Challenge, a Project", takes="A day, done properly", needs="Sources you can cite, with dates"),
@@ -1239,7 +1256,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="theory-of-constraints", name="Theory of Constraints", kind="a Project or a Problem",
+    slug="theory-of-constraints",
+    shot_alt="The band's set never gets finished, at the top: six steps from the system to whether the constraint has moved, with the candidates examined inside step 2", shot_caption="the band's set, the six focusing steps", name="Theory of Constraints", kind="a Project or a Problem",
     desc="Where the Theory of Constraints came from, why an hour saved anywhere but the bottleneck is usually nothing, and how to run the five focusing steps: Eliyahu Goldratt's method for a system that produces less than it should.",
     lead="Find the one place the whole flow narrows, squeeze it before you spend on it, make everything else serve it, then follow it to wherever it moves next.",
     facts=dict(origin="Eliyahu Goldratt, 1984", best="a Project, a Problem", takes="An hour to find it, weeks to serve it", needs="A flow, and the queues along it"),
@@ -1306,7 +1324,8 @@ METHODS.append(dict(
 ))
 
 METHODS.append(dict(
-    slug="answer-first", name="Answer First", kind="a Challenge or a Decision",
+    slug="answer-first",
+    shot_alt='History instead of Chemistry, inside the groups: three claims that hold the answer up, the first selected', shot_caption='History instead of Chemistry, the three groups', name="Answer First", kind="a Challenge or a Decision",
     desc="Where answer-first writing came from, why the reader decides in the first minute, and how to structure a case: Barbara Minto's pyramid, for anyone who has to persuade someone who may stop reading.",
     lead="Give the answer in the first sentence, then group the reasons beneath it, parallel reasons or a chain, never both at once, with the evidence at the leaves.",
     facts=dict(origin="Barbara Minto, 1970s", best="a Challenge, a Decision, at the end", takes="An hour to get it into one sentence", needs="An answer, and a reader who might stop early"),
