@@ -536,13 +536,13 @@ breaks one of those, it belongs to a different product.
 
 ## 6. Build order
 
-Phase one. The methods index and the six featured method pages (5 Whys,
+Phase one, done. The methods index and the six featured method pages (5 Whys,
 Working Backwards, Pre-mortem, First Principles, Force Field Analysis, Options
 and Criteria). Front page links updated. A shared stylesheet pulled out of
-index.html so fourteen pages don't carry fourteen copies of it. This is the
-minimum that changes what the site is.
+index.html so fourteen pages don't carry fourteen copies of it.
 
-Phase two. The remaining eight method pages. Board screenshots for all
+Phase two, done apart from screenshots. The remaining eight method pages,
+written from the app's framework files. Still to do: board screenshots for all
 fourteen, taken from real boards in the app the way the front page's was.
 
 Phase three. The essay page and the about page. The essay should be written

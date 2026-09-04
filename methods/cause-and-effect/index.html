@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cause and Effect · a way of thinking · Greggle</title>
+<meta name="description" content="Where the fishbone diagram came from, why going wide beats going deep first, and how to run it: Kaoru Ishikawa&#x27;s method for finding every class of cause before you commit to one.">
+<link rel="canonical" href="https://greggle.app/methods/cause-and-effect/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:title" content="Cause and Effect · a way of thinking · Greggle">
+<meta property="og:description" content="Where the fishbone diagram came from, why going wide beats going deep first, and how to run it: Kaoru Ishikawa&#x27;s method for finding every class of cause before you commit to one.">
+<meta property="og:url" content="https://greggle.app/methods/cause-and-effect/">
+<meta property="og:image" content="https://greggle.app/board.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar bar">
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M 24 0 L 100 0 C 100.8 14 98.8 28 100 40.5 C 102.4 43.5 104.26 39.55 106 37.27 C 108.59 33.89 112.1 32 115.76 32 C 123.38 32 129.56 40.06 129.56 50 C 129.56 59.94 123.38 68 115.76 68 C 112.1 68 108.59 66.11 106 62.73 C 104.26 60.45 102.4 56.5 100 59.5 C 98.8 72 100.8 86 100 100 C 86 99.2 72 101.2 59.5 100 C 56.5 97.6 60.45 95.74 62.73 94 C 66.11 91.41 68 87.9 68 84.24 C 68 76.62 59.94 70.44 50 70.44 C 40.06 70.44 32 76.62 32 84.24 C 32 87.9 33.89 91.41 37.27 94 C 39.55 95.74 43.5 97.6 40.5 100 C 28 101.2 14 99.2 0 100 L 0 24 A 24 24 0 0 1 24 0 Z" fill="#0b3fd4"/><path d="M 200 24 L 200 100 C 186 100.8 172 98.8 159.5 100 C 156.5 102.4 160.45 104.26 162.73 106 C 166.11 108.59 168 112.1 168 115.76 C 168 123.38 159.94 129.56 150 129.56 C 140.06 129.56 132 123.38 132 115.76 C 132 112.1 133.89 108.59 137.27 106 C 139.55 104.26 143.5 102.4 140.5 100 C 128 98.8 114 100.8 100 100 C 100.8 86 98.8 72 100 59.5 C 102.4 56.5 104.26 60.45 106 62.73 C 108.59 66.11 112.1 68 115.76 68 C 123.38 68 129.56 59.94 129.56 50 C 129.56 40.06 123.38 32 115.76 32 C 112.1 32 108.59 33.89 106 37.27 C 104.26 39.55 102.4 43.5 100 40.5 C 98.8 28 100.8 14 100 0 L 176 0 A 24 24 0 0 1 200 24 Z" fill="#4b8bff"/><path d="M 176 200 L 100 200 C 99.2 186 101.2 172 100 159.5 C 97.6 156.5 95.74 160.45 94 162.73 C 91.41 166.11 87.9 168 84.24 168 C 76.62 168 70.44 159.94 70.44 150 C 70.44 140.06 76.62 132 84.24 132 C 87.9 132 91.41 133.89 94 137.27 C 95.74 139.55 97.6 143.5 100 140.5 C 101.2 128 99.2 114 100 100 C 114 100.8 128 98.8 140.5 100 C 143.5 102.4 139.55 104.26 137.27 106 C 133.89 108.59 132 112.1 132 115.76 C 132 123.38 140.06 129.56 150 129.56 C 159.94 129.56 168 123.38 168 115.76 C 168 112.1 166.11 108.59 162.73 106 C 160.45 104.26 156.5 102.4 159.5 100 C 172 98.8 186 100.8 200 100 L 200 176 A 24 24 0 0 1 176 200 Z" fill="#0b3fd4"/><path d="M 0 176 L 0 100 C 14 99.2 28 101.2 40.5 100 C 43.5 97.6 39.55 95.74 37.27 94 C 33.89 91.41 32 87.9 32 84.24 C 32 76.62 40.06 70.44 50 70.44 C 59.94 70.44 68 76.62 68 84.24 C 68 87.9 66.11 91.41 62.73 94 C 60.45 95.74 56.5 97.6 59.5 100 C 72 101.2 86 99.2 100 100 C 99.2 114 101.2 128 100 140.5 C 97.6 143.5 95.74 139.55 94 137.27 C 91.41 133.89 87.9 132 84.24 132 C 76.62 132 70.44 140.06 70.44 150 C 70.44 159.94 76.62 168 84.24 168 C 87.9 168 91.41 166.11 94 162.73 C 95.74 160.45 97.6 156.5 100 159.5 C 101.2 172 99.2 186 100 200 L 24 200 A 24 24 0 0 1 0 176 Z" fill="#4b8bff"/></svg> <span>Greggle</span></a>
+    <nav class="topnav">
+      <a class="navlink" href="/methods/" aria-current="page">Ways of thinking</a>
+      <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
+    </nav>
+  </header>
+
+  <article class="method">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; <a href="/methods/">Ways of thinking</a> &middot; Cause and Effect</p>
+      <span class="eyebrow">A way of thinking &middot; best for a Problem</span>
+      <h1>Cause and Effect</h1>
+      <p class="dim lead">Go wide across the categories before you go deep, so that a whole class of cause is not simply forgotten.</p>
+    </header>
+
+    <div class="card facts">
+      <div><span class="stated">Origin</span><p>Kaoru Ishikawa, 1960s</p></div>
+      <div><span class="stated">Best for</span><p>a Problem, a Risk</p></div>
+      <div><span class="stated">Takes</span><p>Forty minutes</p></div>
+      <div><span class="stated">Needs</span><p>Evidence, or the honesty to mark a guess as a guess</p></div>
+    </div>
+
+    <div class="method-body">
+      <div class="prose">
+        <section id="origin"><h2>Where it came from</h2>
+<p>Kaoru Ishikawa was a professor of engineering at the University of Tokyo and one of the people who built Japan&rsquo;s approach to quality after the war. He is usually credited with drawing the first cause-and-effect diagram for engineers at Kawasaki&rsquo;s shipyards in the 1940s, and he set it out properly in his Guide to Quality Control in 1968, which reached English in 1976. The problem is the fish&rsquo;s head. The ribs are categories of cause. Under each rib, the causes that belong to it.</p>
+<p>In a factory the ribs were traditionally the six Ms: manpower, methods, machines, materials, measurement and mother nature, meaning the environment. Ishikawa&rsquo;s insight was less about the picture than about the discipline of working every rib in turn. Left to themselves, people put every cause under the one heading they already suspected, and the diagram made that visible.</p>
+<p>Greggle uses six categories that are the same idea in plainer words: people, process, technology, materials and inputs, environment, and measurement.</p></section>
+        <section id="works"><h2>Why it works</h2>
+<p>Where 5 Whys goes deep on one chain, this goes wide first. The categories force you to consider kinds of cause you would never have thought of on your own, and seeing them all on one page shows which ribs are crowded and which are empty. An empty category is a finding, if you actually looked. A forgotten one is not.</p>
+<p>The second half of the discipline is marking each cause as verified, suspected or ruled out, with the evidence beside it. A board of confident guesses is worse than a short board of checked ones, because the guesses harden into facts the third time somebody repeats them.</p></section>
+        <section id="when"><h2>When to reach for it, and when not to</h2>
+<p>Reach for it when a problem feels wide rather than deep: when you can already think of four unrelated reasons, or when 5 Whys keeps producing a different chain each time you run it. It suits a Problem above all, and a Risk that has happened somewhere else and you want to know how it could happen here.</p>
+<p>It is the wrong tool for a problem with one obvious chain of causes; go straight to 5 Whys. And it is only useful if it ends with one most likely cause and the test that would settle it. A fishbone that ends with twenty equally plausible causes has organised the problem without advancing it. Greggle suggests it on a Problem and on a Risk.</p></section>
+        <section id="how"><h2>How to run it</h2><p class="dim">With a pen, on one sheet of paper.</p><ol><li>Write the effect as something observable: what happened, when it was first seen, and how you know. Not how it felt.</li><li>Draw six ribs and name them: people, process, technology, materials and inputs, environment, measurement. Adapt the names if yours are obviously different, but keep six.</li><li>Work every rib in turn, and list the causes that could sit under it, one per line, each stated as something that happens or fails to happen. Force at least one weak cause into the ribs you would have skipped.</li><li>Beside each cause, write what makes you think so: a log, a message, a thing you saw, a person who saw it. Then mark it verified, suspected or ruled out.</li><li>For every cause marked suspected, write the one thing you would look at to check it.</li><li>Name the single cause you would bet on, say why in terms of the evidence rather than the conviction, and write the one test that would show you were wrong.</li></ol></section>
+        <section id="board"><h2>On a Greggle board</h2>
+          <p>Pick Cause and Effect on a Problem board and Greggle proposes the effect, six category steps each holding one cause to start, and the most likely cause at the end. Each category takes up to eight.</p>
+          <div class="board">
+<div class="tile"><span class="stated">1</span><b>The effect</b><span>What happened. How you know. When it was first seen.</span></div>
+<div class="tile"><span class="stated">2</span><b>Where the causes might be</b><span>Six categories, worked one at a time: people, process, technology, materials and inputs, environment, measurement.</span></div>
+<div class="tile"><span class="stated">each cause</span><b>The cause, and what makes you think so</b><span>Verified, suspected or ruled out. If suspected, how it would be checked.</span></div>
+<div class="tile"><span class="stated">2.6</span><b>Measurement</b><span>The category people forget: a cause that only exists because the alert was wrong, or nobody was looking.</span></div>
+<div class="tile action"><span class="stated">3</span><b>The most likely cause</b><span>The one you would bet on. Why that one, in terms of the evidence. The test that would settle it.</span></div>
+<div class="tile"><span class="stated">not on the board</span><b>The fish</b><span>The app draws it as steps rather than ribs. The order, category by category, is what matters.</span></div>
+          </div>
+          <p class="note">Nothing is added until you have looked at it. Open any step and it becomes a board of its own. Steps that cannot sensibly be cut smaller get marked as actions, and every action collects in one flat list.</p>
+          <h3>What the check looks for</h3>
+          <p class="dim">One button reads the whole branch back. On this method it reports, among other things:</p>
+          <ul><li>Causes have been written and not one says what makes you think so.</li><li>A cause is marked suspected with no way to check it, so it will stay suspected and quietly harden into a fact.</li><li>All the causes sit in one category, which usually means thinking stopped where the suspicion started.</li><li>A cause just says the effect again in different words.</li></ul>
+        </section>
+        <section id="example"><h2>A worked example</h2>
+<div class="card example">
+  <span class="stated">a Problem &middot; the science fair sensor gives nonsense readings</span>
+  <div class="qa">
+    <div><b>The effect</b><span>The light sensor reads 0 or 1023 and nothing in between, since Tuesday. I know because the laptop log shows only those two values for three days.</span></div>
+    <div><b>People</b><span>I wired it from a photo rather than the diagram. Suspected. Check: redo the wiring from the diagram and compare.</span></div>
+    <div><b>Process</b><span>There is no calibration step; I just plugged it in. Verified: there is none. Doesn&rsquo;t explain the two-value readings on its own.</span></div>
+    <div><b>Technology</b><span>The sensor is the one from the bottom of the physics cupboard and may be broken. Suspected. Check: swap it for the other one.</span></div>
+    <div><b>Materials and inputs</b><span>The USB cable is a cheap charging cable that may not carry data. Suspected. Check: use the printer cable. Also: the power comes from the laptop, which throttles USB power on battery. Ruled out, it was plugged in on Tuesday.</span></div>
+    <div><b>Environment</b><span>The sensor sits on the windowsill in direct sun, which may saturate it. Verified: it reads 1023 whenever the sun is on it. But it reads 0 at night, not a low number.</span></div>
+    <div><b>Measurement</b><span>The code reads the sensor as a digital pin, not an analogue one, so it can only ever give 0 or 1. Suspected. Check: the pin number in the code against the board&rsquo;s diagram.</span></div>
+    <div><b>Most likely</b><span>The measurement one. It is the only cause that explains exactly two values and nothing between, and it explains the sun reading too. Test: change the pin from digital to analogue and see whether intermediate values appear.</span></div>
+  </div>
+  <p class="dim">Left to itself, the investigation would have started with the sensor being broken and stayed there. Working the ribs in order is what reached the measurement rib, and the measurement rib is where the answer was.</p>
+</div></section>
+        <section id="falls"><h2>Where it falls down</h2>
+<p>The default categories don&rsquo;t suit every problem, and people either force causes into headings that don&rsquo;t fit or skip the headings that feel irrelevant. Adapt the names, keep the number, and force one weak cause into every rib. The weak cause in the rib you nearly skipped is, surprisingly often, the answer.</p>
+<p>It also invites a board of confident guesses, all marked as if they were known. The verified, suspected or ruled out marking is the protection, and it only works if suspected is used honestly and carries a check beside it.</p></section>
+        <section id="pairs"><h2>Pairs well with</h2><ul><li><a href="/methods/five-whys/">5 Whys</a>. The partner method. Go wide here first, then take the most likely cause into five whys.</li><li><a href="/methods/issue-tree/">Issue Tree</a>. A fishbone is an issue tree with the first split chosen for you. When the categories don&rsquo;t fit, build the tree instead.</li><li><a href="/methods/pre-mortem/">Pre-mortem</a>. For a Risk that hasn&rsquo;t happened yet, the pre-mortem asks the same question in the past tense.</li></ul></section>
+        <section id="reading" class="reading"><h2>Further reading</h2><ul><li>Kaoru Ishikawa, Guide to Quality Control, 1968; English edition from the Asian Productivity Organization, 1976. The diagram is in the first chapters.</li><li>Kaoru Ishikawa, What Is Total Quality Control? The Japanese Way, 1985, for the thinking behind it.</li></ul></section>
+      </div>
+      <aside class="side">
+        <div class="card toc"><h3>On this page</h3><ul><li><a href="#origin">Where it came from</a></li><li><a href="#works">Why it works</a></li><li><a href="#when">When to reach for it</a></li><li><a href="#how">How to run it</a></li><li><a href="#board">On a Greggle board</a></li><li><a href="#example">A worked example</a></li><li><a href="#falls">Where it falls down</a></li><li><a href="#pairs">Pairs well with</a></li><li><a href="#reading">Further reading</a></li></ul></div>
+        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">Say it is a Problem or a Risk, open a step, choose Apply a framework and pick Cause and Effect. It lays out the six categories.</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+      </aside>
+    </div>
+
+    <section class="method-cta">
+      <div class="card">
+        <h2>Look under every heading. Then bet on one.</h2>
+        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
+        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+      </div>
+      <div class="nextprev"><a href="/methods/five-whys/">&larr; 5 Whys</a><a href="/methods/theory-of-constraints/">Theory of Constraints &rarr;</a></div>
+    </section>
+  </article>
+
+  <footer>
+    <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a> &middot; your work stays on your device</span>
+  </footer>
+</div>
+</body>
+</html>
