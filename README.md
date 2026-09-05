@@ -1,11 +1,14 @@
 # The Greggle website
 
-The public site GitHub Pages serves at <https://greggle.app/>. The app itself is a
-separate site at <https://www.greggle.app/>, deployed from the private source
-repository — nothing here touches it.
+The public site at <https://greggle.app/>. The app itself is a separate site at
+<https://www.greggle.app/>, deployed from the private source repository — nothing
+here touches it.
 
-Plain static files, no build step: edit, commit, push, and Pages serves it. The
-`CNAME` file is what attaches the domain — do not delete it. New pages are new
+Plain static files, no build step: edit, commit, push, and the host serves it.
+`netlify.toml` configures Netlify (publish the root, no build, security and
+caching headers, a few redirects); `404.html` is the not-found page on either
+host. The `CNAME` file is what attaches the domain on GitHub Pages — keep it
+until the site has left Pages for good. New pages are new
 files: `frameworks.html` becomes `greggle.app/frameworks.html`, or
 `frameworks/index.html` becomes `greggle.app/frameworks/`.
 

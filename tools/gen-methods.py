@@ -1400,6 +1400,11 @@ for m in METHODS:
 
 # ---------------------------------------------------------------------------
 def write_page(slug, title, desc, current, body):
+    if slug == "":
+        out = head(title, desc, "https://greggle.app/404.html", current=current) + body + FOOT
+        with open(os.path.join(ROOT, "404.html"), "w") as f:
+            f.write(out.replace('<link rel="canonical" href="https://greggle.app/404.html">', '<meta name="robots" content="noindex">'))
+        return
     out = head(title, desc, f"https://greggle.app/{slug}/", current=current) + body + FOOT
     d = os.path.join(ROOT, slug); os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "index.html"), "w") as f:
@@ -1566,6 +1571,30 @@ def write_kinds():
 write_kinds()
 for m in METHODS:
     write_card(m)
+
+NOT_FOUND = """
+  <article class="essay">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; Not found</p>
+      <span class="eyebrow">404</span>
+      <h1>There is nothing at this address.</h1>
+      <p class="dim lead">The page may have moved, or the link was wrong. Nothing you had was here, so nothing has been lost.</p>
+    </header>
+    <div class="prose">
+      <section>
+        <p>The things people usually want:</p>
+        <ul>
+          <li><a href="/methods/">The fourteen ways of thinking</a>, each with where it came from and how to run it.</li>
+          <li><a href="/kinds/">The seven kinds of thing</a> Greggle asks about first.</li>
+          <li><a href="/why/">Why methods, and not answers</a>, the idea behind it.</li>
+          <li><a href="https://www.greggle.app/">The app itself</a>, free, no account, works offline.</li>
+        </ul>
+      </section>
+    </div>
+  </article>
+"""
+
+write_page("", "Not found", "There is nothing at this address.", "", curly(NOT_FOUND))
 write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
 write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
 

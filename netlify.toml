@@ -1,0 +1,52 @@
+# Netlify configuration for the Greggle website. Plain static files, no build.
+# Connect the repository in Netlify and it will pick this up; nothing else to set.
+
+[build]
+  publish = "."
+  command = ""
+
+# Every page. The security policy is the site's equivalent of the app's: no
+# scripts anywhere, nothing loaded from elsewhere except the typeface, and the
+# site can never be framed. Inline styles are allowed because the front page
+# carries its own layout rules and a few elements set a style attribute.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Pictures and PDFs change only when re-rendered, so let browsers keep them.
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# The old flat address for the methods list, if anyone has it, and the .html
+# spellings the README once suggested, all land on the folder pages.
+[[redirects]]
+  from = "/frameworks"
+  to = "/methods/"
+  status = 301
+[[redirects]]
+  from = "/frameworks.html"
+  to = "/methods/"
+  status = 301
+[[redirects]]
+  from = "/methods.html"
+  to = "/methods/"
+  status = 301
