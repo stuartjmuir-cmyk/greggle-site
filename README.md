@@ -36,3 +36,8 @@ the app in Chromium: build the app repository, serve it with
 `npx vite preview --port 4173`, then `node tools/make-boards.js [slug ...]`. The
 script hides the beta work-file banner for the picture, since it is not part of
 the method; everything else is the app as it runs.
+
+`tools/go-live.mjs` points the domain at Netlify: it sets the primary domain on
+the Netlify site and swaps the bare domain's Porkbun records from GitHub Pages
+to a Netlify ALIAS, leaving the `www` record (the app) and everything else
+alone. Keys come from the environment; it is a dry run unless given `--apply`.
