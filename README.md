@@ -6,9 +6,8 @@ here touches it.
 
 Plain static files, no build step: edit, commit, push, and the host serves it.
 `netlify.toml` configures Netlify (publish the root, no build, security and
-caching headers, a few redirects); `404.html` is the not-found page on either
-host. The `CNAME` file is what attaches the domain on GitHub Pages — keep it
-until the site has left Pages for good. New pages are new
+caching headers, a few redirects); `404.html` is the not-found page. The site
+is served by Netlify; GitHub Pages is switched off for this repository. New pages are new
 files: `frameworks.html` becomes `greggle.app/frameworks.html`, or
 `frameworks/index.html` becomes `greggle.app/frameworks/`.
 
