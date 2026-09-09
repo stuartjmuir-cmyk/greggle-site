@@ -399,7 +399,7 @@ def write_method(m):
     <section class="method-cta">
       <div class="card">
         <h2>{curly(m['cta'])}</h2>
-        <p class="dim">This link opens the app with {html.escape(m['name'])} proposed on a new board, for you to look over before anything is added. Free, no account, works offline.</p>
+        <p class="dim">This opens the app with the kind already chosen. Give the thing a name, press Start, and {html.escape(m['name'])} is proposed on the new board for you to look over before anything is added. Free, no account, works offline.</p>
         <a class="btn" href="https://www.greggle.app/?kind={m['app_kind']}&amp;method={m['app_id']}">Open Greggle with {html.escape(m['name'])}</a>
       </div>
       {nav}
