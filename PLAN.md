@@ -561,6 +561,10 @@ introduced at the top of the kinds page as the thing to do before any method.
 The review loop is built on paper as the decision journal, /cards/decision-journal/,
 at the foot of the kinds page. In the app it would read finished boards back;
 on paper it is one sheet per decision, reviewed on a date set when it is made.
+The fading tool is built in the app itself (Jigsaw, decision note 08): guidance
+folds away after a method has been laid out four times, counted from the boards,
+with a Settings choice to keep it open or fold it always. The essay's "Where this
+goes" section now describes all of section 5 in the present tense.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.
