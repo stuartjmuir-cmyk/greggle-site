@@ -1,4 +1,12 @@
 /* Shared styles for greggle.app. The front page keeps its own page-specific rules inline. */
+/* Instrument Sans, self-hosted under the SIL Open Font License 1.1; see fonts/OFL-instrumentsans.txt. */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/instrument-sans.woff2') format('woff2');
+}
 * { box-sizing: border-box; }
 body { margin: 0; background: #eceef1; color: #16181b; font-family: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.55; }
 a { color: #082da3; } a:hover { color: #0b3fd4; }

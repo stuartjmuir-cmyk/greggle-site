@@ -6,13 +6,13 @@
   command = ""
 
 # Every page. The security policy is the site's equivalent of the app's: no
-# scripts anywhere, nothing loaded from elsewhere except the typeface, and the
-# site can never be framed. Inline styles are allowed because the front page
-# carries its own layout rules and a few elements set a style attribute.
+# scripts anywhere, nothing loaded from anywhere else at all, and the site can
+# never be framed. Inline styles are allowed because the front page carries its
+# own layout rules and a few elements set a style attribute.
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
@@ -35,6 +35,10 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # The old flat address for the methods list, if anyone has it, and the .html
 # spellings the README once suggested, all land on the folder pages.

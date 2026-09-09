@@ -27,7 +27,6 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg", current="met
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{image}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -223,7 +222,6 @@ def write_card(m):
 <link rel="canonical" href="https://greggle.app/methods/{slug}/card/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
 <link rel="stylesheet" href="/card.css">
 </head>
 <body>
@@ -1502,7 +1500,7 @@ ABOUT = """
       </section>
       <section id="site">
         <h2>About this website</h2>
-        <p>The site is plain static pages with no scripts and no analytics. The one thing it fetches from elsewhere is the typeface, from Google Fonts, and it falls back to a system font if that fails. The board on the front page is a real board from the app. The method pages were checked against the definitions that actually run in the app, and the further reading on each page is the primary source where one exists.</p>
+        <p>The site is plain static pages with no scripts and no analytics. It fetches nothing from anywhere else, not even the typeface, which is served from here under its open licence. The board on the front page is a real board from the app. The method pages were checked against the definitions that actually run in the app, and the further reading on each page is the primary source where one exists.</p>
         <p>Copyright Stuart Muir. The site is published so that people can read it, not so that it can be reused: please don't redistribute its text or host a copy without asking. Asking is easy; the address is above.</p>
       </section>
     </div>
@@ -1784,7 +1782,6 @@ def write_paper_card(m):
 <link rel="canonical" href="https://greggle.app/cards/{slug}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
 <link rel="stylesheet" href="/card.css">
 </head>
 <body>

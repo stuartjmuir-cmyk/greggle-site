@@ -28,8 +28,8 @@ methods that are not in the app, two for each of four further kinds of thing,
 live under `cards/<slug>/` and are introduced on the kinds page. The PDFs are rendered
 from the card pages by `tools/make-cards.js` (serve the site root, then
 `node tools/make-cards.js <port>`; it needs `playwright-core` and a Chromium).
-They were last rendered without the web font, so they use the fallback sans;
-re-render them on a machine with internet access to get Instrument Sans.
+The typeface is self-hosted in `fonts/` under the SIL Open Font License, so
+the PDFs carry it and the site fetches nothing from anywhere else.
 
 Each method page shows a real board, `methods/<slug>/board.jpg`, filled in with
 that page's worked example. They are taken by `tools/make-boards.js`, which drives

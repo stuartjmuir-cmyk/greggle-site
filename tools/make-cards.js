@@ -28,6 +28,9 @@ const targets = [
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
   for (const { slug, url, out } of targets) {
     await page.goto(`http://localhost:${port}${url}`, { waitUntil: 'load' });
+    // The face is declared with font-display: swap, so text is painted in the
+    // fallback until the file arrives. Wait for it, or the PDF keeps the fallback.
+    await page.evaluate(() => document.fonts.ready);
     const buf = await page.pdf({ path: out, format: 'A4', printBackground: true, preferCSSPageSize: true });
     const pages = (buf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
     console.log(slug.padEnd(32), pages, 'page(s)', Math.round(buf.length / 1024), 'KB');
