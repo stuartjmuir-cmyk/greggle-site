@@ -272,7 +272,7 @@ def write_index():
       <span class="eyebrow">Fourteen ways of thinking</span>
       <h1>None of them were invented here. That is the point.</h1>
       <p class="dim lead">These are the methods factories, consultancies and labs have used for decades, the ones normally locked inside textbooks and training courses. Each page says where the method came from, why it works, when to reach for it, and how to run it with a pen. Greggle lays the same method out on your board and walks you through it.</p>
-      <p class="dim lead">Start with what you are trying to do.</p>
+      <p class="dim lead">Start with what you are trying to do. Or, before any of them, <a href="/kinds/#audit">the knowledge audit</a>: fifteen minutes sorting what you know from what you believe.</p>
     </div>
   </section>
 """
@@ -1763,6 +1763,40 @@ PAPER.append(dict(
     ],
 ))
 
+PAPER.append(dict(
+    slug="knowledge-audit", name="The knowledge audit", kind="Any kind of thing", kind_slug="audit",
+    lead="What do you know for certain, what do you believe, what are you assuming, and what would you need to find out? Sort them before any method, so the method works on facts.",
+    facts=dict(origin="After Donna Ogle's KWL chart, 1986", best="any kind of thing, before any method", takes="Fifteen minutes"),
+    origin_line="Donna Ogle published the KWL chart in 1986 for classrooms: what I know, what I want to know, what I learned. This is that chart with the middle split into beliefs and assumptions, and a source written beside every fact. Greggle's own arrangement of it, not a named method.",
+    steps=[
+        "Write the thing in one line. Then what you know for certain about it, with how you know it beside each one: a source, a measurement, a person who would know.",
+        "What you believe: things you would act on but couldn't point to a source for. Write them plainly. This is the long list, and the uncomfortable one.",
+        "What you are assuming: what would have to be true for the way you wrote line one to make sense. Ask what you would have to believe to phrase it that way.",
+        "Go down the beliefs and assumptions and ask of each: if this were wrong, would the answer change? Mark the ones where it would. Most won't.",
+        "For each marked one, write who could confirm it or what you would look at. Not \"more research\": a name, a document, a number.",
+        "Check the two or three that matter before you pick a method. Then run the method with the facts and the guesses already separated, and watch for any step that rests on a belief.",
+    ],
+    falls="Writing beliefs in the facts box because they feel like facts. The test is the source column: if there is nothing to put there, it is a belief.",
+    boxes=[
+        [("The thing, in one line", "", 14, "lines")],
+        [("What I know for certain", "", 40, "lines"), ("How I know it", "A source, a measurement, a person who would know", 40, "lines")],
+        [("What I believe", "Would act on it, can't source it. The long list", 40, "lines")],
+        [("What I'm assuming", "What would have to be true for the top line to make sense", 32, "lines")],
+        [("The two or three that would change the answer if wrong", "Who could confirm each, or what I'd look at. Check these first", 30, "lines accent")],
+    ],
+))
+
+AUDIT_SECTION = """
+  <section class="group" id="audit">
+    <div class="card kinds-map audit">
+      <span class="stated">Before any of them</span>
+      <h2>The knowledge audit</h2>
+      <p class="dim">Every method assumes you know things. This one asks what: what you know for certain and how, what you believe, what you are assuming without noticing, and which of those would change the answer if they turned out to be wrong. Fifteen minutes with a pen before you pick a kind, so the method works on facts and you know where the guesses are. Donna Ogle's classroom chart from 1986, rearranged.</p>
+      <p class="stated"><a href="/cards/knowledge-audit/">the card</a> &middot; <a href="/cards/knowledge-audit/card.pdf">pdf</a></p>
+    </div>
+  </section>
+"""
+
 def write_paper_card(m):
     slug = m["slug"]
     rows = ""
@@ -1851,6 +1885,7 @@ def write_kinds():
         links = ", ".join(link_to(n) for n in methods)
         cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p></div>\n'
     page = KINDS_PAGE.replace("{cards}", cards)
+    page = page.replace('  <section class="group">\n    <div class="grid grid-kinds-page">', AUDIT_SECTION + '  <section class="group">\n    <div class="grid grid-kinds-page">', 1)
     page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + '  <section class="cta">', 1)
     write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests, plus four more kinds on paper.", "methods", page)
 

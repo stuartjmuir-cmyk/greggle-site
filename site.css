@@ -200,3 +200,9 @@ footer a:hover { color: #082da3; }
 .paper-card > a:hover { color: #082da3; }
 .paper-card .dim { font-size: 14px; }
 .paper-card .stated a { color: #082da3; text-decoration: none; }
+
+/* The knowledge audit, before the kinds */
+.kinds-map.audit { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.kinds-map.audit h2 { font-size: 24px; }
+.kinds-map.audit .dim { font-size: 15px; max-width: 760px; }
+.kinds-map.audit .stated a { color: #082da3; text-decoration: none; }

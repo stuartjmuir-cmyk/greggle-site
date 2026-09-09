@@ -556,6 +556,8 @@ After phase four. The first extension from section 5 is built: four more kinds
 of thing (a Habit, a Skill, a Conversation, a Piece of writing), each with two
 paper-only methods as cards under /cards/, introduced at the foot of the kinds
 page. They are the first methods in the library that exist without the app.
+The knowledge audit from section 5 is built as a card too, at /cards/knowledge-audit/,
+introduced at the top of the kinds page as the thing to do before any method.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.
