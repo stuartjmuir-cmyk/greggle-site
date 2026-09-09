@@ -550,8 +550,12 @@ both linked from every page's navigation and footer.
 
 Phase four, done. Cards: each method has a one-page A4 card at
 /methods/<slug>/card/, made to print from the browser, and a PDF beside it
-rendered by tools/make-cards.js. The kinds page at /kinds/. Next is whichever
-of the extension ideas in section 5 has earned it.
+rendered by tools/make-cards.js. The kinds page at /kinds/.
+
+After phase four. The first extension from section 5 is built: four more kinds
+of thing (a Habit, a Skill, a Conversation, a Piece of writing), each with two
+paper-only methods as cards under /cards/, introduced at the foot of the kinds
+page. They are the first methods in the library that exist without the app.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.

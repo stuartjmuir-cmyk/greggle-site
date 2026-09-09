@@ -1550,7 +1550,7 @@ KINDS_PAGE = """
       <div class="kinds-row"><b>Is the outcome someone else's to give?</b><span>A Challenge.</span></div>
       <div class="kinds-row"><b>Still not sure?</b><span>Pick the nearest and change it later. It is one click, and nothing on the board is lost.</span></div>
     </div>
-    <p class="dim" style="font-size: 15px; max-width: 720px; padding-top: 20px">Seven is a start, not a limit. A habit to build, a skill to learn, a conversation you are dreading and a piece of writing each want their own questions, and <a href="/why/#next">the why page</a> says which methods they would bring with them.</p>
+    <p class="dim" style="font-size: 15px; max-width: 720px; padding-top: 20px">Seven is a start, not a limit. A habit to build, a skill to learn, a conversation you are dreading and a piece of writing each want their own questions, and <a href="#paper">the four below</a> have theirs on paper already.</p>
   </section>
   <section class="cta">
     <div class="card">
@@ -1561,16 +1561,307 @@ KINDS_PAGE = """
   </section>
 """
 
+# ---------------------------------------------------------------------------
+# Paper-only methods: four more kinds of thing, two methods each, not in the
+# app. Each gets a printable card and a line on the kinds page.
+PAPER_KINDS = [
+ ("a Habit", "habit", "Something you want to do, or stop doing, without deciding every time.", "Practise before school every day.",
+  "The app has no Habit yet. On paper, the two methods with the strongest evidence behind them are Gabriele Oettingen's WOOP, which makes you name the obstacle inside you before you plan, and Peter Gollwitzer's if-then plans, which tie the action to a moment so you never have to decide.",
+  ["woop", "if-then-plans"]),
+ ("a Skill", "skill", "Something you want to get properly good at, not just do.", "Solder a clean joint every time.",
+  "Getting better and spending hours are different things. Anders Ericsson's deliberate practice is the method for working at the edge of what you can do with feedback, and the Feynman technique is the check that you understand a thing rather than recognise it.",
+  ["deliberate-practice", "feynman-technique"]),
+ ("a Conversation", "conversation", "Something you have to say to someone, and are dreading.", "Asking the coach why I was dropped.",
+  "Two methods from people who studied how conversations go wrong. Chris Argyris's ladder of inference shows how fast you climb from what you saw to what you concluded, and the three conversations, from the Harvard Negotiation Project, separate what happened from how it felt and from what it says about you.",
+  ["ladder-of-inference", "three-conversations"]),
+ ("a Piece of writing", "writing", "Something that has to persuade or explain, and is not yet written.", "The personal statement.",
+  "Answer First covers how to deliver an argument. These two are for the page itself: situation, complication, question, answer is the opening that earns the reader's attention, and the reverse outline is how you find out what a draft actually says once it exists.",
+  ["scqa", "reverse-outline"]),
+]
+
+PAPER = []
+
+PAPER.append(dict(
+    slug="woop", name="WOOP", kind="a Habit", kind_slug="habit",
+    lead="Wish, outcome, obstacle, plan. Picture the best result, then the thing inside you that gets in the way, then what you will do when it does.",
+    facts=dict(origin="Gabriele Oettingen, 2014", best="a Habit, a Goal you keep not starting", takes="Five minutes"),
+    origin_line="Gabriele Oettingen, a psychologist at New York University and Hamburg, spent twenty years showing that positive thinking on its own lowers effort, and that contrasting the wish with the obstacle is what gets people moving. Her 2014 book Rethinking Positive Thinking sets it out.",
+    steps=[
+        "Wish. Write one thing you want to do, in the next day, week or month. Challenging, but possible.",
+        "Outcome. The best thing about achieving it. Write it, then close your eyes and picture it properly for a minute. Don't skip the picturing; the contrast is the method.",
+        "Obstacle. The main thing inside you that stops you. Not the weather, not other people: a habit, a feeling, an excuse you reach for. Picture that too.",
+        "Plan. Write \"If [the obstacle shows up], then I will [one specific action].\" Say it out loud once.",
+        "Do it in that order every time. Wish, outcome, obstacle, plan. Swapping the obstacle and the outcome, or leaving the obstacle out, is what turns it back into daydreaming.",
+        "Repeat for the next wish. One WOOP per wish, and a new one each day if you like.",
+    ],
+    falls="Leaving out the obstacle, because it feels negative, which is exactly the version her research found does nothing.",
+    boxes=[
+        [("Wish", "One thing, this week or this month. Hard but possible", 24, "lines")],
+        [("Outcome", "The best thing about it. Picture it for a full minute", 40, "lines")],
+        [("Obstacle", "The thing inside you that stops you. A habit, a feeling, an excuse", 40, "lines")],
+        [("Plan", "If [the obstacle shows up], then I will [one specific action]", 34, "lines accent")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="if-then-plans", name="If-then plans", kind="a Habit", kind_slug="habit",
+    lead="Tie the action to a moment. \"If it is 7am and I have eaten, then I practise for twenty minutes.\" Deciding once, so you never have to decide again.",
+    facts=dict(origin="Peter Gollwitzer, 1999", best="a Habit, any intention you keep not acting on", takes="Ten minutes"),
+    origin_line="Peter Gollwitzer, also at New York University, published \"Implementation intentions: strong effects of simple plans\" in 1999. A 2006 review with Paschal Sheeran covering 94 studies found the if-then form roughly doubled the chance of following through, across everything from exercise to exam revision.",
+    steps=[
+        "Write the goal in one line. Then forget it; the method is about the moments, not the goal.",
+        "List the moments when you could act: a time, a place, something that happens. \"After I put my bag down.\" \"When the 3.15 bell goes.\"",
+        "For each, write one line: \"If [moment], then I will [action].\" The action is small and specific enough that there is nothing to work out when the moment comes.",
+        "Write one more for the obstacle: \"If I feel like skipping it, then I will [do the smallest version].\"",
+        "Put the lines where the moments happen: on the bag, by the kettle, in the phone's lock screen. They are not for remembering the goal. They are for recognising the moment.",
+        "Review once a week. A line that never fired has the wrong moment; change the moment, not the goal.",
+    ],
+    falls="Writing the goal again in if-then clothing: \"If it is Monday, then I will be more organised\" has no moment and no action.",
+    boxes=[
+        [("The goal, in one line", "Then leave it alone", 16, "lines")],
+        [("If [moment]", "A time, a place, something that happens", 24, "lines"), ("then I will [action]", "Small enough that there is nothing to work out", 24, "lines")],
+        [("If", "", 24, "lines"), ("then I will", "", 24, "lines")],
+        [("If", "", 24, "lines"), ("then I will", "", 24, "lines")],
+        [("If I feel like skipping it", "", 22, "lines accent"), ("then I will", "The smallest version", 22, "lines accent")],
+        [("Where each line lives, and when I review them", "", 20, "lines")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="deliberate-practice", name="Deliberate practice", kind="a Skill", kind_slug="skill",
+    lead="Work at the edge of what you can do, on one specific thing, with feedback you can't ignore. Hours are not practice.",
+    facts=dict(origin="Anders Ericsson, 1993", best="a Skill", takes="Twenty minutes a session, for weeks"),
+    origin_line="K. Anders Ericsson, a psychologist at Florida State, studied violinists at the Berlin academy and published the results in 1993 with Ralf Krampe and Clemens Tesch-Römer. The best players had not practised more hours; they had spent more of their hours on drills just beyond their ability, with immediate feedback. His 2016 book Peak is the readable version.",
+    steps=[
+        "Name the skill, then the one sub-skill you are working on this week. Not \"guitar\" but \"the change from G to B minor without stopping\".",
+        "Find the edge: the version of it you can nearly do. Too easy teaches nothing; too hard teaches only frustration.",
+        "Design a drill that isolates it, and decide how you will get feedback within seconds: a recording, a metronome, a mirror, a person who knows.",
+        "Practise it with full attention, in short sessions. Twenty minutes of this beats two hours of playing what you already can.",
+        "Measure something each session, and write it down. Changes per minute, clean repetitions out of ten, seconds to complete.",
+        "When it stops being at the edge, move the edge. When it stops improving, change the drill, not the effort.",
+    ],
+    falls="Playing what you can already play, which feels like practice and is rehearsal.",
+    boxes=[
+        [("The skill", "", 14, "lines"), ("This week's sub-skill", "One specific thing at the edge", 14, "lines")],
+        [("Where I am now", "Measured how", 18, "lines"), ("Where I want to be", "By when", 18, "lines")],
+        [("The drill", "What isolates the sub-skill", 28, "lines"), ("Feedback within seconds", "Recording, metronome, mirror, a person", 28, "lines")],
+        [("Session log", "Date / minutes / the number / what to change next time", 60, "lines")],
+        [("When the edge moves, or the number stalls", "The next drill", 18, "lines accent")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="feynman-technique", name="The Feynman technique", kind="a Skill", kind_slug="skill",
+    lead="Explain it in writing to a twelve-year-old. Where you stall, you don't understand it yet. Go back for exactly that, and try again.",
+    facts=dict(origin="After Richard Feynman; the four steps from around 2011", best="a Skill, anything you are revising", takes="Half an hour per idea"),
+    origin_line="Named for Richard Feynman, the physicist who insisted that if you can't explain a thing simply you don't understand it, and who worked that way himself. He never wrote it up as a method. The four-step version circulating now was set down by Scott Young around 2011, and that is worth knowing so the name carries the right weight.",
+    steps=[
+        "Write the idea at the top of a blank page. One idea, not a chapter.",
+        "Explain it, in writing, as if to a bright twelve-year-old who will ask \"why?\" at every step. Plain words. No jargon unless you define it as you go.",
+        "Read it back and mark every place you stalled, waved your hands, or used a word you couldn't define. Those marks are the list of what you don't yet understand.",
+        "Go back to the source for those gaps only. Not the whole chapter: the exact things you marked.",
+        "Rewrite the explanation. Simplify, and find one analogy that a twelve-year-old would get. If the analogy breaks, note where.",
+        "Say it out loud to someone, or to the wall. If it still doesn't come out plain, repeat from step 3.",
+    ],
+    falls="Explaining it to yourself, who already lets you get away with the hand-waving.",
+    boxes=[
+        [("The idea", "One, at the top", 14, "lines")],
+        [("Explain it to a twelve-year-old", "In writing. Plain words. They will ask why at every step", 66, "lines")],
+        [("Where I stalled or reached for jargon", "The list of what I don't understand yet", 28, "lines"), ("Back to the source, for these only", "", 28, "lines")],
+        [("The simple version, with one analogy", "And where the analogy breaks", 34, "lines accent")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="ladder-of-inference", name="Ladder of inference", kind="a Conversation", kind_slug="conversation",
+    lead="You saw something, picked out part of it, added meaning, assumed, concluded, and acted, in about a second. Climb back down before you speak.",
+    facts=dict(origin="Chris Argyris, 1970s", best="a Conversation, a Problem between people", takes="Fifteen minutes"),
+    origin_line="Chris Argyris, a Harvard professor who spent his career on how organisations learn and fail to, drew the ladder in the 1970s to show how people leap from what they observed to what they believe, and then treat the top of the ladder as fact. Peter Senge's Fifth Discipline Fieldbook of 1994 put it in general circulation.",
+    steps=[
+        "Bottom rung. Write what a camera would have recorded: the words said, the things done. No adjectives.",
+        "Next rung. What you noticed out of all that. You did not notice everything, and what you picked out is already a choice.",
+        "Next. The meaning you gave it. \"She was late\" is data. \"She doesn't take this seriously\" is meaning.",
+        "Next. The assumptions that meaning rests on, then the conclusion you drew, then what you now believe about the person. Write each rung separately; the point is to see how many there are.",
+        "Now go down the ladder with them. Start from the bottom: \"What I saw was this. What I made of it was this. Is that how you saw it?\"",
+        "Expect their ladder to have different rungs from the same bottom step. That is the conversation, and it is usually shorter than the row would have been.",
+    ],
+    falls="Starting the conversation at the top rung, which is where you already are and where they cannot follow you.",
+    boxes=[
+        [("What I believe about them now", "The top rung. Write it, then climb down", 16, "lines")],
+        [("The conclusion I drew", "", 16, "lines")],
+        [("The assumptions it rests on", "", 18, "lines")],
+        [("The meaning I added", "", 18, "lines")],
+        [("What I noticed", "Out of everything that happened", 18, "lines")],
+        [("What a camera would have recorded", "The bottom rung. Words said, things done, no adjectives", 26, "lines")],
+        [("My opening line, from the bottom", "\"What I saw was... What I made of it was... Is that how you saw it?\"", 22, "lines accent")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="three-conversations", name="The three conversations", kind="a Conversation", kind_slug="conversation",
+    lead="Every hard conversation is three at once: what happened, how it feels, and what it says about you. Sort them out on paper before you have them out loud.",
+    facts=dict(origin="Stone, Patton and Heen, 1999", best="a Conversation you are dreading", takes="Half an hour"),
+    origin_line="Douglas Stone, Bruce Patton and Sheila Heen of the Harvard Negotiation Project, in Difficult Conversations, published in 1999. Their finding from years of watching people argue was that the fight about what happened is rarely the real one, and that the feelings and the threat to how each person sees themselves are doing the work underneath.",
+    steps=[
+        "Write your story of what happened. Then write theirs, as they would tell it to a friend. Both are true to the person telling them.",
+        "Separate intent from impact. What you think they meant is a guess; what it did to you is a fact. Write both, and notice you have only guessed at their intent.",
+        "Map contributions instead of blame. What did each of you do that helped this happen? Yours goes on the page too, or the conversation is an accusation.",
+        "Name the feelings, yours and theirs as you'd guess them. Unnamed feelings leak into tone.",
+        "Ask the identity question: what does this threaten about how I see myself? Competent, fair, a good friend? That is usually why it is hard.",
+        "Decide your purpose: to learn their story, to say yours, to solve something together. Then write the opening in the third story, how a neutral observer would describe the situation, and start there.",
+    ],
+    falls="Going in to prove your story is the true one, which is the one thing the conversation cannot do.",
+    boxes=[
+        [("My story of what happened", "", 34, "lines"), ("Their story, as they'd tell a friend", "", 34, "lines")],
+        [("What I think they meant", "A guess", 18, "lines"), ("What it did to me", "A fact", 18, "lines")],
+        [("What each of us contributed", "Mine goes here too", 26, "lines")],
+        [("Feelings, mine and theirs", "", 18, "lines"), ("What this threatens about how I see myself", "", 18, "lines")],
+        [("My purpose, and the opening in the third story", "How a neutral observer would describe it", 26, "lines accent")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="scqa", name="Situation, complication, question, answer", kind="a Piece of writing", kind_slug="writing",
+    lead="Start where the reader already agrees, say what changed, raise the question that change puts in their mind, and answer it. The opening that earns the rest.",
+    facts=dict(origin="The consulting introduction, 1970s", best="a Piece of writing that has to persuade", takes="Twenty minutes for the opening"),
+    origin_line="The standard opening of a consulting document, from the same McKinsey writing tradition of the 1970s that produced Answer First. Its logic is that a reader will follow you anywhere as long as you start from something they already believe and take one step at a time.",
+    steps=[
+        "Write who the reader is and what they already know and agree with. The opening is built from their side, not yours.",
+        "Situation. One or two sentences of what is true and uncontroversial. The reader should nod.",
+        "Complication. What has changed, gone wrong, or come up. This is the reason the piece exists.",
+        "Question. The question the complication raises in the reader's mind. Write it as they would ask it. If it isn't the question you're answering, one of them has to change.",
+        "Answer. Your answer, in one sentence. This is the end of the opening and the start of the argument.",
+        "Below the answer, the reasons, grouped and ordered by strength, with the evidence at the leaves. That structure is Answer First, and it has its own card.",
+    ],
+    falls="A situation the reader doesn't agree with, which loses them in the first sentence, or a complication invented to make the answer look necessary.",
+    boxes=[
+        [("The reader, and what they already believe", "", 20, "lines")],
+        [("Situation", "What is true and uncontroversial. They nod", 26, "lines")],
+        [("Complication", "What changed. Why this piece exists", 26, "lines")],
+        [("Question", "In the reader's words", 22, "lines")],
+        [("Answer", "One sentence. The argument hangs beneath it", 22, "lines accent")],
+        [("The reasons beneath, in order of strength", "See the Answer First card for the rest", 30, "lines")],
+    ],
+))
+
+PAPER.append(dict(
+    slug="reverse-outline", name="Reverse outline", kind="a Piece of writing", kind_slug="writing",
+    lead="Take the draft you have and write one sentence per paragraph saying what it actually says. The list is the argument you actually made, which is rarely the one you meant to.",
+    facts=dict(origin="Writing centres everywhere; no single author", best="a Piece of writing that exists and isn't working", takes="Half an hour"),
+    origin_line="No single author. It is taught by university writing centres the world over as the first thing to do with a draft that isn't working, and it survives because it works: an outline written before the draft says what you intended, and one written after it says what you did.",
+    steps=[
+        "Print the draft, or open it beside a blank page. Write the point of the whole piece in one sentence at the top of the blank page.",
+        "For each paragraph, write one sentence that says what it says. Not what it is about: what it claims. If you can't, the paragraph doesn't say anything yet.",
+        "Number them. Read the list on its own, without the draft. That is the argument you actually made.",
+        "Check the list against the top sentence. Which paragraphs advance it? Which repeat one another? Which are there because you liked them?",
+        "Mark each one: keep, move, cut. Move the ones in the wrong order on the list first, and see whether the argument reads better before you touch the draft.",
+        "Fix the draft from the list: cut, reorder, and write the missing paragraph the list shows you need.",
+    ],
+    falls="Writing what each paragraph is about rather than what it says, which makes every paragraph look fine.",
+    boxes=[
+        [("The point of the whole piece, in one sentence", "", 18, "lines")],
+        [("Paragraph by paragraph: what it says, not what it is about", "Number / the claim / keep, move, cut", 96, "lines")],
+        [("What the list is missing", "", 20, "lines"), ("What appears twice", "", 20, "lines")],
+    ],
+))
+
+def write_paper_card(m):
+    slug = m["slug"]
+    rows = ""
+    for row in m["boxes"]:
+        rows += '<div class="row">'
+        for label, sub, h, cls in row:
+            rows += f'<div class="box {cls}" style="min-height:{h}mm"><b>{curly(label)}</b>' + (f'<span>{curly(sub)}</span>' if sub else '') + '</div>'
+        rows += '</div>\n'
+    steps = "".join(f"<li>{curly(x)}</li>" for x in m["steps"])
+    out = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(m['name'])} card &middot; Greggle</title>
+<meta name="description" content="A one-page printable card for {html.escape(m['name'])}: the steps, and the blank grid to fill in with a pen.">
+<link rel="canonical" href="https://greggle.app/cards/{slug}/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="/card.css">
+</head>
+<body>
+<div class="screenbar">
+  <span><a href="/kinds/#{m['kind_slug']}">&larr; {html.escape(m['kind'])}</a> &middot; {html.escape(m['name'])} &middot; one page, A4</span>
+  <span>Print it from your browser, or <a href="/cards/{slug}/card.pdf">download the PDF</a></span>
+</div>
+<div class="sheet">
+  <header class="cardhead">
+    <div class="brand">{MARK} <span>Greggle</span></div>
+    <span class="url">greggle.app/cards/{slug}/</span>
+  </header>
+  <div class="cardtitle">
+    <h1>{html.escape(m['name'])}</h1>
+    <p class="lead">{curly(m['lead'])}</p>
+    <p class="meta">For {curly(m['kind'])} &middot; {curly(m['facts']['origin'])} &middot; takes {curly(m['facts']['takes']).lower()}</p>
+  </div>
+  <div class="cardbody">
+    <section class="steps">
+      <h2>How to run it</h2>
+      <ol>{steps}</ol>
+      <p class="falls"><b>Where it falls down.</b> {curly(m['falls'])}</p>
+    </section>
+    <section class="work">
+      <h2>With a pen</h2>
+{rows}    </section>
+  </div>
+  <footer class="cardfoot">
+    <span>{curly(m['origin_line'])}</span>
+    <span>On paper only, for now: greggle.app/kinds/</span>
+  </footer>
+</div>
+</body>
+</html>
+"""
+    d = os.path.join(ROOT, "cards", slug); os.makedirs(d, exist_ok=True)
+    with open(os.path.join(d, "index.html"), "w") as f:
+        f.write(out)
+
+PAPER_SECTION = """
+  <section class="group" id="paper">
+    <div class="group-head">
+      <span class="eyebrow">Four more kinds, on paper for now</span>
+      <h2>Not in the app yet. The cards need nothing but a pen.</h2>
+      <p class="dim">The essay said seven kinds was a start, not a limit. These are the next four, each with the two methods that suit it best, as one-page cards. None of them were invented here either.</p>
+    </div>
+    <div class="grid grid-kinds-page">
+{cards}
+    </div>
+  </section>
+"""
+
+def paper_cards_html():
+    by = {m["slug"]: m for m in PAPER}
+    out = ""
+    for name, kslug, desc, example, what, slugs in PAPER_KINDS:
+        links = ""
+        for s in slugs:
+            m = by[s]
+            links += f'<div class="paper-card"><a href="/cards/{s}/"><b>{html.escape(m["name"])}</b></a> <span class="stated origin">{curly(m["facts"]["origin"])}</span><p class="dim">{curly(m["lead"])}</p><p class="stated"><a href="/cards/{s}/">the card</a> &middot; <a href="/cards/{s}/card.pdf">pdf</a></p></div>'
+        out += f'      <div class="card" id="{kslug}"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p>{links}</div>\n'
+    return out
+
 def write_kinds():
     cards = ""
     for name, desc, example, what, methods in KINDS:
         links = ", ".join(link_to(n) for n in methods)
         cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p></div>\n'
-    write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests.", "methods", KINDS_PAGE.replace("{cards}", cards))
+    page = KINDS_PAGE.replace("{cards}", cards)
+    page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + '  <section class="cta">', 1)
+    write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests, plus four more kinds on paper.", "methods", page)
 
 write_kinds()
 for m in METHODS:
     write_card(m)
+for m in PAPER:
+    write_paper_card(m)
 
 NOT_FOUND = """
   <article class="essay">
@@ -1598,4 +1889,4 @@ write_page("", "Not found", "There is nothing at this address.", "", curly(NOT_F
 write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
 write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
 
-print("wrote", 2 * len(METHODS) + 4, "pages")
+print("wrote", 2 * len(METHODS) + len(PAPER) + 4, "pages")

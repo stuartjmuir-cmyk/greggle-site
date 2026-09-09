@@ -23,7 +23,9 @@ script is going to be run again, or edit the HTML directly and leave the script
 alone.
 
 Each method also has a printable card at `methods/<slug>/card/index.html`, styled
-by `card.css` for one A4 page, and a `card.pdf` beside it. The PDFs are rendered
+by `card.css` for one A4 page, and a `card.pdf` beside it. Eight more cards for
+methods that are not in the app, two for each of four further kinds of thing,
+live under `cards/<slug>/` and are introduced on the kinds page. The PDFs are rendered
 from the card pages by `tools/make-cards.js` (serve the site root, then
 `node tools/make-cards.js <port>`; it needs `playwright-core` and a Chromium).
 They were last rendered without the web font, so they use the fallback sans;

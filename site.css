@@ -185,3 +185,10 @@ footer a:hover { color: #082da3; }
 .boardshot { margin: 6px 0 4px; display: flex; flex-direction: column; gap: 10px; }
 .boardshot img { max-width: 100%; height: auto; border-radius: 14px; border: 1px solid #e4e7ea; }
 .boardshot figcaption { text-align: center; }
+
+/* Paper-only cards on the kinds page */
+.paper-card { border-top: 1px solid #e4e7ea; padding-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.paper-card > a { color: #16181b; text-decoration: none; font-size: 16px; }
+.paper-card > a:hover { color: #082da3; }
+.paper-card .dim { font-size: 14px; }
+.paper-card .stated a { color: #082da3; text-decoration: none; }
