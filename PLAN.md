@@ -579,10 +579,10 @@ pages were corrected against those files, and the eight remaining pages should
 be written from them rather than from memory. The kinds and the order in which
 methods are suggested for each kind are in `src/domain/vocabulary.ts`.
 
-- Deep links: the app reads nothing from the URL, so there is no way to open it
-  with a method or kind pre-selected. Every try-it button opens the app's front
-  door. Adding a query parameter to the app would be a small change and would
-  make the method pages measurably more useful; worth raising there.
+- Deep links: built. The app reads `?kind=` and `?method=` on arrival, chooses
+  the kind and proposes the method on the new board for review, then cleans the
+  address. Every method page's try-it buttons use them, and each kind on the
+  kinds page opens the app as that kind.
 - Strategic Challenge Map: the app's own description is "a forensic breakdown
   for a complex organisation or market" and names no source. The page should
   say it is Greggle's own synthesis and leave Rumelt out unless Stuart says

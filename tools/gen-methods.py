@@ -391,7 +391,7 @@ def write_method(m):
       </div>
       <aside class="side">
         <div class="card toc"><h3>On this page</h3><ul>{toc}</ul></div>
-        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">{curly(m['try'])}</p><a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a></div>
+        <div class="card"><h3>Try it in Greggle</h3><p class="dim" style="font-size:14px">{curly(m['try'])}</p><a class="btn btn-small" href="https://www.greggle.app/?kind={m['app_kind']}&amp;method={m['app_id']}">Open with {html.escape(m['name'])} ready</a></div>
         <div class="card"><h3>Or on paper</h3><p class="dim" style="font-size:14px">A one-page card with the steps and a blank grid, for A4.</p><a class="btn-quiet btn-small" href="/methods/{slug}/card/">Print the card</a></div>
       </aside>
     </div>
@@ -399,8 +399,8 @@ def write_method(m):
     <section class="method-cta">
       <div class="card">
         <h2>{curly(m['cta'])}</h2>
-        <p class="dim">Free, no account, works offline. Your work stays on your device.</p>
-        <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+        <p class="dim">This link opens the app with {html.escape(m['name'])} proposed on a new board, for you to look over before anything is added. Free, no account, works offline.</p>
+        <a class="btn" href="https://www.greggle.app/?kind={m['app_kind']}&amp;method={m['app_id']}">Open Greggle with {html.escape(m['name'])}</a>
       </div>
       {nav}
     </section>
@@ -417,6 +417,7 @@ METHODS = []
 
 METHODS.append(dict(
     slug="five-whys",
+    app_kind="problem", app_id="five-whys",
     shot_alt='The band keeps missing practice, five whys deep: the last why answered and marked as a cause you can act on', shot_caption='the band keeps missing practice, at the fifth why', name="5 Whys", kind="a Problem",
     desc="Where the 5 Whys came from, why it works, when to use it and how to run it: Toyota's method for finding the cause you can actually act on.",
     lead="Ask why of the answer, five times, until you reach a cause you can actually act on.",
@@ -479,12 +480,13 @@ METHODS.append(dict(
         "Taiichi Ohno, Toyota Production System: Beyond Large-Scale Production. Written in 1978, published in English in 1988. The fuse example is in chapter one.",
         "Alan J. Card, \"The problem with '5 whys'\", BMJ Quality and Safety, 2017. The honest critique.",
     ],
-    try_="Say it is a Problem, open a step, choose Apply a framework and pick 5 Whys. You see exactly what it proposes before anything is added.",
+    try_="One click opens the app as a Problem with 5 Whys proposed on the new board. You see exactly what it proposes before anything is added.",
     cta="Start with the thing that keeps going wrong.",
 ))
 
 METHODS.append(dict(
     slug="working-backwards",
+    app_kind="project", app_id="working-backwards",
     shot_alt='The science fair project, inside the walk back: three milestones, the first filled in with what is true, how you would see it and what it stands on', shot_caption='the science fair project, inside the walk back', name="Working Backwards", kind="a Project or a Goal",
     desc="Where Working Backwards came from, why it works, and how to run it: Amazon's way of defining done before you start, then walking back to now.",
     lead="Define what done looks like and the evidence that would prove it, then walk back to now, so every step exists because the one after it needs it.",
@@ -556,6 +558,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="pre-mortem",
+    app_kind="project", app_id="pre-mortem",
     shot_alt='A stall at the Saturday market, inside why it failed: four causes in the past tense, one rated very likely and serious', shot_caption='the market stall, inside why it failed', name="Pre-mortem", kind="a Project or a Risk",
     desc="Where the pre-mortem came from, the research behind it, and how to run one: Gary Klein's method for finding the flaws in a plan before it starts.",
     lead="It is twelve months from now and this failed. Work out why, then prevent it.",
@@ -625,6 +628,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="first-principles",
+    app_kind="challenge", app_id="first-principles",
     shot_alt='The debating final, at the top: four phases, with the assumptions filled in underneath phase 1', shot_caption='the debating final, the four phases', name="First Principles", kind="a Challenge or a Decision",
     desc="Where first principles thinking came from, why it works, when it is the wrong tool, and how to run it: Aristotle's method for reasoning from what is actually true.",
     lead="Find the truths nothing else rests on, then build up from them alone.",
@@ -692,6 +696,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="force-field-analysis",
+    app_kind="goal", app_id="force-field",
     shot_alt='Make the first team, inside what is holding it back: three restraints, the shift clash rated strong and removable with a name beside it', shot_caption='the first team, inside what is holding it back', name="Force Field Analysis", kind="a Decision or a stalled Goal",
     desc="Where force field analysis came from, why removing a restraint beats pushing harder, and how to run it: Kurt Lewin's method for shifting something that has stuck.",
     lead="What is pushing for the change, what is holding it back, and which single restraint you could actually remove.",
@@ -770,6 +775,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="options-and-criteria",
+    app_kind="decision", app_id="options-and-criteria",
     shot_alt='Which subjects to take next year, inside the criteria: three written before any option, the first a must with how you would tell', shot_caption='which subjects, inside the criteria', name="Options and Criteria", kind="a Decision",
     desc="Where the decision matrix came from, why the order of the steps is the whole method, and why Greggle leaves out the arithmetic: from Franklin's prudential algebra to a judgement you can defend.",
     lead="Write down what a good answer would have to do before you look at the answers, then say honestly what each one costs.",
@@ -843,6 +849,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="issue-tree",
+    app_kind="challenge", app_id="issue-tree",
     shot_alt='Should we run the stall again in December, inside the split: three branches that do not overlap, the first with its test and its verdict', shot_caption='the December stall, inside the split', name="Issue Tree", kind="a Challenge, a Problem or a Decision",
     desc="Where the issue tree came from, what MECE actually means, and how to build one: the consulting method for splitting a question into parts that do not overlap and leave nothing out.",
     lead="State the question, split it into parts that do not overlap and leave nothing out, then test the parts that would actually change the answer.",
@@ -911,6 +918,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="cause-and-effect",
+    app_kind="problem", app_id="cause-and-effect",
     shot_alt='The science fair sensor, inside where the causes might be: six categories, measurement holding the cause that explains everything', shot_caption='the sensor, the six categories', name="Cause and Effect", kind="a Problem",
     desc="Where the fishbone diagram came from, why going wide beats going deep first, and how to run it: Kaoru Ishikawa's method for finding every class of cause before you commit to one.",
     lead="Go wide across the categories before you go deep, so that a whole class of cause is not simply forgotten.",
@@ -981,6 +989,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="objectives-and-key-results",
+    app_kind="goal", app_id="objectives-and-key-results",
     shot_alt='Get properly good at guitar, inside the key results: three, the first with its number, where it is read, and committed', shot_caption='guitar, inside the key results', name="Objectives and Key Results", kind="a Goal",
     desc="Where OKRs came from, why the discipline lives entirely in the key results, and how to write a set that can be scored honestly: from Andy Grove's Intel to one person's goal.",
     lead="One qualitative objective, a handful of numbers that would prove it, and the bets you are making to move them.",
@@ -1050,6 +1059,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="scenario-planning",
+    app_kind="opportunity", app_id="scenario-planning",
     shot_alt='The Saturday job, inside the four worlds: Full Saturdays, Free and easy, Pitch and pen and Desk-bound, the first with its route from today', shot_caption='the Saturday job, the four worlds', name="Scenario Planning", kind="a Challenge or an Opportunity",
     desc="Where scenario planning came from, how Shell saw the 1973 oil shock coming, and how to build four worlds and the signposts that tell you which one is arriving.",
     lead="Pick the two uncertainties that matter most and are genuinely independent, build the four worlds they produce, then plant the signposts that tell you which one you are entering.",
@@ -1119,6 +1129,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="stakeholder-and-influence-map",
+    app_kind="challenge", app_id="stakeholder-map",
     shot_alt='Get the band the school hall, inside the people: deputy head, site manager, head of music and drama club lead, the site manager opposed with a name beside him', shot_caption='the school hall, inside the people', name="Stakeholder and Influence Map", kind="a Project, a Challenge or an Opportunity",
     desc="Where stakeholder mapping came from, why influence and position are different questions, and how to map a room honestly: who decides, who can block it, and what each of them actually wants.",
     lead="Who decides, who can block it, what each of them actually wants, and what it would take to move them.",
@@ -1186,6 +1197,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="strategic-challenge-map",
+    app_kind="challenge", app_id="strategic-challenge-map",
     shot_alt='Let the canteen take cards, inside the forensic analysis: technological, regulatory, competitive and organisational, the last selected', shot_caption='the canteen, the four categories', name="Strategic Challenge Map", kind="a Challenge or a Project",
     desc="What the Strategic Challenge Map is, why every challenge needs evidence with a date, and how to run it: Greggle's own method for proposing a change into a complex organisation without losing a sceptical reader.",
     lead="Categorise the challenges, evidence each one with a date, judge what you can actually move, then say what would count as proof.",
@@ -1255,6 +1267,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="theory-of-constraints",
+    app_kind="problem", app_id="theory-of-constraints",
     shot_alt="The band's set never gets finished, at the top: six steps from the system to whether the constraint has moved, with the candidates examined inside step 2", shot_caption="the band's set, the six focusing steps", name="Theory of Constraints", kind="a Project or a Problem",
     desc="Where the Theory of Constraints came from, why an hour saved anywhere but the bottleneck is usually nothing, and how to run the five focusing steps: Eliyahu Goldratt's method for a system that produces less than it should.",
     lead="Find the one place the whole flow narrows, squeeze it before you spend on it, make everything else serve it, then follow it to wherever it moves next.",
@@ -1323,6 +1336,7 @@ METHODS.append(dict(
 
 METHODS.append(dict(
     slug="answer-first",
+    app_kind="decision", app_id="answer-first",
     shot_alt='History instead of Chemistry, inside the groups: three claims that hold the answer up, the first selected', shot_caption='History instead of Chemistry, the three groups', name="Answer First", kind="a Challenge or a Decision",
     desc="Where answer-first writing came from, why the reader decides in the first minute, and how to structure a case: Barbara Minto's pyramid, for anyone who has to persuade someone who may stop reading.",
     lead="Give the answer in the first sentence, then group the reasons beneath it, parallel reasons or a chain, never both at once, with the evidence at the leaves.",
@@ -1918,7 +1932,8 @@ def write_kinds():
     cards = ""
     for name, desc, example, what, methods in KINDS:
         links = ", ".join(link_to(n) for n in methods)
-        cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p></div>\n'
+        kid = name.split()[-1].lower()
+        cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p><p class="stated"><a href="https://www.greggle.app/?kind={kid}">open Greggle as {name}</a></p></div>\n'
     page = KINDS_PAGE.replace("{cards}", cards)
     page = page.replace('  <section class="group">\n    <div class="grid grid-kinds-page">', AUDIT_SECTION + '  <section class="group">\n    <div class="grid grid-kinds-page">', 1)
     page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + JOURNAL_SECTION + '  <section class="cta">', 1)
