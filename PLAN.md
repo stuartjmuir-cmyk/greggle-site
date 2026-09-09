@@ -558,6 +558,9 @@ paper-only methods as cards under /cards/, introduced at the foot of the kinds
 page. They are the first methods in the library that exist without the app.
 The knowledge audit from section 5 is built as a card too, at /cards/knowledge-audit/,
 introduced at the top of the kinds page as the thing to do before any method.
+The review loop is built on paper as the decision journal, /cards/decision-journal/,
+at the foot of the kinds page. In the app it would read finished boards back;
+on paper it is one sheet per decision, reviewed on a date set when it is made.
 
 Each phase ships on its own. A half-finished phase two, with nine of fourteen
 pages live, is fine; the index simply links the pages that exist.

@@ -272,7 +272,7 @@ def write_index():
       <span class="eyebrow">Fourteen ways of thinking</span>
       <h1>None of them were invented here. That is the point.</h1>
       <p class="dim lead">These are the methods factories, consultancies and labs have used for decades, the ones normally locked inside textbooks and training courses. Each page says where the method came from, why it works, when to reach for it, and how to run it with a pen. Greggle lays the same method out on your board and walks you through it.</p>
-      <p class="dim lead">Start with what you are trying to do. Or, before any of them, <a href="/kinds/#audit">the knowledge audit</a>: fifteen minutes sorting what you know from what you believe.</p>
+      <p class="dim lead">Start with what you are trying to do. Or, before any of them, <a href="/kinds/#audit">the knowledge audit</a>: fifteen minutes sorting what you know from what you believe. And after, <a href="/kinds/#journal">the decision journal</a>, for finding out whether you were right.</p>
     </div>
   </section>
 """
@@ -1797,6 +1797,41 @@ AUDIT_SECTION = """
   </section>
 """
 
+PAPER.append(dict(
+    slug="decision-journal", name="The decision journal", kind="Any kind of thing, afterwards", kind_slug="journal",
+    lead="Write down what you decided, what you expect to happen and how sure you are. Put it away. On a date you set now, write what actually happened. A year of sheets tells you where your judgement can be trusted.",
+    facts=dict(origin="Peter Drucker's feedback analysis, 1999", best="a Decision just made; any kind, at the end", takes="Ten minutes now, ten minutes later"),
+    origin_line="Peter Drucker called it feedback analysis in Managing Oneself, 1999: write down what you expect when you make a key decision, and compare nine or twelve months later. He traced the habit to sixteenth-century Jesuits and Calvinists. The confidence number comes from Philip Tetlock's forecasting research, and the sheet-per-decision form from Shane Parrish's Farnam Street, which popularised it in 2014.",
+    steps=[
+        "Write the decision and today's date. Then write a review date at the top, three, six or twelve months out, and put it in a calendar now. The sheet is useless without it.",
+        "What you decided and why, in the words you would use to someone who disagreed. The options you turned down, in a line each.",
+        "What you expect to happen, by when, as something you could check later. Then how sure you are, as a number. Circle it. Fifty is a coin toss; ninety-nine is a promise.",
+        "What would tell you that you were wrong. And how you are today: tired, rushed, angry, well. State leaks into decisions, and you will not remember it later.",
+        "Put the sheet away and do not reread it. On the review date, before you look at what you wrote, write what actually happened.",
+        "Then compare. Right about the outcome? Right for the reasons you gave? What you would do differently, and what this says about your judgement on this kind of decision. After a dozen sheets the patterns show, and that is the point.",
+    ],
+    falls="Reviewing only the decisions that went well, or quietly rewriting the expectation once you know the outcome. The date at the top and the sheet in a drawer are the defences.",
+    boxes=[
+        [("The decision, and today's date", "", 16, "lines"), ("Review on", "A date, in the calendar now", 16, "lines")],
+        [("What I decided, and why", "As I would say it to someone who disagreed. The options I turned down", 34, "lines")],
+        [("What I expect to happen, by when", "Something I could check", 26, "lines"), ("How sure I am", "50   60   70   80   90   99  per cent. Circle one", 26, "lines")],
+        [("What would tell me I was wrong", "", 18, "lines"), ("How I am today", "Tired, rushed, angry, well", 18, "lines")],
+        [("Review: what actually happened", "Written before rereading the top half", 30, "lines tint")],
+        [("Right about the outcome? Right for the reasons?", "What I'd do differently. What this says about my judgement on this kind of decision", 30, "lines accent")],
+    ],
+))
+
+JOURNAL_SECTION = """
+  <section class="group" id="journal">
+    <div class="card kinds-map audit">
+      <span class="stated">And after any of them</span>
+      <h2>The decision journal</h2>
+      <p class="dim">The read-back check says what is missing from a plan. This says what was missing from your judgement, which nobody else can tell you. One sheet per decision: what you decided, what you expect, how sure you are, put away until a date you set now, then what actually happened and whether you were right for the reasons you gave. A year of sheets shows where to trust yourself and where to check. Peter Drucker's feedback analysis, on a page.</p>
+      <p class="stated"><a href="/cards/decision-journal/">the card</a> &middot; <a href="/cards/decision-journal/card.pdf">pdf</a></p>
+    </div>
+  </section>
+"""
+
 def write_paper_card(m):
     slug = m["slug"]
     rows = ""
@@ -1886,7 +1921,7 @@ def write_kinds():
         cards += f'      <div class="card"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p><p class="stated">suggested first</p><p class="methods">{links}</p></div>\n'
     page = KINDS_PAGE.replace("{cards}", cards)
     page = page.replace('  <section class="group">\n    <div class="grid grid-kinds-page">', AUDIT_SECTION + '  <section class="group">\n    <div class="grid grid-kinds-page">', 1)
-    page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + '  <section class="cta">', 1)
+    page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + JOURNAL_SECTION + '  <section class="cta">', 1)
     write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests, plus four more kinds on paper.", "methods", page)
 
 write_kinds()
