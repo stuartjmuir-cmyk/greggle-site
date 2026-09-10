@@ -3,7 +3,7 @@
 # overwrites those files, so put copy changes here, not in the HTML, if you
 # intend to run it again. Usage: python3 tools/gen-methods.py
 
-import re, os, html
+import re, os, html, hashlib
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 MARK = open(os.path.join(ROOT, "index.html")).read().split('<svg class="mark"', 1)[1].split("</svg>", 1)[0]
@@ -11,6 +11,13 @@ MARK = '<svg class="mark"' + MARK + "</svg>"
 
 def curly(s):
     return re.sub(r"(\w)'(\w)", r"\1&rsquo;\2", s)
+
+def versioned(path):
+    """A site path with the file's own fingerprint on it, so a browser that has
+    cached the old file fetches the new one the moment a page refers to it. The
+    pages themselves are never cached; everything they point at may be."""
+    with open(os.path.join(ROOT, path.lstrip("/")), "rb") as f:
+        return f"{path}?v={hashlib.sha1(f.read()).hexdigest()[:8]}"
 
 def head(title, desc, canon, image="https://greggle.app/board.jpg", current="methods"):
     return f"""<!doctype html>
@@ -27,7 +34,7 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg", current="met
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{image}">
-<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="{versioned('/site.css')}">
 </head>
 <body>
 <div class="shell">
@@ -215,6 +222,7 @@ def first_sentence(html_text):
     return mm.group(1) if mm else t
 
 def write_card(m):
+    CARD_CSS = versioned("/card.css")
     slug = m["slug"]
     rows = ""
     for row in CARDS[slug]:
@@ -233,7 +241,7 @@ def write_card(m):
 <link rel="canonical" href="https://greggle.app/methods/{slug}/card/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/card.css">
+<link rel="stylesheet" href="{CARD_CSS}">
 </head>
 <body>
 <div class="screenbar">
@@ -368,7 +376,8 @@ def board_stack(folder, base, key, alt, caption, root_eager=False):
             bar = f'<label class="up stated" for="{up}">&larr; Back up a level</label><span class="stated">inside {where}</span>'
         img_alt = alt if i == 0 else f'Inside {html.escape(lvl["trail"][-1])}: the board one level down'
         lazy = "" if (i == 0 and root_eager) else ' loading="lazy"'
-        out += f'<div class="level"><div class="levelbar">{bar}</div><div class="frame"><img src="{base}/{lvl["file"]}" width="{lvl["width"]}" height="{lvl["height"]}" alt="{img_alt}"{lazy}>'
+        picture = versioned(f"{base}/{lvl['file']}")
+        out += f'<div class="level"><div class="levelbar">{bar}</div><div class="frame"><img src="{picture}" width="{lvl["width"]}" height="{lvl["height"]}" alt="{img_alt}"{lazy}>'
         for piece in lvl["pieces"]:
             if piece["into"] is None:
                 continue
@@ -1893,6 +1902,7 @@ JOURNAL_SECTION = """
 """
 
 def write_paper_card(m):
+    CARD_CSS = versioned("/card.css")
     slug = m["slug"]
     rows = ""
     for row in m["boxes"]:
@@ -1911,7 +1921,7 @@ def write_paper_card(m):
 <link rel="canonical" href="https://greggle.app/cards/{slug}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/card.css">
+<link rel="stylesheet" href="{CARD_CSS}">
 </head>
 <body>
 <div class="screenbar">
@@ -2019,6 +2029,7 @@ write_page("", "Not found", "There is nothing at this address.", "", curly(NOT_F
 # same tool as the method pages' and is pasted between two markers.
 if os.path.exists(os.path.join(ROOT, "board.json")):
     home = open(os.path.join(ROOT, "index.html")).read()
+    home = re.sub(r'href="/?site\.css[^"]*"', f'href="{versioned("/site.css")}"', home, count=1)
     a, b = "<!-- board-stack -->", "<!-- /board-stack -->"
     if a in home and b in home:
         stack = board_stack(ROOT, "", "home", "A Greggle board: the science fair project cut into five interlocking steps, bigger steps holding more inside them",
@@ -2214,7 +2225,7 @@ PRIVACY_ONEPAGER = """<!doctype html>
 <meta name="description" content="One page for a school board or privacy officer: what Greggle collects (nothing), why, and how to check it.">
 <link rel="canonical" href="https://greggle.app/schools/privacy/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/card.css">
+<link rel="stylesheet" href="{CARD_CSS}">
 <style>
   .one { display: flex; flex-direction: column; gap: 4mm; padding-top: 2mm; flex: 1; }
   .one h2 { font-size: 8pt; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700; color: #082da3; padding-bottom: 1mm; }
@@ -2279,7 +2290,7 @@ PRIVACY_ONEPAGER = """<!doctype html>
 def write_privacy_onepager():
     d = os.path.join(ROOT, "schools", "privacy"); os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "index.html"), "w") as f:
-        f.write(PRIVACY_ONEPAGER.replace("{MARK}", MARK))
+        f.write(PRIVACY_ONEPAGER.replace("{MARK}", MARK).replace("{CARD_CSS}", versioned("/card.css")))
 
 write_page("schools", "Greggle for schools", "A free, private tool for teaching students to break a problem down themselves. No account, no student data, nothing to sign off.", "schools", curly(SCHOOLS))
 write_page("licence", "Greggle licence terms", "The terms Greggle licences are sold under, written to be read in three minutes: what is free, what a licence adds, and a written undertaking about outbound connections.", "schools", curly(LICENCE))
