@@ -1,0 +1,209 @@
+{
+ "title": "The science fair sensor gives nonsense readings",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — The effect",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 17.3,
+     "h": 60.2,
+     "into": null
+    },
+    {
+     "title": "2 — Where the causes might be",
+     "x": 22.9,
+     "y": 26.5,
+     "w": 26,
+     "h": 60.2,
+     "into": 1
+    },
+    {
+     "title": "3 — The most likely cause",
+     "x": 48.9,
+     "y": 26.5,
+     "w": 17.3,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "2 — Where the causes might be"
+   ],
+   "pieces": [
+    {
+     "title": "2.1 — People",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 24.6,
+     "h": 13.1,
+     "into": 2
+    },
+    {
+     "title": "2.2 — Process",
+     "x": 5.6,
+     "y": 39.6,
+     "w": 26,
+     "h": 17,
+     "into": 3
+    },
+    {
+     "title": "2.3 — Technology",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 26,
+     "h": 30.1,
+     "into": 4
+    },
+    {
+     "title": "2.4 — Materials and inputs",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 17.3,
+     "h": 28.1,
+     "into": 5
+    },
+    {
+     "title": "2.5 — Environment",
+     "x": 48.9,
+     "y": 26.5,
+     "w": 17.3,
+     "h": 30.1,
+     "into": 6
+    },
+    {
+     "title": "2.6 — Measurement",
+     "x": 31.6,
+     "y": 56.6,
+     "w": 20.2,
+     "h": 30.1,
+     "into": 7
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.1 — People"
+   ],
+   "pieces": [
+    {
+     "title": "Cause 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 28.8,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-3.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.2 — Process"
+   ],
+   "pieces": [
+    {
+     "title": "Cause 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 28.8,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-4.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.3 — Technology"
+   ],
+   "pieces": [
+    {
+     "title": "Cause 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 28.8,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-5.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.4 — Materials and inputs"
+   ],
+   "pieces": [
+    {
+     "title": "Cause 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 28.8,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-6.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.5 — Environment"
+   ],
+   "pieces": [
+    {
+     "title": "Cause 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-7.jpg",
+   "trail": [
+    "2 — Where the causes might be",
+    "2.6 — Measurement"
+   ],
+   "pieces": [
+    {
+     "title": "The code reads the sensor as a digital pin",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 28.8,
+     "h": 60.2,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

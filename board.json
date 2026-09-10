@@ -1,0 +1,113 @@
+{
+ "title": "The science fair project",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "Pick the question",
+     "x": 6.7,
+     "y": 9.8,
+     "w": 26.8,
+     "h": 40.2,
+     "into": null
+    },
+    {
+     "title": "The experiment itself",
+     "x": 33.4,
+     "y": 9.8,
+     "w": 20.7,
+     "h": 40.2,
+     "into": 1
+    },
+    {
+     "title": "Build the display board",
+     "x": 6.7,
+     "y": 50,
+     "w": 53.6,
+     "h": 40.2,
+     "into": 2
+    },
+    {
+     "title": "Practise the talk",
+     "x": 54.2,
+     "y": 9.8,
+     "w": 39.1,
+     "h": 20.1,
+     "into": null
+    },
+    {
+     "title": "Keep a logbook",
+     "x": 54.2,
+     "y": 29.9,
+     "w": 39.1,
+     "h": 20.1,
+     "into": null
+    }
+   ],
+   "width": 896,
+   "height": 613
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "The experiment itself"
+   ],
+   "pieces": [
+    {
+     "title": "Borrow the light sensor",
+     "x": 6.7,
+     "y": 9.8,
+     "w": 35.1,
+     "h": 40.2,
+     "into": null
+    },
+    {
+     "title": "Wire it to the board",
+     "x": 6.7,
+     "y": 50,
+     "w": 41.2,
+     "h": 40.2,
+     "into": null
+    },
+    {
+     "title": "Take readings for a week",
+     "x": 41.8,
+     "y": 9.8,
+     "w": 51.5,
+     "h": 40.2,
+     "into": null
+    }
+   ],
+   "width": 896,
+   "height": 613
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "Build the display board"
+   ],
+   "pieces": [
+    {
+     "title": "Print the graphs",
+     "x": 6.7,
+     "y": 9.8,
+     "w": 53.6,
+     "h": 40.2,
+     "into": null
+    },
+    {
+     "title": "Write the three panels",
+     "x": 6.7,
+     "y": 50,
+     "w": 49.6,
+     "h": 40.2,
+     "into": null
+    }
+   ],
+   "width": 896,
+   "height": 613
+  }
+ ]
+}

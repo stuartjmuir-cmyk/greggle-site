@@ -1,0 +1,113 @@
+{
+ "title": "Get properly good at guitar this year",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — The objective",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "2 — The key results",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 27.4,
+     "h": 30.1,
+     "into": 1
+    },
+    {
+     "title": "3 — The initiatives",
+     "x": 33,
+     "y": 26.5,
+     "w": 33.3,
+     "h": 32.1,
+     "into": 2
+    },
+    {
+     "title": "4 — The review",
+     "x": 33,
+     "y": 58.6,
+     "w": 18.8,
+     "h": 28.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "2 — The key results"
+   ],
+   "pieces": [
+    {
+     "title": "All eight songs through without stopping",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 32.1,
+     "into": null
+    },
+    {
+     "title": "80 chord changes a minute on song six",
+     "x": 5.6,
+     "y": 58.6,
+     "w": 26,
+     "h": 28.1,
+     "into": null
+    },
+    {
+     "title": "The band stops re-learning my parts",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 32.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "3 — The initiatives"
+   ],
+   "pieces": [
+    {
+     "title": "Initiative 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Initiative 2",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Initiative 3",
+     "x": 33,
+     "y": 26.5,
+     "w": 33.3,
+     "h": 34.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

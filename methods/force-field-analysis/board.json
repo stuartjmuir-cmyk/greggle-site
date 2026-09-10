@@ -1,0 +1,113 @@
+{
+ "title": "Make the first team this season",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — The change",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 24.6,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "2 — What is pushing for it",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 24.6,
+     "h": 30.1,
+     "into": 1
+    },
+    {
+     "title": "3 — What is holding it back",
+     "x": 30.2,
+     "y": 26.5,
+     "w": 36.1,
+     "h": 30.1,
+     "into": 2
+    },
+    {
+     "title": "4 — The one to remove",
+     "x": 30.2,
+     "y": 56.6,
+     "w": 21.6,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "2 — What is pushing for it"
+   ],
+   "pieces": [
+    {
+     "title": "Driving force 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Driving force 2",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Driving force 3",
+     "x": 33,
+     "y": 26.5,
+     "w": 33.3,
+     "h": 34.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "3 — What is holding it back"
+   ],
+   "pieces": [
+    {
+     "title": "Tuesday training clashes with my shift at the shop",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "No lift to Saturday away matches",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 28.8,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "I get nervous in trials and play worse than in training",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

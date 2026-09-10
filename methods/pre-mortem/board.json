@@ -1,0 +1,105 @@
+{
+ "title": "A stall at the Saturday market",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — Why it failed",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 60.2,
+     "into": 1
+    },
+    {
+     "title": "2 — What to do about it now",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 34.1,
+     "into": 2
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "1 — Why it failed"
+   ],
+   "pieces": [
+    {
+     "title": "It rained on two of the four Saturdays",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "We baked too much on day one and threw half away",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 28.8,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Only one of us could get there at 6am with the trays",
+     "x": 33,
+     "y": 26.5,
+     "w": 15.9,
+     "h": 28.1,
+     "into": null
+    },
+    {
+     "title": "The council wanted a hygiene certificate we didn't have",
+     "x": 48.9,
+     "y": 26.5,
+     "w": 17.3,
+     "h": 34.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "2 — What to do about it now"
+   ],
+   "pieces": [
+    {
+     "title": "Preventive action 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Preventive action 2",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 28.8,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Preventive action 3",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

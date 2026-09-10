@@ -1,0 +1,113 @@
+{
+ "title": "Which subjects to take next year",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — The choice",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "2 — What a good answer must do",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 27.4,
+     "h": 30.1,
+     "into": 1
+    },
+    {
+     "title": "3 — The options",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 30.1,
+     "into": 2
+    },
+    {
+     "title": "4 — The call",
+     "x": 33,
+     "y": 56.6,
+     "w": 18.8,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "2 — What a good answer must do"
+   ],
+   "pieces": [
+    {
+     "title": "Keeps both university courses open",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "No timetable clash",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 28.8,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "I would turn up to it gladly",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "3 — The options"
+   ],
+   "pieces": [
+    {
+     "title": "Option 1",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Option 2",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "Option 3",
+     "x": 33,
+     "y": 26.5,
+     "w": 33.3,
+     "h": 34.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

@@ -1,7 +1,11 @@
-// Drives the app in Chromium and screenshots a real board for each method,
-// filled with the worked example from that method's page.
+// Drives the app in Chromium and photographs a real board for each method,
+// filled with the worked example from that method's page: the top board, and then
+// the board inside every step that has steps inside it, all the way down. Beside
+// the pictures it writes board.json, which says where each step sits in each
+// picture and which picture is inside it, so the page can lay a clickable area
+// over every step without a line of script.
 // Usage: build the app and serve it (npx vite preview --port 4173), then
-//   node tools/make-boards.js [slug ...]
+//   node tools/make-boards.js [slug ...]        (home is the front page's board)
 // Needs playwright-core and a Chromium (PLAYWRIGHT_BROWSERS_PATH or CHROME).
 const fs = require('fs');
 const path = require('path');
@@ -14,8 +18,17 @@ const root = path.join(__dirname, '..');
 // [kind, board title, framework button name, actions]
 // select: click a tile once (panel shows its questions). open: click it again to
 // go inside. title: rename the selected tile. fill/choose: answer a question in
-// the panel. back: return to the top. shot: take the picture.
+// the panel. split: cut the selected step by hand, one title per line. back:
+// return to the top. shot: where the old single picture was taken; now a no-op,
+// since every level is photographed once the example is filled in.
 const BOARDS = {
+  // The front page's board: a project split by hand, with two of its steps split
+  // again, so there is somewhere to go. No framework.
+  'home': ['Project', 'The science fair project', null, [
+    ['split', 'Pick the question\nThe experiment itself\nBuild the display board\nPractise the talk\nKeep a logbook'],
+    ['select', /^The experiment itself/], ['split', 'Borrow the light sensor\nWire it to the board\nTake readings for a week'],
+    ['select', /^Build the display board/], ['split', 'Print the graphs\nWrite the three panels'],
+  ]],
   'five-whys': ['Problem', 'The band keeps missing practice', /^5 Whys/, [
     ['select', /^Why did that happen/], ['fill', /^Because/, "Two people didn't turn up each time, and you can't practise without a drummer."],
     ['open', /^Why did that happen/], ['select', /^And why/], ['fill', /^Because/, "They said they didn't know it was on."],
@@ -184,6 +197,133 @@ async function tile(page, re) {
   await t.waitFor({ state: 'visible' });
   return t;
 }
+async function dismissToast(page) {
+  const dismiss = page.getByRole('button', { name: 'Dismiss' });
+  if (await dismiss.isVisible().catch(() => false)) await dismiss.click();
+}
+
+/** Where the pictures and the map go: the method's folder, or the site root for home. */
+function outDir(slug) {
+  return slug === 'home' ? root : path.join(root, 'methods', slug);
+}
+
+/**
+ * Every step on the board being looked at: its title, its box in the viewport, and
+ * whether there is a board inside it. Read from what the app says out loud about
+ * each piece, so it cannot disagree with the picture.
+ */
+async function piecesOn(page) {
+  const found = await board(page).locator('.piece').evaluateAll((els) =>
+    els.map((el) => {
+      const r = el.getBoundingClientRect();
+      const label = el.getAttribute('aria-label') || '';
+      const selected = el.classList.contains('piece--selected');
+      return { label, selected, x: r.x, y: r.y, w: r.width, h: r.height };
+    }),
+  );
+  const pieces = found
+    .filter((p) => p.label && !/^Add a step/.test(p.label))
+    .map((p) => {
+      const title = p.label.split('. ')[0];
+      const inside = /\bsteps? inside\b/.test(p.label);
+      const done = /(\d+) per cent complete/.exec(p.label);
+      return { ...p, title, inside, percent: done ? Number(done[1]) : -1 };
+    });
+  return trimKnobs(pieces);
+}
+
+/**
+ * A piece's box takes in its knobs, which reach into the pieces beside it, so the
+ * boxes of neighbours overlap by about a knob's depth. Where two overlap, the seam
+ * is put halfway through the overlap, which keeps every clickable area on its own
+ * piece and leaves the knobs, which are nobody's, to the nearer side.
+ */
+function trimKnobs(pieces) {
+  const trim = pieces.map(() => ({ l: 0, r: 0, t: 0, b: 0 }));
+  for (let i = 0; i < pieces.length; i += 1) {
+    for (let j = i + 1; j < pieces.length; j += 1) {
+      const a = pieces[i], b = pieces[j];
+      const ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+      const oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+      if (ox <= 0 || oy <= 0) continue;
+      if (ox < oy) {
+        // Side by side: the seam runs down between them.
+        const [left, right] = a.x + a.w / 2 < b.x + b.w / 2 ? [i, j] : [j, i];
+        trim[left].r = Math.max(trim[left].r, ox / 2);
+        trim[right].l = Math.max(trim[right].l, ox / 2);
+      } else {
+        const [top, bottom] = a.y + a.h / 2 < b.y + b.h / 2 ? [i, j] : [j, i];
+        trim[top].b = Math.max(trim[top].b, oy / 2);
+        trim[bottom].t = Math.max(trim[bottom].t, oy / 2);
+      }
+    }
+  }
+  return pieces.map((p, i) => ({
+    ...p,
+    x: p.x + trim[i].l, y: p.y + trim[i].t,
+    w: p.w - trim[i].l - trim[i].r, h: p.h - trim[i].t - trim[i].b,
+  }));
+}
+
+/**
+ * Photographs this level, then goes into every step with a board inside it and
+ * photographs that, and so on down. Returns the index of this level's picture.
+ */
+async function capture(page, slug, levels, trail, crop) {
+  const index = levels.length;
+  const level = { file: index === 0 ? 'board.jpg' : `board-${index}.jpg`, trail, pieces: [] };
+  levels.push(level);
+
+  const pieces = await piecesOn(page);
+  // Select the fullest step, so the panel beside the board shows real answers.
+  // Going up leaves the step just left selected, and a click on a selected step
+  // opens it, so only click when the choice is not already the selection.
+  // The front page's board is cropped to the board alone, so nothing is selected there.
+  const fullest = crop ? null : [...pieces].sort((a, b) => b.percent - a.percent)[0];
+  if (fullest && !fullest.selected) {
+    await (await tile(page, new RegExp('^' + fullest.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))).click();
+    await page.waitForTimeout(150);
+  }
+  await page.addStyleTag({ content: '.banner--action { display: none !important; }' });
+  const q = page.getByText(/^Questions/).first();
+  if (await q.isVisible().catch(() => false)) await q.evaluate((el) => el.scrollIntoView({ block: 'start' }));
+  await page.waitForTimeout(350);
+
+  // Boxes are read after any scrolling, against the same frame the picture is of.
+  const placed = await piecesOn(page);
+  let frame = { x: 0, y: 0, w: 1280, h: 820 };
+  if (crop) {
+    const box = await page.locator('.board-canvas').first().boundingBox();
+    frame = { x: box.x, y: box.y, w: box.width, h: box.height };
+  }
+  const out = path.join(outDir(slug), level.file);
+  await page.screenshot({ path: out, type: 'jpeg', quality: 82, clip: crop ? { x: frame.x, y: frame.y, width: frame.w, height: frame.h } : undefined });
+  level.width = Math.round(frame.w);
+  level.height = Math.round(frame.h);
+  const pct = (n) => Math.round(n * 1000) / 10;
+  for (const p of placed) {
+    level.pieces.push({
+      title: p.title,
+      x: pct((p.x - frame.x) / frame.w), y: pct((p.y - frame.y) / frame.h),
+      w: pct(p.w / frame.w), h: pct(p.h / frame.h),
+      into: null,
+    });
+  }
+
+  for (const [i, p] of placed.entries()) {
+    if (!p.inside) continue;
+    const t = await tile(page, new RegExp('^' + p.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    // One click selects and the next opens, so a step already selected needs one.
+    const now = (await piecesOn(page)).find((q) => q.title === p.title);
+    if (!now || !now.selected) { await t.click(); await page.waitForTimeout(150); }
+    await t.click();
+    await settle(page);
+    level.pieces[i].into = await capture(page, slug, levels, [...trail, p.title], crop);
+    await page.getByRole('button', { name: /Back up a level/ }).click();
+    await settle(page);
+  }
+  return index;
+}
 
 (async () => {
   const exe = process.env.CHROME || execSync("find /opt/pw-browsers -name chrome -type f | head -1").toString().trim();
@@ -201,12 +341,13 @@ async function tile(page, re) {
       await page.getByLabel(`Name a ${kind.toLowerCase()}`).fill(title);
       await page.getByRole('button', { name: `Start a ${kind.toLowerCase()}` }).click();
       await page.getByRole('heading', { name: new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }).waitFor();
-      await page.getByRole('button', { name: 'Apply a framework' }).first().click();
-      await page.getByRole('button', { name: fw }).first().click();
-      await page.getByRole('button', { name: /^Add \d+ steps$/ }).click();
-      const dismiss = page.getByRole('button', { name: 'Dismiss' });
-      if (await dismiss.isVisible().catch(() => false)) await dismiss.click();
-      await settle(page);
+      if (fw) {
+        await page.getByRole('button', { name: 'Apply a framework' }).first().click();
+        await page.getByRole('button', { name: fw }).first().click();
+        await page.getByRole('button', { name: /^Add \d+ steps$/ }).click();
+        await dismissToast(page);
+        await settle(page);
+      }
       // A tile opens on its second click, so remember which one is selected: an
       // already-selected tile needs one click to open, any other needs two.
       let selected = null;
@@ -227,19 +368,34 @@ async function tile(page, re) {
           const got = await sel.inputValue();
           if (got !== b) console.log('  choose did not stick:', String(a), 'wanted', b, 'got', got);
         }
-        else if (op === 'back') { await page.getByRole('button', { name: title }).first().click(); await settle(page); selected = null; }
-        else if (op === 'shot') {
-          // Show the questions and their answers rather than the bottom of the form.
-          // The beta banner stays until a work file is linked; it is not part of the method.
-          await page.addStyleTag({ content: '.banner--action { display: none !important; }' });
-          const q = page.getByText(/^Questions/).first();
-          if (await q.isVisible().catch(() => false)) await q.evaluate((el) => el.scrollIntoView({ block: 'start' }));
-          await page.waitForTimeout(400);
-          const out = path.join(root, 'methods', slug, 'board.jpg');
-          await page.screenshot({ path: out, type: 'jpeg', quality: 82 });
-          console.log(slug.padEnd(32), Math.round(fs.statSync(out).size / 1024), 'KB', errors.length ? errors : '');
+        else if (op === 'split') {
+          await page.getByRole('button', { name: 'Split into steps' }).first().click();
+          await page.getByLabel('One step per line').fill(a);
+          await page.getByRole('button', { name: /^Add \d+ steps$/ }).click();
+          await dismissToast(page);
+          await settle(page);
         }
+        else if (op === 'back') { await page.getByRole('button', { name: title }).first().click(); await settle(page); selected = null; }
+        else if (op === 'shot') { /* every level is photographed below */ }
       }
+      // To the top, then every level from there down.
+      const up = page.getByRole('button', { name: /Back up a level/ });
+      for (let guard = 0; guard < 12 && (await up.isEnabled().catch(() => false)); guard += 1) {
+        await up.click();
+        await settle(page);
+      }
+      if (process.env.DEBUG) console.log('  at:', await page.locator('.board-nav-hint').innerText().catch(() => '?'));
+      step = 'capture';
+      const levels = [];
+      await capture(page, slug, levels, [], slug === 'home');
+      // Drop pictures from an earlier, deeper run.
+      for (const f of fs.readdirSync(outDir(slug))) {
+        const m = /^board-(\d+)\.jpg$/.exec(f);
+        if (m && Number(m[1]) >= levels.length) fs.unlinkSync(path.join(outDir(slug), f));
+      }
+      fs.writeFileSync(path.join(outDir(slug), 'board.json'), JSON.stringify({ title, levels }, null, 1) + '\n');
+      const kb = levels.reduce((n, l) => n + fs.statSync(path.join(outDir(slug), l.file)).size, 0) / 1024;
+      console.log(slug.padEnd(32), levels.length, 'levels', Math.round(kb), 'KB', errors.length ? errors : '');
     } catch (e) {
       console.log(slug.padEnd(32), 'FAILED at', step, ':', e.message.split('\n')[0]);
       await page.screenshot({ path: path.join(root, '..', `fail-${slug}.png`) }).catch(() => {});

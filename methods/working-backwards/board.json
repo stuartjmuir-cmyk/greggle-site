@@ -1,0 +1,71 @@
+{
+ "title": "The science fair project",
+ "levels": [
+  {
+   "file": "board.jpg",
+   "trail": [],
+   "pieces": [
+    {
+     "title": "1 — What done looks like",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 33.3,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "2 — The walk back",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 37.5,
+     "h": 30.1,
+     "into": 1
+    },
+    {
+     "title": "3 — Where it meets today",
+     "x": 38.9,
+     "y": 26.5,
+     "w": 27.4,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  },
+  {
+   "file": "board-1.jpg",
+   "trail": [
+    "2 — The walk back"
+   ],
+   "pieces": [
+    {
+     "title": "Tested by someone who hasn't seen it",
+     "x": 5.6,
+     "y": 26.5,
+     "w": 26,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "The sensor gives a believable reading",
+     "x": 5.6,
+     "y": 56.6,
+     "w": 28.8,
+     "h": 30.1,
+     "into": null
+    },
+    {
+     "title": "The sensor is in hand",
+     "x": 31.6,
+     "y": 26.5,
+     "w": 34.7,
+     "h": 30.1,
+     "into": null
+    }
+   ],
+   "width": 1280,
+   "height": 820
+  }
+ ]
+}

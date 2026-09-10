@@ -342,6 +342,42 @@ def write_index():
         f.write(out)
 
 # ---------------------------------------------------------------------------
+def board_stack(folder, base, key, alt, caption, root_eager=False):
+    """The boards of a worked example, one level at a time, each step with a board
+    inside it clickable through to that board. No script: a hidden radio button
+    per level, and a label over each step that points at the level inside it."""
+    import json
+    data = json.load(open(os.path.join(folder, "board.json")))
+    levels = data["levels"]
+    parent = {}
+    for i, lvl in enumerate(levels):
+        for piece in lvl["pieces"]:
+            if piece["into"] is not None:
+                parent[piece["into"]] = i
+    out = f'<figure class="boardshot"><div class="boardstack">\n'
+    for i, lvl in enumerate(levels):
+        rid = f"lvl-{key}-{i}"
+        checked = " checked" if i == 0 else ""
+        out += f'<input type="radio" name="board-{key}" id="{rid}" class="lvl"{checked}>\n'
+        if i == 0:
+            bar = f'<span class="stated">the top board</span><span class="stated dim">a step with steps inside opens when clicked</span>'
+        else:
+            up = f"lvl-{key}-{parent[i]}"
+            where = " &rsaquo; ".join(html.escape(t) for t in lvl["trail"])
+            bar = f'<label class="up stated" for="{up}">&larr; Back up a level</label><span class="stated">inside {where}</span>'
+        img_alt = alt if i == 0 else f'Inside {html.escape(lvl["trail"][-1])}: the board one level down'
+        lazy = "" if (i == 0 and root_eager) else ' loading="lazy"'
+        out += f'<div class="level"><div class="levelbar">{bar}</div><div class="frame"><img src="{base}/{lvl["file"]}" width="{lvl["width"]}" height="{lvl["height"]}" alt="{img_alt}"{lazy}>'
+        for piece in lvl["pieces"]:
+            if piece["into"] is None:
+                continue
+            title = html.escape(piece["title"])
+            out += (f'<label class="hot" for="lvl-{key}-{piece["into"]}" style="left:{piece["x"]}%;top:{piece["y"]}%;width:{piece["w"]}%;height:{piece["h"]}%" title="Open {title}">'
+                    f'<span class="vh">Open {title}</span></label>')
+        out += '</div></div>\n'
+    out += f'</div><figcaption class="stated">{caption}</figcaption></figure>'
+    return out
+
 def write_method(m):
     slug = m["slug"]
     canon = f"https://greggle.app/methods/{slug}/"
@@ -359,7 +395,10 @@ def write_method(m):
         tiles += f'<div class="{cls}"><span class="stated">{t["label"]}</span><b>{curly(t["name"])}</b><span>{curly(t["text"])}</span></div>\n'
     steps = "".join(f"<li>{curly(s)}</li>" for s in m["steps"])
     shot = ""
-    if os.path.exists(os.path.join(ROOT, "methods", slug, "board.jpg")):
+    folder = os.path.join(ROOT, "methods", slug)
+    if os.path.exists(os.path.join(folder, "board.json")):
+        shot = board_stack(folder, f"/methods/{slug}", slug, html.escape(m["shot_alt"]), f'a real board &middot; {curly(m["shot_caption"])} &middot; click a step to open it')
+    elif os.path.exists(os.path.join(folder, "board.jpg")):
         shot = f'<figure class="boardshot"><img src="/methods/{slug}/board.jpg" width="1280" height="820" alt="{html.escape(m["shot_alt"])}" loading="lazy"><figcaption class="stated">a real board &middot; {curly(m["shot_caption"])}</figcaption></figure>'
     checks = "".join(f"<li>{curly(c)}</li>" for c in m["checks"])
 
@@ -1974,6 +2013,17 @@ NOT_FOUND = """
 """
 
 write_page("", "Not found", "There is nothing at this address.", "", curly(NOT_FOUND))
+
+# The front page is written by hand, except for its board, which comes from the
+# same tool as the method pages' and is pasted between two markers.
+if os.path.exists(os.path.join(ROOT, "board.json")):
+    home = open(os.path.join(ROOT, "index.html")).read()
+    a, b = "<!-- board-stack -->", "<!-- /board-stack -->"
+    if a in home and b in home:
+        stack = board_stack(ROOT, "", "home", "A Greggle board: the science fair project cut into five interlocking steps, bigger steps holding more inside them",
+                            "a real board &middot; the science fair project, cut into 5 steps &middot; bigger steps hold more inside them &middot; click one to open it", root_eager=True)
+        home = home[:home.index(a) + len(a)] + "\n    " + stack + "\n    " + home[home.index(b):]
+        open(os.path.join(ROOT, "index.html"), "w").write(home)
 write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
 write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
 

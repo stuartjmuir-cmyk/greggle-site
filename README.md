@@ -32,11 +32,18 @@ The typeface is self-hosted in `fonts/` under the SIL Open Font License, so
 the PDFs carry it and the site fetches nothing from anywhere else.
 
 Each method page shows a real board, `methods/<slug>/board.jpg`, filled in with
-that page's worked example. They are taken by `tools/make-boards.js`, which drives
-the app in Chromium: build the app repository, serve it with
-`npx vite preview --port 4173`, then `node tools/make-boards.js [slug ...]`. The
-script hides the beta work-file banner for the picture, since it is not part of
-the method; everything else is the app as it runs.
+that page's worked example, and the board inside every step that has one,
+`board-1.jpg` onwards, all the way down. Beside them `board.json` says where each
+step sits in each picture and which picture is inside it, and the generator lays
+a clickable area over every such step, so a reader can open the example level by
+level without a line of script: a hidden radio button per level and a label per
+step, in `site.css` under `.boardstack`. The front page's board, `board.jpg` at
+the root, is made the same way and pasted between two markers in `index.html`.
+They are taken by `tools/make-boards.js`, which drives the app in Chromium: build
+the app repository, serve it with `npx vite preview --port 4173`, then
+`node tools/make-boards.js [slug ...]` (`home` is the front page's). The script
+hides the beta work-file banner for the pictures, since it is not part of the
+method; everything else is the app as it runs.
 
 `tools/go-live.mjs` points the domain at Netlify: it sets the primary domain on
 the Netlify site and swaps the bare domain's Porkbun records from GitHub Pages

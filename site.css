@@ -194,6 +194,23 @@ footer a:hover { color: #082da3; }
 .boardshot img { max-width: 100%; height: auto; border-radius: 14px; border: 1px solid #e4e7ea; }
 .boardshot figcaption { text-align: center; }
 
+/* A worked example, one board per level, clickable down without a line of script:
+   a hidden radio per level, and a label over each step that has a board inside. */
+.boardstack { display: flex; flex-direction: column; }
+.boardstack .lvl { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.boardstack .level { display: none; flex-direction: column; gap: 8px; }
+.boardstack .lvl:checked + .level { display: flex; }
+.boardstack .levelbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; min-height: 18px; }
+.boardstack .levelbar .dim { color: #6b7078; }
+.boardstack .up { color: #082da3; cursor: pointer; }
+.boardstack .up:hover { text-decoration: underline; }
+.boardstack .frame { position: relative; }
+.boardstack .frame img { display: block; width: 100%; height: auto; }
+.boardstack .hot { position: absolute; cursor: pointer; border-radius: 10px; }
+.boardstack .hot:hover { box-shadow: inset 0 0 0 3px #0b3fd4; background: rgba(11, 63, 212, 0.10); }
+.boardstack .lvl:focus-visible + .level .hot { box-shadow: inset 0 0 0 2px #0b3fd4; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
 /* Paper-only cards on the kinds page */
 .paper-card { border-top: 1px solid #e4e7ea; padding-top: 10px; display: flex; flex-direction: column; gap: 4px; }
 .paper-card > a { color: #16181b; text-decoration: none; font-size: 16px; }
