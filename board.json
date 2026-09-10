@@ -9,40 +9,40 @@
      "title": "Pick the question",
      "x": 6.7,
      "y": 9.8,
-     "w": 26.8,
+     "w": 35.1,
      "h": 40.2,
      "into": null
     },
     {
      "title": "The experiment itself",
-     "x": 33.4,
-     "y": 9.8,
-     "w": 20.7,
+     "x": 6.7,
+     "y": 50,
+     "w": 35.1,
      "h": 40.2,
      "into": 1
     },
     {
      "title": "Build the display board",
-     "x": 6.7,
-     "y": 50,
-     "w": 53.6,
-     "h": 40.2,
-     "into": 2
+     "x": 41.8,
+     "y": 9.8,
+     "w": 26.8,
+     "h": 42.9,
+     "into": 3
     },
     {
      "title": "Practise the talk",
-     "x": 54.2,
+     "x": 68.6,
      "y": 9.8,
-     "w": 39.1,
-     "h": 20.1,
+     "w": 24.8,
+     "h": 40.2,
      "into": null
     },
     {
      "title": "Keep a logbook",
-     "x": 54.2,
-     "y": 29.9,
-     "w": 39.1,
-     "h": 20.1,
+     "x": 41.8,
+     "y": 52.6,
+     "w": 26.8,
+     "h": 37.6,
      "into": null
     }
    ],
@@ -59,7 +59,7 @@
      "title": "Borrow the light sensor",
      "x": 6.7,
      "y": 9.8,
-     "w": 35.1,
+     "w": 37.1,
      "h": 40.2,
      "into": null
     },
@@ -73,9 +73,36 @@
     },
     {
      "title": "Take readings for a week",
-     "x": 41.8,
+     "x": 43.8,
      "y": 9.8,
-     "w": 51.5,
+     "w": 49.5,
+     "h": 40.2,
+     "into": 2
+    }
+   ],
+   "width": 896,
+   "height": 613
+  },
+  {
+   "file": "board-2.jpg",
+   "trail": [
+    "The experiment itself",
+    "Take readings for a week"
+   ],
+   "pieces": [
+    {
+     "title": "Set up the logging sheet",
+     "x": 6.7,
+     "y": 9.8,
+     "w": 53.6,
+     "h": 40.2,
+     "into": null
+    },
+    {
+     "title": "Read it every morning at 7",
+     "x": 6.7,
+     "y": 50,
+     "w": 53.6,
      "h": 40.2,
      "into": null
     }
@@ -84,7 +111,7 @@
    "height": 613
   },
   {
-   "file": "board-2.jpg",
+   "file": "board-3.jpg",
    "trail": [
     "Build the display board"
    ],
@@ -94,15 +121,15 @@
      "x": 6.7,
      "y": 9.8,
      "w": 53.6,
-     "h": 40.2,
+     "h": 42.9,
      "into": null
     },
     {
      "title": "Write the three panels",
      "x": 6.7,
-     "y": 50,
-     "w": 49.6,
-     "h": 40.2,
+     "y": 52.6,
+     "w": 53.6,
+     "h": 37.6,
      "into": null
     }
    ],

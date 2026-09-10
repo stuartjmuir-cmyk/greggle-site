@@ -22,13 +22,15 @@ const root = path.join(__dirname, '..');
 // return to the top. shot: where the old single picture was taken; now a no-op,
 // since every level is photographed once the example is filled in.
 const BOARDS = {
-  // The front page's board: a project split by hand, with two of its steps split
-  // again, so there is somewhere to go. No framework.
+  // No framework.
   'home': ['Project', 'The science fair project', null, [
     ['split', 'Pick the question\nThe experiment itself\nBuild the display board\nPractise the talk\nKeep a logbook'],
     ['select', /^The experiment itself/], ['split', 'Borrow the light sensor\nWire it to the board\nTake readings for a week'],
     ['select', /^Build the display board/], ['split', 'Print the graphs\nWrite the three panels'],
+    ['open', /^The experiment itself/], ['select', /^Take readings for a week/], ['split', 'Set up the logging sheet\nRead it every morning at 7'],
   ]],
+  // The front page's board: a project split by hand, with two of its steps split
+  // again and one of those split once more, so there is somewhere to go.
   'five-whys': ['Problem', 'The band keeps missing practice', /^5 Whys/, [
     ['select', /^Why did that happen/], ['fill', /^Because/, "Two people didn't turn up each time, and you can't practise without a drummer."],
     ['open', /^Why did that happen/], ['select', /^And why/], ['fill', /^Because/, "They said they didn't know it was on."],
