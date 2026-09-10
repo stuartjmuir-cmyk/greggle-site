@@ -556,11 +556,15 @@ After phase four. The first extension from section 5 is built: four more kinds
 of thing (a Habit, a Skill, a Conversation, a Piece of writing), each with two
 paper-only methods as cards under /cards/, introduced at the foot of the kinds
 page. They are the first methods in the library that exist without the app.
-The knowledge audit from section 5 is built as a card too, at /cards/knowledge-audit/,
-introduced at the top of the kinds page as the thing to do before any method.
-The review loop is built on paper as the decision journal, /cards/decision-journal/,
-at the foot of the kinds page. In the app it would read finished boards back;
-on paper it is one sheet per decision, reviewed on a date set when it is made.
+The knowledge audit from section 5 is built as a card, at /cards/knowledge-audit/,
+introduced at the top of the kinds page as the thing to do before any method,
+and as a framework in the app, offered first for every kind, with checks that
+refuse a fact without a source and a load-bearing belief nobody is checking.
+The review loop is built as the decision journal, /cards/decision-journal/, at
+the foot of the kinds page, and as a framework in the app that closes the list
+for a Decision and refuses an entry with no review date. One entry per decision,
+reviewed on a date set when it is made. Reading finished boards back as the raw
+material is the step after that.
 The fading tool is built in the app itself (Jigsaw, decision note 08): guidance
 folds away after a method has been laid out four times, counted from the boards,
 with a Settings choice to keep it open or fold it always. The essay's "Where this

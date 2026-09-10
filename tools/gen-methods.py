@@ -90,7 +90,11 @@ def slug_of(name):
 ALL = [(s or slug_of(n), n, o, d, s is not None) for _, _, items in GROUPS for (s, n, o, d) in items]
 BUILT = [a for a in ALL if a[4]]
 
+OWN = {"Knowledge Audit": "knowledge-audit", "Decision Journal": "decision-journal"}
+
 def link_to(name):
+    if name in OWN:
+        return f'<a href="/cards/{OWN[name]}/">{name}</a>'
     for slug, n, o, d, built in ALL:
         if n == name:
             return f'<a href="/methods/{slug}/">{n}</a>' if built else f'<a href="/methods/#{slug}">{n}</a>'
@@ -262,6 +266,17 @@ def write_card(m):
         f.write(out)
 
 # ---------------------------------------------------------------------------
+# The seven kinds: name, description, example, what the kind changes, and what the app offers first.
+KINDS = [
+ ("a Goal", "Something you are aiming at, without a fixed end date.", "Make the first team this season.", "The word the app uses is Goal, and there is no end date to plan back from, so the first thing suggested is a pre-mortem on the goal itself and the last is a set of key results that would prove you moved.", ["Knowledge Audit","Pre-mortem","Working Backwards","Force Field Analysis","First Principles","Objectives and Key Results"]),
+ ("a Project", "Something you are setting out to do that finishes.", "The science fair project.", "A Project has an end, so the questions are about what done looks like and what could stop you getting there. Anything you make before choosing a kind is a Project until you say otherwise, and you can change it in one click.", ["Knowledge Audit","Pre-mortem","Working Backwards","Theory of Constraints","Stakeholder and Influence Map","Strategic Challenge Map"]),
+ ("a Challenge", "Something difficult to win, where the outcome is not yours to control.", "The debating final.", "The outcome sits with someone else, a judge, a market, a panel, so the questions turn outward: what are the challenges, who decides, what could the world do, and how do you put the case.", ["Knowledge Audit","Strategic Challenge Map","Issue Tree","Stakeholder and Influence Map","Scenario Planning","First Principles","Answer First"]),
+ ("a Problem", "Something that has gone wrong and needs diagnosing.", "The band keeps missing practice.", "Something has already happened, so the questions are about cause. The first thing asked is to state the problem as an observable fact, not a feeling, and then why, and why again.", ["Knowledge Audit","5 Whys","Cause and Effect","Issue Tree","Theory of Constraints","First Principles"]),
+ ("a Decision", "A choice between options.", "Which subjects to take next year.", "There are options and the danger is that you already like one of them, so the questions insist on what a good answer must do before the options are allowed on the page. It is also the one kind that ends with a journal entry, so that in a year you can find out whether you were right.", ["Knowledge Audit","Issue Tree","Options and Criteria","First Principles","Force Field Analysis","Pre-mortem","Answer First","Decision Journal"]),
+ ("an Opportunity", "Something that might be worth pursuing, before you have decided to.", "A stall at the Saturday market.", "You haven't said yes yet, so the questions are about whether to: what is pushing for it and holding it back, what it would have to do to be worth it, and how it looks in four different futures.", ["Knowledge Audit","Force Field Analysis","Options and Criteria","Scenario Planning","Stakeholder and Influence Map","Pre-mortem"]),
+ ("a Risk", "Something that could go wrong, and has not yet.", "What if the venue cancels?", "It hasn't happened, so the questions borrow from the methods for things that have: imagine it did and ask why, look across every category of cause, and find the one restraint you could remove.", ["Knowledge Audit","Pre-mortem","Cause and Effect","Force Field Analysis"]),
+]
+
 def write_index():
     out = head("Fourteen ways of thinking", "The methods Greggle walks you through: where each came from, what it is for, and how to run it on paper or on a board.", "https://greggle.app/methods/")
     out = out.replace('aria-current="page"', 'aria-current="page"')
@@ -272,7 +287,7 @@ def write_index():
       <span class="eyebrow">Fourteen ways of thinking</span>
       <h1>None of them were invented here. That is the point.</h1>
       <p class="dim lead">These are the methods factories, consultancies and labs have used for decades, the ones normally locked inside textbooks and training courses. Each page says where the method came from, why it works, when to reach for it, and how to run it with a pen. Greggle lays the same method out on your board and walks you through it.</p>
-      <p class="dim lead">Start with what you are trying to do. Or, before any of them, <a href="/kinds/#audit">the knowledge audit</a>: fifteen minutes sorting what you know from what you believe. And after, <a href="/kinds/#journal">the decision journal</a>, for finding out whether you were right.</p>
+      <p class="dim lead">Start with what you are trying to do. Or, before any of them, <a href="/kinds/#audit">the knowledge audit</a>: fifteen minutes sorting what you know from what you believe. And after, <a href="/kinds/#journal">the decision journal</a>, for finding out whether you were right. Those two are Greggle&rsquo;s own, and they are in the app as well as on paper.</p>
     </div>
   </section>
 """
@@ -293,19 +308,13 @@ def write_index():
                 out += f'      <div class="card" id="{sid}"><h3>{name}</h3><p class="stated origin">{curly(origin)}</p><p class="dim">{curly(desc)}</p><p class="stated soon">full page coming</p></div>\n'
         out += "    </div>\n  </section>\n"
 
+    kind_rows = "".join(f'      <div class="kinds-row"><b>{name}</b><span>{", ".join(methods)}</span></div>\n' for name, _, _, _, methods in KINDS)
     out += """
   <section>
     <div class="card kinds-map">
       <span class="stated">What Greggle suggests first, by the kind of thing you are working on</span>
       <p class="dim" style="font-size: 14px; padding-bottom: 6px"><a href="/kinds/">What the seven kinds are, and how to tell which one you have.</a></p>
-      <div class="kinds-row"><b>a Goal</b><span>Pre-mortem, Working Backwards, Force Field Analysis, First Principles, Objectives and Key Results</span></div>
-      <div class="kinds-row"><b>a Project</b><span>Pre-mortem, Working Backwards, Theory of Constraints, Stakeholder and Influence Map, Strategic Challenge Map</span></div>
-      <div class="kinds-row"><b>a Challenge</b><span>Strategic Challenge Map, Issue Tree, Stakeholder and Influence Map, Scenario Planning, First Principles, Answer First</span></div>
-      <div class="kinds-row"><b>a Problem</b><span>5 Whys, Cause and Effect, Issue Tree, Theory of Constraints, First Principles</span></div>
-      <div class="kinds-row"><b>a Decision</b><span>Issue Tree, Options and Criteria, First Principles, Force Field Analysis, Pre-mortem, Answer First</span></div>
-      <div class="kinds-row"><b>an Opportunity</b><span>Force Field Analysis, Options and Criteria, Scenario Planning, Stakeholder and Influence Map, Pre-mortem</span></div>
-      <div class="kinds-row"><b>a Risk</b><span>Pre-mortem, Cause and Effect, Force Field Analysis</span></div>
-      <p class="dim" style="font-size: 14px; padding-top: 12px">All fourteen are always there. These are the ones the app puts at the top of the list for each kind, most apt first.</p>
+{kind_rows}      <p class="dim" style="font-size: 14px; padding-top: 12px">All fourteen are always there, and so are two of Greggle&rsquo;s own: <a href="/kinds/#audit">the knowledge audit</a>, offered first whatever the kind, and <a href="/kinds/#journal">the decision journal</a>, last on a Decision. These are the ones the app puts at the top of the list, most apt first.</p>
     </div>
   </section>
 
@@ -316,7 +325,7 @@ def write_index():
       <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
     </div>
   </section>
-"""
+""".replace("{kind_rows}", kind_rows)
     out += FOOT
     with open(os.path.join(ROOT, "methods", "index.html"), "w") as f:
         f.write(out)
@@ -1453,8 +1462,8 @@ ESSAY = """
         <p><b>The library.</b> This site. A page that lets someone run a pre-mortem on paper, with no app at all, is already a tool. <a href="/methods/">The fourteen are here.</a></p>
         <p><b>Cards.</b> Each method as a single printable page: the steps, the questions, a blank grid where one is needed. Pen and paper is the most offline the work can get, and a card on a kitchen table is how a method gets used by a family rather than by whoever owns the laptop. Every method page has one.</p>
         <p><b>More kinds of thing.</b> Seven kinds was a good start and the gaps were obvious: a habit to build or break, a skill to learn, a conversation you're dreading, a piece of writing. Each brings its own questions and its own natural methods, and none of those were invented here either: Gabriele Oettingen's WOOP for a habit, Chris Argyris's ladder of inference for a conversation. <a href="/kinds/#paper">The four are on paper</a>, two methods each, ahead of the app.</p>
-        <p><b>The knowledge audit.</b> Every method assumes you know things, and most people have never been asked to write down what they know about their own situation. So there is a method for that, to run before any other: what do I know for certain, what do I believe, what am I assuming, what would I need to find out and from whom. Donna Ogle's KWL chart from 1986 is the classroom version. <a href="/kinds/#audit">It's a card</a>, and it's the one that most sharply separates a tool built on the user's knowledge from one built on retrieval.</p>
-        <p><b>The review loop.</b> Greggle can already read a board back and say what's missing. The next thing to read back is the past. <a href="/kinds/#journal">The decision journal</a> records what you decided, what you expected and how sure you were, and then, months later, what actually happened. Over a year it teaches a person where their own judgement is reliable and where it isn't, which is knowledge nobody else can give them. On paper for now; in the app, finished boards would be the raw material.</p>
+        <p><b>The knowledge audit.</b> Every method assumes you know things, and most people have never been asked to write down what they know about their own situation. So there is a method for that, to run before any other: what do I know for certain, what do I believe, what am I assuming, what would I need to find out and from whom. Donna Ogle's KWL chart from 1986 is the classroom version. <a href="/kinds/#audit">It's a card, and a framework in the app</a>, offered first whatever the kind, and it's the one that most sharply separates a tool built on the user's knowledge from one built on retrieval.</p>
+        <p><b>The review loop.</b> Greggle can already read a board back and say what's missing. The next thing to read back is the past. <a href="/kinds/#journal">The decision journal</a> records what you decided, what you expected and how sure you were, and then, months later, what actually happened. Over a year it teaches a person where their own judgement is reliable and where it isn't, which is knowledge nobody else can give them. It's a card, and a framework in the app that closes the list for a Decision and won't accept an entry without a review date. Reading finished boards back as the raw material is the step after that.</p>
         <p><b>Fading.</b> The most interesting version of the tool is one that plans its own obsolescence, and the app now does. The first time someone runs a pre-mortem, it walks them through every question. Once they have laid the same method out four times, the guidance folds away to a single line, one click from open, and the help under each question steps back. By the tenth, the aim is that they run it in their head in a meeting and don't open anything. Teachers call this cognitive apprenticeship: model, coach, then fade the scaffolding. The count comes from the person's own boards, Settings shows it, and anyone who wants the questions spelled out every time can say so. A tool that measures its success by how little people need it is unusual. It's also exactly what a tool built on the user's own knowledge ought to want.</p>
       </section>
       <section id="rules">
@@ -1528,15 +1537,6 @@ ABOUT = """
   </article>
 """
 
-KINDS = [
- ("a Goal", "Something you are aiming at, without a fixed end date.", "Make the first team this season.", "The word the app uses is Goal, and there is no end date to plan back from, so the first thing suggested is a pre-mortem on the goal itself and the last is a set of key results that would prove you moved.", ["Pre-mortem","Working Backwards","Force Field Analysis","First Principles","Objectives and Key Results"]),
- ("a Project", "Something you are setting out to do that finishes.", "The science fair project.", "A Project has an end, so the questions are about what done looks like and what could stop you getting there. Anything you make before choosing a kind is a Project until you say otherwise, and you can change it in one click.", ["Pre-mortem","Working Backwards","Theory of Constraints","Stakeholder and Influence Map","Strategic Challenge Map"]),
- ("a Challenge", "Something difficult to win, where the outcome is not yours to control.", "The debating final.", "The outcome sits with someone else, a judge, a market, a panel, so the questions turn outward: what are the challenges, who decides, what could the world do, and how do you put the case.", ["Strategic Challenge Map","Issue Tree","Stakeholder and Influence Map","Scenario Planning","First Principles","Answer First"]),
- ("a Problem", "Something that has gone wrong and needs diagnosing.", "The band keeps missing practice.", "Something has already happened, so the questions are about cause. The first thing asked is to state the problem as an observable fact, not a feeling, and then why, and why again.", ["5 Whys","Cause and Effect","Issue Tree","Theory of Constraints","First Principles"]),
- ("a Decision", "A choice between options.", "Which subjects to take next year.", "There are options and the danger is that you already like one of them, so the questions insist on what a good answer must do before the options are allowed on the page.", ["Issue Tree","Options and Criteria","First Principles","Force Field Analysis","Pre-mortem","Answer First"]),
- ("an Opportunity", "Something that might be worth pursuing, before you have decided to.", "A stall at the Saturday market.", "You haven't said yes yet, so the questions are about whether to: what is pushing for it and holding it back, what it would have to do to be worth it, and how it looks in four different futures.", ["Force Field Analysis","Options and Criteria","Scenario Planning","Stakeholder and Influence Map","Pre-mortem"]),
- ("a Risk", "Something that could go wrong, and has not yet.", "What if the venue cancels?", "It hasn't happened, so the questions borrow from the methods for things that have: imagine it did and ask why, look across every category of cause, and find the one restraint you could remove.", ["Pre-mortem","Cause and Effect","Force Field Analysis"]),
-]
 
 KINDS_PAGE = """
   <section>
@@ -1545,7 +1545,7 @@ KINDS_PAGE = """
       <span class="eyebrow">Seven kinds of thing</span>
       <h1>Not everything breaks down the same way.</h1>
       <p class="dim lead">A goal is not a problem, and a decision is not a risk. Greggle asks what kind of thing you are working on first, because the kind decides what good questions look like. It also decides the word the app uses from then on: <i>Delete this Problem?</i>, not <i>Delete this thing</i>.</p>
-      <p class="dim lead">All fourteen ways of thinking are always available. The kind decides which come first.</p>
+      <p class="dim lead">All fourteen ways of thinking are always available, and two of Greggle&rsquo;s own sit either side of them: <a href="#audit">the knowledge audit</a> first, whatever the kind, and <a href="#journal">the decision journal</a> last, on a Decision. The kind decides the order in between.</p>
     </div>
   </section>
   <section class="group">
@@ -1778,7 +1778,7 @@ PAPER.append(dict(
 ))
 
 PAPER.append(dict(
-    slug="knowledge-audit", name="The knowledge audit", kind="Any kind of thing", kind_slug="audit",
+    slug="knowledge-audit", name="The knowledge audit", kind="Any kind of thing", kind_slug="audit", in_app=True,
     lead="What do you know for certain, what do you believe, what are you assuming, and what would you need to find out? Sort them before any method, so the method works on facts.",
     facts=dict(origin="After Donna Ogle's KWL chart, 1986", best="any kind of thing, before any method", takes="Fifteen minutes"),
     origin_line="Donna Ogle published the KWL chart in 1986 for classrooms: what I know, what I want to know, what I learned. This is that chart with the middle split into beliefs and assumptions, and a source written beside every fact. Greggle's own arrangement of it, not a named method.",
@@ -1805,14 +1805,14 @@ AUDIT_SECTION = """
     <div class="card kinds-map audit">
       <span class="stated">Before any of them</span>
       <h2>The knowledge audit</h2>
-      <p class="dim">Every method assumes you know things. This one asks what: what you know for certain and how, what you believe, what you are assuming without noticing, and which of those would change the answer if they turned out to be wrong. Fifteen minutes with a pen before you pick a kind, so the method works on facts and you know where the guesses are. Donna Ogle's classroom chart from 1986, rearranged.</p>
-      <p class="stated"><a href="/cards/knowledge-audit/">the card</a> &middot; <a href="/cards/knowledge-audit/card.pdf">pdf</a></p>
+      <p class="dim">Every method assumes you know things. This one asks what: what you know for certain and how, what you believe, what you are assuming without noticing, and which of those would change the answer if they turned out to be wrong. Fifteen minutes before you pick a method, so the method works on facts and you know where the guesses are. Donna Ogle's classroom chart from 1986, rearranged. On paper it is a card; in the app it is the first thing offered whatever the kind, with a check that will not pass a fact without a source, or a belief the answer turns on that nobody is checking.</p>
+      <p class="stated"><a href="/cards/knowledge-audit/">the card</a> &middot; <a href="/cards/knowledge-audit/card.pdf">pdf</a> &middot; <a href="https://www.greggle.app/?method=knowledge-audit">open Greggle with it ready</a></p>
     </div>
   </section>
 """
 
 PAPER.append(dict(
-    slug="decision-journal", name="The decision journal", kind="Any kind of thing, afterwards", kind_slug="journal",
+    slug="decision-journal", name="The decision journal", kind="Any kind of thing, afterwards", kind_slug="journal", in_app=True,
     lead="Write down what you decided, what you expect to happen and how sure you are. Put it away. On a date you set now, write what actually happened. A year of sheets tells you where your judgement can be trusted.",
     facts=dict(origin="Peter Drucker's feedback analysis, 1999", best="a Decision just made; any kind, at the end", takes="Ten minutes now, ten minutes later"),
     origin_line="Peter Drucker called it feedback analysis in Managing Oneself, 1999: write down what you expect when you make a key decision, and compare nine or twelve months later. He traced the habit to sixteenth-century Jesuits and Calvinists. The confidence number comes from Philip Tetlock's forecasting research, and the sheet-per-decision form from Shane Parrish's Farnam Street, which popularised it in 2014.",
@@ -1840,8 +1840,8 @@ JOURNAL_SECTION = """
     <div class="card kinds-map audit">
       <span class="stated">And after any of them</span>
       <h2>The decision journal</h2>
-      <p class="dim">The read-back check says what is missing from a plan. This says what was missing from your judgement, which nobody else can tell you. One sheet per decision: what you decided, what you expect, how sure you are, put away until a date you set now, then what actually happened and whether you were right for the reasons you gave. A year of sheets shows where to trust yourself and where to check. Peter Drucker's feedback analysis, on a page.</p>
-      <p class="stated"><a href="/cards/decision-journal/">the card</a> &middot; <a href="/cards/decision-journal/card.pdf">pdf</a></p>
+      <p class="dim">The read-back check says what is missing from a plan. This says what was missing from your judgement, which nobody else can tell you. One entry per decision: what you decided, what you expect, how sure you are, put away until a date you set now, then what actually happened and whether you were right for the reasons you gave. A year of them shows where to trust yourself and where to check. Peter Drucker's feedback analysis, on a page or on a board: in the app it closes the list for a Decision, and its check refuses an entry with no review date.</p>
+      <p class="stated"><a href="/cards/decision-journal/">the card</a> &middot; <a href="/cards/decision-journal/card.pdf">pdf</a> &middot; <a href="https://www.greggle.app/?kind=decision&amp;method=decision-journal">open Greggle with it ready</a></p>
     </div>
   </section>
 """
@@ -1894,7 +1894,7 @@ def write_paper_card(m):
   </div>
   <footer class="cardfoot">
     <span>{curly(m['origin_line'])}</span>
-    <span>On paper only, for now: greggle.app/kinds/</span>
+    <span>{"On paper, and in the app: www.greggle.app" if m.get("in_app") else "On paper only, for now: greggle.app/kinds/"}</span>
   </footer>
 </div>
 </body>
