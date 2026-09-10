@@ -42,3 +42,11 @@ the method; everything else is the app as it runs.
 the Netlify site and swaps the bare domain's Porkbun records from GitHub Pages
 to a Netlify ALIAS, leaving the `www` record (the app) and everything else
 alone. Keys come from the environment; it is a dry run unless given `--apply`.
+
+`node tools/check-links.js` walks every page and checks that each link lands:
+a path into the site has to be a file that exists, a fragment has to name an id
+that page has, and a link into the app has to use kind and method ids the app
+recognises, read from the app repository (`--app <path>`, `GREGGLE_APP`, or
+`../jigsaw`). The app ignores a stale id rather than reporting it, so without
+this a renamed method would quietly turn a try-it button into the front page.
+It exits 1 if anything is broken, so it can gate a publish. Nothing is fetched.
