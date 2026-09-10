@@ -18,6 +18,8 @@ const targets = [
   ...(fs.existsSync(path.join(root, 'cards')) ? fs.readdirSync(path.join(root, 'cards')) : [])
     .filter((s) => fs.existsSync(path.join(root, 'cards', s, 'index.html')))
     .map((s) => ({ slug: s, url: `/cards/${s}/`, out: path.join(root, 'cards', s, 'card.pdf') })),
+  // The schools privacy one-pager prints on one A4 sheet like a card, so it gets a PDF too.
+  { slug: 'schools-privacy', url: '/schools/privacy/', out: path.join(root, 'schools', 'privacy.pdf') },
 ];
 
 (async () => {

@@ -38,6 +38,7 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg", current="met
       <a class="navlink" href="/methods/"{' aria-current="page"' if current == "methods" else ''}>Ways of thinking</a>
       <a class="navlink" href="/why/"{' aria-current="page"' if current == "why" else ''}>Why</a>
       <a class="navlink" href="/about/"{' aria-current="page"' if current == "about" else ''}>About</a>
+      <a class="navlink" href="/schools/"{' aria-current="page"' if current == "schools" else ''}>Schools</a>
       <a class="btn btn-small" href="https://www.greggle.app/">Open Greggle</a>
     </nav>
   </header>
@@ -46,7 +47,7 @@ def head(title, desc, canon, image="https://greggle.app/board.jpg", current="met
 FOOT = """
   <footer>
     <span class="stated">Greggle &middot; free &middot; no account &middot; works offline</span>
-    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="/kinds/">kinds</a> &middot; <a href="/why/">why</a> &middot; <a href="/about/">about</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></span>
+    <span class="stated"><a href="/methods/">ways of thinking</a> &middot; <a href="/kinds/">kinds</a> &middot; <a href="/why/">why</a> &middot; <a href="/about/">about</a> &middot; <a href="/schools/">schools</a> &middot; <a href="/licence/">licence</a> &middot; <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></span>
   </footer>
 </div>
 </body>
@@ -2025,6 +2026,265 @@ if os.path.exists(os.path.join(ROOT, "board.json")):
         home = home[:home.index(a) + len(a)] + "\n    " + stack + "\n    " + home[home.index(b):]
         open(os.path.join(ROOT, "index.html"), "w").write(home)
 write_page("why", "Why methods, and not answers", "The idea behind Greggle: every method is a set of questions only the person asking can answer, and where a tool built on that belief could go next.", "why", curly(ESSAY))
+
+# ---------------------------------------------------------------------------
+# Schools: the page, a printable privacy one-pager, and the licence terms.
+SCHOOLS = """
+  <article class="essay">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; Schools</p>
+      <span class="eyebrow">Greggle for schools</span>
+      <h1>A free, private tool for teaching students to break a problem down themselves.</h1>
+      <p class="dim lead">No account, no student data, nothing to sign off.</p>
+      <p><a class="btn" href="https://www.greggle.app/">Open Greggle</a> &nbsp; <a class="btn-quiet" href="#privacy">Read the privacy summary</a></p>
+    </header>
+    <div class="prose">
+      <section id="why">
+        <h2>Three quarters of students already use AI for schoolwork</h2>
+        <p>The Education Review Office found around 75% of students using AI for schoolwork, and named the problem plainly: cognitive offloading. Students getting an answer without building the reasoning that produces one.</p>
+        <p>The answer is not to ban the tools. It is to teach the thing the tools cannot do for you, and to give students somewhere to practise it.</p>
+        <p>Thinking is the first of the five key competencies in the New Zealand Curriculum. It is also the hardest one to hand a student something concrete to do. Greggle is a place to do it.</p>
+      </section>
+      <section id="what">
+        <h2>What a student actually does</h2>
+        <p>They name the thing. A goal, a project, a problem, a decision. Then they cut it into steps. Any step they cannot do yet opens into a board of its own, and they keep cutting until a step is small enough to just do.</p>
+        <p>When they cannot see how to cut it, they pick a method. Twenty-four of them, including 5 Whys, Pre-mortem, Working Backwards, First Principles and Force Field Analysis. A method is a set of questions in an order that stops you lying to yourself. It proposes a breakdown, one step at a time, and the student accepts, changes or rejects each one. Nothing is added to their board unless they put it there.</p>
+        <p>Progress shows as a count, three of eleven, not a percentage. Percentages flatter. Counts are honest.</p>
+        <p><a href="/methods/">See the ways of thinking</a>, each with where it came from and how to run it on paper.</p>
+      </section>
+      <section id="fading">
+        <h2>It is built to become unnecessary</h2>
+        <p>The guidance fades. The more a student uses a method, the less Greggle explains it, because the aim is for the questions to end up in their head rather than on the screen.</p>
+        <p>That is the opposite of how most software is designed. Nothing here is trying to increase time on task or bring students back tomorrow. A student who has internalised how to break a problem down and stopped opening Greggle is the success case, not churn.</p>
+      </section>
+      <section id="thinking">
+        <h2>You can see the thinking, not just the answer</h2>
+        <p>A finished board is a record of how a student got somewhere. You can see where they split a problem sensibly and where they gave up and made one enormous vague step. That is a conversation you cannot have about a paragraph a chatbot wrote.</p>
+        <p>Boards export as a file. Students can hand one in, carry it between home and school, or delete it when they are done.</p>
+      </section>
+      <section id="privacy">
+        <h2>There is no student data</h2>
+        <p>Most tools ask you to trust a privacy policy. Greggle removes the question. No accounts, so nothing to sign up with. No server, so nowhere for work to go. No analytics, no tracking, no third-party scripts. The app is blocked at browser level from making any outbound connection at all, and a test in the build fails if that ever changes.</p>
+        <p>For your school that means no data processing agreement, no privacy impact assessment and no conversation about hosting, because nothing is collected in the first place.</p>
+        <h3>Check it yourself, in ten seconds</h3>
+        <ol>
+          <li><b>Turn off the wifi and keep working.</b> Everything carries on. Software that needed to send data somewhere could not do that.</li>
+          <li><b>Watch the Network tab</b> in your browser's developer tools while a student uses it. After the page loads there are no outgoing requests.</li>
+          <li><b>Read the Content-Security-Policy</b> in the page source. It is a short instruction to the browser to refuse outbound connections. Your IT staff will recognise it.</li>
+        </ol>
+        <p><a href="/schools/privacy/">One-page privacy summary for your board or privacy officer</a>, made to print, <a href="/schools/privacy.pdf">also as a PDF</a>.</p>
+      </section>
+      <section id="pricing">
+        <h2>What it costs</h2>
+        <p>Today, nothing. The app is free for everyone, every method included, with no limits and no expiry. School licences are planned and are not on sale yet; when they arrive, the free version stays free and a licence will add the classroom material. The intended prices, so nobody has to ask:</p>
+        <div class="tablewrap"><table class="pricing">
+          <thead><tr><th>Licence</th><th>Covers</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>Free</td><td>Boards, breakdown to any depth, every way of thinking, the Do next list, offline use. Unlimited.</td><td>NZD 0</td></tr>
+            <tr><td>Teacher</td><td>One teacher. Paid once, kept for good.</td><td>NZD 79</td></tr>
+            <tr><td>Department</td><td>One faculty, all staff and students, plus classroom material.</td><td>NZD 400 / year</td></tr>
+            <tr><td>Whole school</td><td>Every teacher and every student, plus classroom material.</td><td>NZD 1,200 / year</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>There is no per-student pricing, because there is no way to count students.</b> No accounts means no seats to buy, provision or remove at the end of the year. You get one licence key and a link.</p>
+        <p>Schools will be invoiced. Purchase order, bank transfer, 20th of the month following. No card checkout, no subscription to cancel, no auto-renewal. <a href="/licence/">The licence terms</a> are published now, so you can read them before asking.</p>
+        <p><a href="mailto:feedback@greggle.app?subject=School%20licence">Ask to be told when licences are available</a></p>
+      </section>
+      <section id="classroom-material">
+        <h2>Classroom material is being written now</h2>
+        <p>Lesson sequences, worked examples and a teacher guide, built with teachers rather than at them. It is not finished, and I would rather write it with a few teachers looking over it than guess.</p>
+        <p><a href="mailto:feedback@greggle.app?subject=Classroom%20material">Email me</a> and I will tell you when it is ready, and ask you what should be in it. Nothing else, ever. The app still collects nothing; this is an email to a person.</p>
+      </section>
+      <section id="faq" class="faq">
+        <h2>Questions</h2>
+        <h3>Do students need accounts?</h3>
+        <p>No. There is no sign-up, no login and no class code. You hand out a link and they start working.</p>
+        <h3>Will it work on our Chromebooks and iPads?</h3>
+        <p>Yes. It runs in any modern browser and installs as an app with no administrator involvement. It also works with no internet connection at all, so it works on the field trip and when the school wifi does not.</p>
+        <h3>Does Greggle use AI?</h3>
+        <p>Not today. When it does it will be optional, off by default, and it will suggest a breakdown for the student to accept, change or reject. It will not write answers. The test is always the same question: does this help you think, or does it think for you?</p>
+        <h3>What happens to student work?</h3>
+        <p>It stays in the browser on the device, and in a file the student saves and moves themselves. Clearing the browser data or deleting the file removes it completely. There is no copy anywhere else.</p>
+        <h3>What age group is it for?</h3>
+        <p>It is designed for secondary students and adults. Younger classes can use it with a teacher leading the breakdown on a shared screen.</p>
+        <h3>What happens when a licence expires?</h3>
+        <p>Everything free keeps working, and every board a student has made stays readable and editable. Nothing is held hostage.</p>
+        <h3>Who makes Greggle?</h3>
+        <p>Stuart Muir, an independent developer in Wellington. One person, not a company with a sales team. You can email me directly and I will answer.</p>
+      </section>
+    </div>
+  </article>
+  <section class="cta">
+    <div class="card">
+      <h2>Hand out a link. That is the whole rollout.</h2>
+      <p class="dim">Free, no account, works offline. Nothing leaves the device.</p>
+      <a class="btn" href="https://www.greggle.app/">Open Greggle</a>
+    </div>
+  </section>
+"""
+
+LICENCE = """
+  <article class="essay">
+    <header class="method-head">
+      <p class="crumbs"><a href="/">Greggle</a> &middot; Licence</p>
+      <span class="eyebrow">Licence terms</span>
+      <h1>Greggle licence.</h1>
+      <p class="dim lead">Written to be read. A school's business manager should get through it in three minutes and not feel they need to forward it to anyone.</p>
+      <p class="note">Paid licences are not on sale yet. These are the terms they will be sold under, published early so a school can read them before asking for a quote. Until then everything in Greggle is free, and section 1 is the whole of the deal.</p>
+    </header>
+    <div class="prose">
+      <section>
+        <p><b>Greggle is made by Stuart Muir, Wellington, New Zealand. These terms are between you and me.</b> There is no company, no sales team and no support desk. You can email me and I will answer.</p>
+      </section>
+      <section id="free">
+        <h2>1. The free version</h2>
+        <p>The free version of Greggle is free for anyone, for any purpose, including commercial and classroom use. No account, no time limit, no feature that stops working.</p>
+        <p>You do not need a licence to use it, and I will not start requiring one for anything that is free today.</p>
+      </section>
+      <section id="paid">
+        <h2>2. What a paid licence gives you</h2>
+        <p>A paid licence adds the classroom material, and pays for the thing to exist.</p>
+        <div class="tablewrap"><table class="pricing">
+          <thead><tr><th>Licence</th><th>Who it covers</th><th>Term</th></tr></thead>
+          <tbody>
+            <tr><td>Teacher</td><td>One named person, on as many of their own devices as they like</td><td>Perpetual</td></tr>
+            <tr><td>Department</td><td>Every member of staff and every student of one named faculty or department</td><td>12 months</td></tr>
+            <tr><td>Whole school</td><td>Every member of staff and every student of one named school</td><td>12 months</td></tr>
+          </tbody>
+        </table></div>
+        <p>A <b>perpetual</b> teacher licence does not expire. It covers the current major version and every update to it. If a future major version is a genuinely different product I may charge for it, and your existing licence keeps working on the version you have.</p>
+        <p>School licences run for 12 months from the date on the key. They do not auto-renew, there is nothing to cancel, and I will email you before the end rather than charge you.</p>
+      </section>
+      <section id="how">
+        <h2>3. How the licence works, and what it cannot do</h2>
+        <p>Your licence is a small signed file. Greggle checks the signature on your own device. It does not contact me, or anyone, to do it.</p>
+        <p><b>This means I cannot switch your licence off, and I cannot tell whether you are using it.</b> That is deliberate and it is not going to change. There is no remote deactivation, no usage reporting and no audit right in these terms, because the software has no way to support any of them.</p>
+        <p>The name on your licence appears in the app and on anything you print or export. That is the only enforcement mechanism there is.</p>
+      </section>
+      <section id="not">
+        <h2>4. What you agree not to do</h2>
+        <ul>
+          <li>Share your licence key outside the organisation or person it names.</li>
+          <li>Resell, sublicense or rent your licence.</li>
+          <li>Remove, hide or alter the licence holder name shown in the app or on exports.</li>
+          <li>Publish the classroom material publicly, or sell it, or pass it to another school.</li>
+        </ul>
+        <p>You <b>may</b> freely: use it on any number of devices within your licence, print and photocopy the classroom material for your own students, adapt lessons for your own classes, and keep everything you have made if your licence ends.</p>
+      </section>
+      <section id="yours">
+        <h2>5. Your work is yours, and I never have it</h2>
+        <p>Everything you or your students create in Greggle stays on the device it was created on and in files you save yourself. I do not receive it, store it, back it up or process it.</p>
+        <p><b>I am not a data processor for you and there is nothing to put a data processing agreement around.</b> If your privacy officer needs this in writing, that sentence is it.</p>
+        <p>I collect no personal information about students or staff through the app: no name, no email, no login, no device identifier, no analytics. If you buy a licence I will hold your name, your school's name and your email address, because I have to send you an invoice and a key. That is all, and I will not use it for anything else or give it to anyone.</p>
+      </section>
+      <section id="connections">
+        <h2>6. My undertaking about outbound connections</h2>
+        <p><b>For as long as Greggle is sold under these terms, the app will not make outbound network connections other than fetching its own files when you load it.</b> No telemetry, no analytics, no licence checks, no crash reporting, no third-party scripts or fonts.</p>
+        <p>This is enforced in the software by a Content-Security-Policy and by an automated test that fails the build if the policy is weakened, and I am stating it here as a term of the licence rather than a marketing claim.</p>
+        <p>If I ever intend to change this, I will say so publicly before any release that does it, and any school with a current licence may cancel and have the unused part of their fee refunded.</p>
+        <p class="note">An optional AI feature is planned. If it ships it will be off by default, will require you to supply your own API key, and turning it on will be an explicit choice that names the service being contacted. Leaving it off means the paragraph above continues to hold in full.</p>
+      </section>
+      <section id="ends">
+        <h2>7. When a licence ends</h2>
+        <p>The classroom material is no longer yours to copy. Everything free keeps working, every board stays readable and editable, and every file you have saved stays yours. Nothing is deleted, held hostage or made unopenable.</p>
+      </section>
+      <section id="wrong">
+        <h2>8. If something is wrong with it</h2>
+        <p>Tell me and I will fix it or refund you. Within 30 days of buying, if it is not useful to you, I will refund you in full and you do not need a reason.</p>
+        <p>Beyond that: Greggle is provided as it is. I do not promise it is free of faults or fit for a particular purpose, and to the extent the law allows, my total liability to you for anything arising out of this licence is limited to what you paid me in the previous 12 months.</p>
+        <p><b>If you are buying as a consumer in New Zealand, the Consumer Guarantees Act gives you rights that these terms cannot take away, and nothing here tries to.</b> Schools and other organisations buying for business purposes agree that the Act does not apply.</p>
+      </section>
+      <section id="rest">
+        <h2>9. Changes, transfers and the rest</h2>
+        <p>I may change these terms for new licences. Your licence runs on the terms you bought under until it is renewed.</p>
+        <p>A school licence can move with the school if it merges or is renamed: email me and I will issue a new key. A teacher licence stays with the person, not the employer, so it moves with you if you change schools.</p>
+        <p>These terms are governed by New Zealand law and the New Zealand courts.</p>
+        <p><b>Questions: <a href="mailto:feedback@greggle.app">feedback@greggle.app</a></b></p>
+      </section>
+    </div>
+  </article>
+"""
+
+PRIVACY_ONEPAGER = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greggle: privacy summary for schools</title>
+<meta name="description" content="One page for a school board or privacy officer: what Greggle collects (nothing), why, and how to check it.">
+<link rel="canonical" href="https://greggle.app/schools/privacy/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/card.css">
+<style>
+  .one { display: flex; flex-direction: column; gap: 4mm; padding-top: 2mm; flex: 1; }
+  .one h2 { font-size: 8pt; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700; color: #082da3; padding-bottom: 1mm; }
+  .one p, .one li { font-size: 9.5pt; line-height: 1.4; }
+  .one ol { padding-left: 4.5mm; display: flex; flex-direction: column; gap: 1.5mm; }
+  .one li::marker { font-weight: 700; color: #082da3; }
+  .one .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .one .quote { border-left: 1.5px solid #0b3fd4; padding-left: 3mm; font-size: 10.5pt; font-weight: 650; }
+  .one .who { border-top: 1px solid #d6dade; padding-top: 3mm; font-size: 8.5pt; color: #51555c; }
+</style>
+</head>
+<body>
+<div class="screenbar"><a href="/schools/">&larr; Greggle for schools</a><span>Print this page for one A4 sheet, or <a href="/schools/privacy.pdf">download the PDF</a>.</span></div>
+<div class="sheet">
+  <header class="cardhead"><span class="brand">{MARK} Greggle</span><span class="url">greggle.app/schools/privacy/</span></header>
+  <div class="cardtitle">
+    <span class="meta">Privacy summary for schools</span>
+    <h1>Greggle collects no student data. Here is how to check.</h1>
+    <p class="lead">One page for a board, a principal or a privacy officer. Everything on it can be verified by a member of your own IT staff in ten minutes.</p>
+  </div>
+  <div class="one">
+    <div class="two">
+      <div>
+        <h2>What Greggle is</h2>
+        <p>A free web app in which a student names something they are working on, cuts it into steps, and uses structured thinking methods (5 Whys, Pre-mortem, Working Backwards and others) to break it down. It runs in the browser and installs as an app on Chromebooks, iPads and laptops without administrator involvement.</p>
+      </div>
+      <div>
+        <h2>What it collects</h2>
+        <p>Nothing. There are no accounts, so no names, emails or logins. There is no server, so nowhere for work to go. There are no analytics, no tracking and no third-party scripts, fonts or images. Student work stays in the browser on the device and in a file the student saves and moves themselves.</p>
+      </div>
+    </div>
+    <div>
+      <h2>Why this is true rather than promised</h2>
+      <p>The app is delivered with a Content-Security-Policy that forbids outbound network connections outright: the browser itself refuses to let the page fetch, post or send a beacon anywhere, including back to its own server. An automated test asserts that the app makes no request to another origin, and another asserts that the policy is present every time it is built. The app is a set of static files; there is no backend to be breached.</p>
+    </div>
+    <div>
+      <h2>Check it yourself</h2>
+      <ol>
+        <li><b>Turn off the wifi and keep working.</b> Everything carries on. Software that needed to send data somewhere could not do that.</li>
+        <li><b>Watch the Network tab</b> in the browser's developer tools while a student uses it. After the page loads there are no outgoing requests.</li>
+        <li><b>Read the Content-Security-Policy</b> in the page source at www.greggle.app. It is a short instruction to the browser to refuse outbound connections.</li>
+      </ol>
+    </div>
+    <div class="two">
+      <div>
+        <h2>What this means for your school</h2>
+        <p>No data processing agreement, because there is no processing. No privacy impact assessment, because there is no personal information. No hosting conversation, because nothing is hosted. No accounts to provision, and none to remove at the end of the year.</p>
+      </div>
+      <div>
+        <h2>In one sentence</h2>
+        <p class="quote">Greggle never receives, stores or processes anything a student writes, and the software is built so that it cannot.</p>
+      </div>
+    </div>
+    <p class="who">Greggle is made by Stuart Muir, an independent developer in Wellington, New Zealand. Questions to feedback@greggle.app. The licence terms, including a written undertaking about outbound connections, are at greggle.app/licence/.</p>
+  </div>
+  <footer class="cardfoot"><span>greggle.app/schools/ has the full page, and the app is at www.greggle.app.</span><span>Free &middot; no account &middot; works offline</span></footer>
+</div>
+</body>
+</html>
+"""
+
+def write_privacy_onepager():
+    d = os.path.join(ROOT, "schools", "privacy"); os.makedirs(d, exist_ok=True)
+    with open(os.path.join(d, "index.html"), "w") as f:
+        f.write(PRIVACY_ONEPAGER.replace("{MARK}", MARK))
+
+write_page("schools", "Greggle for schools", "A free, private tool for teaching students to break a problem down themselves. No account, no student data, nothing to sign off.", "schools", curly(SCHOOLS))
+write_page("licence", "Greggle licence terms", "The terms Greggle licences are sold under, written to be read in three minutes: what is free, what a licence adds, and a written undertaking about outbound connections.", "schools", curly(LICENCE))
+write_privacy_onepager()
+
 write_page("about", "About Greggle", "What Greggle is, who made it, what it promises about your work and how that promise is enforced.", "about", curly(ABOUT))
 
 print("wrote", 2 * len(METHODS) + len(PAPER) + 4, "pages")

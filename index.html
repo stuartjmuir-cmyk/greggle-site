@@ -71,6 +71,163 @@
     .rest-row b { flex: none; }
   }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://greggle.app/#app",
+   "name": "Greggle",
+   "url": "https://www.greggle.app/",
+   "description": "A free, private planning tool that breaks something big into pieces small enough to just do. Twenty-four structured thinking methods. No account, no server, works offline.",
+   "applicationCategory": "EducationalApplication",
+   "applicationSubCategory": "Planning and decision-making",
+   "operatingSystem": "Web browser, any platform",
+   "browserRequirements": "Requires a modern browser. Installs as a progressive web app. Runs fully offline.",
+   "isAccessibleForFree": true,
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Free",
+     "price": "0",
+     "priceCurrency": "NZD",
+     "description": "Boards, breakdown to any depth, every way of thinking, the Do next list, offline use. Unlimited."
+    }
+   ],
+   "featureList": [
+    "Break a goal, project, problem or decision into nested steps",
+    "Twenty-four structured thinking methods including 5 Whys, Pre-mortem, Working Backwards, First Principles and Force Field Analysis",
+    "Flat Do next list with honest counts rather than percentages",
+    "Works fully offline, installs as a progressive web app",
+    "No account, no server, no analytics, no outbound network connections",
+    "Work saved locally and in a portable work file"
+   ],
+   "author": {
+    "@id": "https://greggle.app/#author"
+   },
+   "publisher": {
+    "@id": "https://greggle.app/#author"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://greggle.app/#author",
+   "name": "Stuart Muir",
+   "jobTitle": "Independent developer",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Wellington",
+    "addressCountry": "NZ"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://greggle.app/#website",
+   "url": "https://greggle.app/",
+   "name": "Greggle",
+   "inLanguage": "en-NZ",
+   "publisher": {
+    "@id": "https://greggle.app/#author"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://greggle.app/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is Greggle?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Greggle is a free planning tool that helps you break something big into pieces small enough to just do. You name a goal, project, problem or decision, cut it into steps, and any step you cannot do yet opens into a board of its own."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is Greggle free?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The app is free with no account, no limits and no expiry, and every one of its twenty-four thinking methods is included."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I need an account?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Greggle has no sign-up, no login and no password. You open it and start working."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Greggle collect any data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Greggle has no server, no analytics and no tracking of any kind, and the app is blocked at browser level from making any outbound network connection. Your work stays in your browser and in a file you save yourself."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Greggle work offline?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, completely. It installs as an app and works with no internet connection, because there is nothing it needs to connect to."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Greggle use AI to make the plan?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Greggle gives you proven thinking methods that ask you questions, rather than an AI that writes you a plan. The knowledge needed to answer them is already yours: only you know why your band misses practice."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is Greggle different from a mind map?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A mind map spreads ideas out; Greggle cuts work down. Every piece is either something you can do or something that opens into smaller pieces, and everything you can actually do collects into one flat list."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What are the ways of thinking?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "They are twenty-four structured methods for breaking a problem apart, including 5 Whys, Pre-mortem, Working Backwards, First Principles and Force Field Analysis. A method is a set of questions in an order that stops you lying to yourself."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is my work stored?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "In your browser, on your device, and in a work file you can save and carry between devices. Nothing is uploaded, so nothing can be lost when a company changes its mind."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can schools use Greggle?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, and it is built for it: no accounts to provision, no student data collected, and nothing for a school to sign off before using it."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who makes Greggle?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Greggle is built by Stuart Muir, an independent developer in Wellington, New Zealand."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <div class="shell">
@@ -186,6 +343,26 @@
       <p>There is nothing to sign up for. The app&rsquo;s security policy blocks the internet outright and a test proves it makes no connections. Your work lives in your browser and in a file you own &mdash; the file is how it moves to another device.</p>
     </div>
   </div>
+
+  <section class="sect faq" id="faq">
+    <div class="sect-head">
+      <span class="eyebrow">Questions</span>
+      <h2>The short answers.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><h3>What is Greggle?</h3><p class="dim">Greggle is a free planning tool that helps you break something big into pieces small enough to just do. You name a goal, project, problem or decision, cut it into steps, and any step you cannot do yet opens into a board of its own.</p></div>
+      <div class="faq-item"><h3>Is Greggle free?</h3><p class="dim">Yes. The app is free with no account, no limits and no expiry, and every one of its twenty-four thinking methods is included.</p></div>
+      <div class="faq-item"><h3>Do I need an account?</h3><p class="dim">No. Greggle has no sign-up, no login and no password. You open it and start working.</p></div>
+      <div class="faq-item"><h3>Does Greggle collect any data?</h3><p class="dim">No. Greggle has no server, no analytics and no tracking of any kind, and the app is blocked at browser level from making any outbound network connection. Your work stays in your browser and in a file you save yourself.</p></div>
+      <div class="faq-item"><h3>Does Greggle work offline?</h3><p class="dim">Yes, completely. It installs as an app and works with no internet connection, because there is nothing it needs to connect to.</p></div>
+      <div class="faq-item"><h3>Does Greggle use AI to make the plan?</h3><p class="dim">No. Greggle gives you proven thinking methods that ask you questions, rather than an AI that writes you a plan. The knowledge needed to answer them is already yours: only you know why your band misses practice.</p></div>
+      <div class="faq-item"><h3>How is Greggle different from a mind map?</h3><p class="dim">A mind map spreads ideas out; Greggle cuts work down. Every piece is either something you can do or something that opens into smaller pieces, and everything you can actually do collects into one flat list.</p></div>
+      <div class="faq-item"><h3>What are the ways of thinking?</h3><p class="dim">They are twenty-four structured methods for breaking a problem apart, including 5 Whys, Pre-mortem, Working Backwards, First Principles and Force Field Analysis. A method is a set of questions in an order that stops you lying to yourself. <a href="/methods/">See them all</a>.</p></div>
+      <div class="faq-item"><h3>Where is my work stored?</h3><p class="dim">In your browser, on your device, and in a work file you can save and carry between devices. Nothing is uploaded, so nothing can be lost when a company changes its mind.</p></div>
+      <div class="faq-item"><h3>Can schools use Greggle?</h3><p class="dim">Yes, and it is built for it: no accounts to provision, no student data collected, and nothing for a school to sign off before using it. <a href="/schools/">Greggle for schools</a>.</p></div>
+      <div class="faq-item"><h3>Who makes Greggle?</h3><p class="dim">Greggle is built by Stuart Muir, an independent developer in Wellington, New Zealand.</p></div>
+    </div>
+  </section>
 
   <section class="cta">
     <div class="card">

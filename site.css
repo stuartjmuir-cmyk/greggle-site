@@ -223,3 +223,22 @@ footer a:hover { color: #082da3; }
 .kinds-map.audit h2 { font-size: 24px; }
 .kinds-map.audit .dim { font-size: 15px; max-width: 760px; }
 .kinds-map.audit .stated a { color: #082da3; text-decoration: none; }
+
+/* Schools and licence pages */
+.prose .tablewrap { overflow-x: auto; }
+.pricing { border-collapse: collapse; width: 100%; font-size: 15px; }
+.pricing th, .pricing td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e4e7ea; vertical-align: top; }
+.pricing th { font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #676c74; }
+.pricing td:last-child, .pricing th:last-child { white-space: nowrap; }
+.prose h3 { font-size: 18px; padding-top: 6px; }
+.prose .faq h3 { padding-top: 10px; }
+.method-head .btn-quiet { display: inline-block; padding: 10px 16px; border: 1px solid #d6dade; border-radius: 999px; color: #16181b; text-decoration: none; font-weight: 600; font-size: 15px; }
+.method-head .btn-quiet:hover { border-color: #0b3fd4; color: #082da3; }
+
+/* The front page's questions */
+.faq-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 32px; }
+.faq-item { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-top: 1px solid #e4e7ea; }
+.faq-item h3 { font-size: 17px; }
+.faq-item p { font-size: 15px; }
+.faq-item a { color: #082da3; }
+@media (max-width: 720px) { .faq-list { grid-template-columns: minmax(0, 1fr); } }
