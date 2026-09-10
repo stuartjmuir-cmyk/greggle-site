@@ -553,9 +553,12 @@ Phase four, done. Cards: each method has a one-page A4 card at
 rendered by tools/make-cards.js. The kinds page at /kinds/.
 
 After phase four. The first extension from section 5 is built: four more kinds
-of thing (a Habit, a Skill, a Conversation, a Piece of writing), each with two
-paper-only methods as cards under /cards/, introduced at the foot of the kinds
-page. They are the first methods in the library that exist without the app.
+of thing (a Habit, a Skill, a Conversation, a Document), each with two methods
+of its own. The eight began as paper-only cards under /cards/, introduced at the
+foot of the kinds page, and are now frameworks in the app as well, with checks;
+the app calls the fourth kind a Document because it says "step" and never
+"piece" anywhere a person reads. The cards remain, and the kinds page links each
+method to the app with it ready.
 The knowledge audit from section 5 is built as a card, at /cards/knowledge-audit/,
 introduced at the top of the kinds page as the thing to do before any method,
 and as a framework in the app, offered first for every kind, with checks that

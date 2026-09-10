@@ -90,7 +90,13 @@ def slug_of(name):
 ALL = [(s or slug_of(n), n, o, d, s is not None) for _, _, items in GROUPS for (s, n, o, d) in items]
 BUILT = [a for a in ALL if a[4]]
 
-OWN = {"Knowledge Audit": "knowledge-audit", "Decision Journal": "decision-journal"}
+OWN = {
+    "Knowledge Audit": "knowledge-audit", "Decision Journal": "decision-journal",
+    "WOOP": "woop", "If-then plans": "if-then-plans",
+    "Deliberate practice": "deliberate-practice", "Feynman technique": "feynman-technique",
+    "Ladder of inference": "ladder-of-inference", "Three conversations": "three-conversations",
+    "SCQA": "scqa", "Reverse outline": "reverse-outline",
+}
 
 def link_to(name):
     if name in OWN:
@@ -275,6 +281,11 @@ KINDS = [
  ("a Decision", "A choice between options.", "Which subjects to take next year.", "There are options and the danger is that you already like one of them, so the questions insist on what a good answer must do before the options are allowed on the page. It is also the one kind that ends with a journal entry, so that in a year you can find out whether you were right.", ["Knowledge Audit","Issue Tree","Options and Criteria","First Principles","Force Field Analysis","Pre-mortem","Answer First","Decision Journal"]),
  ("an Opportunity", "Something that might be worth pursuing, before you have decided to.", "A stall at the Saturday market.", "You haven't said yes yet, so the questions are about whether to: what is pushing for it and holding it back, what it would have to do to be worth it, and how it looks in four different futures.", ["Knowledge Audit","Force Field Analysis","Options and Criteria","Scenario Planning","Stakeholder and Influence Map","Pre-mortem"]),
  ("a Risk", "Something that could go wrong, and has not yet.", "What if the venue cancels?", "It hasn't happened, so the questions borrow from the methods for things that have: imagine it did and ask why, look across every category of cause, and find the one restraint you could remove.", ["Knowledge Audit","Pre-mortem","Cause and Effect","Force Field Analysis"]),
+ # The four that came later, each with the two methods it brought.
+ ("a Habit", "Something you want to do, or stop doing, without deciding every time.", "Practise before school every day.", "Doing something without deciding is a different problem from deciding to do it, so the questions are about the moment and the obstacle: what inside you gets in the way, and what you will do when it shows up. Gabriele Oettingen's WOOP and Peter Gollwitzer's if-then plans are the two methods with the strongest evidence behind them.", ["Knowledge Audit","WOOP","If-then plans","Pre-mortem"]),
+ ("a Skill", "Something you want to get properly good at, not just do.", "Solder a clean joint every time.", "Getting better and spending hours are different things, so the questions are about the edge: the one part you can nearly do, the drill that isolates it, and feedback you can't argue with. Anders Ericsson's deliberate practice, and the Feynman technique as the check that you understand a thing rather than recognise it.", ["Knowledge Audit","Deliberate practice","Feynman technique","Working Backwards"]),
+ ("a Conversation", "Something you have to say to someone, and are dreading.", "Asking the coach why I was dropped.", "The outcome depends on another person, so the questions are about them as much as you: what a camera would have recorded before what you concluded from it, and their story of what happened beside yours. Chris Argyris's ladder of inference, and the three conversations from the Harvard Negotiation Project.", ["Knowledge Audit","Ladder of inference","Three conversations","Stakeholder and Influence Map"]),
+ ("a Document", "Something that has to persuade or explain, and is not yet written.", "The personal statement.", "It has a reader, so the questions start from their side: what they already believe, what changed, and the question that puts in their mind. Situation, complication, question, answer for the opening, Answer First for the argument beneath it, and the reverse outline for a draft that exists and isn't working.", ["Knowledge Audit","SCQA","Answer First","Reverse outline"]),
 ]
 
 def write_index():
@@ -313,7 +324,7 @@ def write_index():
   <section>
     <div class="card kinds-map">
       <span class="stated">What Greggle suggests first, by the kind of thing you are working on</span>
-      <p class="dim" style="font-size: 14px; padding-bottom: 6px"><a href="/kinds/">What the seven kinds are, and how to tell which one you have.</a></p>
+      <p class="dim" style="font-size: 14px; padding-bottom: 6px"><a href="/kinds/">What the eleven kinds are, and how to tell which one you have.</a></p>
 {kind_rows}      <p class="dim" style="font-size: 14px; padding-top: 12px">All fourteen are always there, and so are two of Greggle&rsquo;s own: <a href="/kinds/#audit">the knowledge audit</a>, offered first whatever the kind, and <a href="/kinds/#journal">the decision journal</a>, last on a Decision. These are the ones the app puts at the top of the list, most apt first.</p>
     </div>
   </section>
@@ -1461,7 +1472,7 @@ ESSAY = """
         <p>If the belief is that the knowledge is in the person, the app is one expression of it and not the only one. The wider thing is a set of tools, methods and systems for people who want to solve problems, finish things and plan what they're going to do, using what they already know. Most of the first steps are now built, and they went in the order the idea suggested.</p>
         <p><b>The library.</b> This site. A page that lets someone run a pre-mortem on paper, with no app at all, is already a tool. <a href="/methods/">The fourteen are here.</a></p>
         <p><b>Cards.</b> Each method as a single printable page: the steps, the questions, a blank grid where one is needed. Pen and paper is the most offline the work can get, and a card on a kitchen table is how a method gets used by a family rather than by whoever owns the laptop. Every method page has one.</p>
-        <p><b>More kinds of thing.</b> Seven kinds was a good start and the gaps were obvious: a habit to build or break, a skill to learn, a conversation you're dreading, a piece of writing. Each brings its own questions and its own natural methods, and none of those were invented here either: Gabriele Oettingen's WOOP for a habit, Chris Argyris's ladder of inference for a conversation. <a href="/kinds/#paper">The four are on paper</a>, two methods each, ahead of the app.</p>
+        <p><b>More kinds of thing.</b> Seven kinds was a good start and the gaps were obvious: a habit to build or break, a skill to learn, a conversation you're dreading, a document that has to persuade. Each brings its own questions and its own natural methods, and none of those were invented here either: Gabriele Oettingen's WOOP for a habit, Chris Argyris's ladder of inference for a conversation. <a href="/kinds/#paper">The four are in the app</a>, two methods each, and the eight methods are cards too.</p>
         <p><b>The knowledge audit.</b> Every method assumes you know things, and most people have never been asked to write down what they know about their own situation. So there is a method for that, to run before any other: what do I know for certain, what do I believe, what am I assuming, what would I need to find out and from whom. Donna Ogle's KWL chart from 1986 is the classroom version. <a href="/kinds/#audit">It's a card, and a framework in the app</a>, offered first whatever the kind, and it's the one that most sharply separates a tool built on the user's knowledge from one built on retrieval.</p>
         <p><b>The review loop.</b> Greggle can already read a board back and say what's missing. The next thing to read back is the past. <a href="/kinds/#journal">The decision journal</a> records what you decided, what you expected and how sure you were, and then, months later, what actually happened. Over a year it teaches a person where their own judgement is reliable and where it isn't, which is knowledge nobody else can give them. It's a card, and a framework in the app that closes the list for a Decision and won't accept an entry without a review date. Reading finished boards back as the raw material is the step after that.</p>
         <p><b>Fading.</b> The most interesting version of the tool is one that plans its own obsolescence, and the app now does. The first time someone runs a pre-mortem, it walks them through every question. Once they have laid the same method out four times, the guidance folds away to a single line, one click from open, and the help under each question steps back. By the tenth, the aim is that they run it in their head in a meeting and don't open anything. Teachers call this cognitive apprenticeship: model, coach, then fade the scaffolding. The count comes from the person's own boards, Settings shows it, and anyone who wants the questions spelled out every time can say so. A tool that measures its success by how little people need it is unusual. It's also exactly what a tool built on the user's own knowledge ought to want.</p>
@@ -1498,7 +1509,7 @@ ABOUT = """
     <div class="prose">
       <section id="what">
         <h2>What it is</h2>
-        <p>Greggle is a web app. You name something you are working on, say what kind of thing it is, and it gives you a board of interlocking steps. Open any step and it becomes a board of its own. Keep going until every piece is something you can actually go and do, mark those as actions, and they collect in one flat list. Along the way it offers <a href="/methods/">fourteen ways of thinking</a>, each of which proposes a cut of your board that you review before anything is added, and a check that reads a branch back and says what is missing.</p>
+        <p>Greggle is a web app. You name something you are working on, say what kind of thing it is, and it gives you a board of interlocking steps. Open any step and it becomes a board of its own. Keep going until every piece is something you can actually go and do, mark those as actions, and they collect in one flat list. Along the way it offers twenty-four ways of thinking, <a href="/methods/">fourteen of them written up here</a> and <a href="/kinds/#paper">the rest as cards</a>, each of which proposes a cut of your board that you review before anything is added, and a check that reads a branch back and says what is missing.</p>
         <p>It runs in the browser and can be installed like any other app on a phone or a computer. Once installed it works with no internet connection at all. The ideas behind it are on <a href="/why/">the why page</a>.</p>
       </section>
       <section id="who">
@@ -1542,10 +1553,10 @@ KINDS_PAGE = """
   <section>
     <div class="page-head">
       <p class="crumbs"><a href="/">Greggle</a> &middot; Kinds of thing</p>
-      <span class="eyebrow">Seven kinds of thing</span>
+      <span class="eyebrow">Eleven kinds of thing</span>
       <h1>Not everything breaks down the same way.</h1>
       <p class="dim lead">A goal is not a problem, and a decision is not a risk. Greggle asks what kind of thing you are working on first, because the kind decides what good questions look like. It also decides the word the app uses from then on: <i>Delete this Problem?</i>, not <i>Delete this thing</i>.</p>
-      <p class="dim lead">All fourteen ways of thinking are always available, and two of Greggle&rsquo;s own sit either side of them: <a href="#audit">the knowledge audit</a> first, whatever the kind, and <a href="#journal">the decision journal</a> last, on a Decision. The kind decides the order in between.</p>
+      <p class="dim lead">Every way of thinking is always available, whatever you pick: <a href="/methods/">the fourteen from the library</a>, <a href="#paper">the eight the later kinds brought with them</a>, and two of Greggle&rsquo;s own either side, <a href="#audit">the knowledge audit</a> first and <a href="#journal">the decision journal</a> last. The kind decides the order in between.</p>
     </div>
   </section>
   <section class="group">
@@ -1559,10 +1570,12 @@ KINDS_PAGE = """
       <div class="kinds-row"><b>Has it already gone wrong?</b><span>A Problem. If it could go wrong but hasn't, a Risk.</span></div>
       <div class="kinds-row"><b>Are there options on the table?</b><span>A Decision. If the only option is whether to start at all, an Opportunity.</span></div>
       <div class="kinds-row"><b>Does it finish?</b><span>A Project. If you'll still be aiming at it next year, a Goal.</span></div>
-      <div class="kinds-row"><b>Is the outcome someone else's to give?</b><span>A Challenge.</span></div>
+      <div class="kinds-row"><b>Is the outcome someone else's to give?</b><span>A Challenge. If it depends on what one person says back to you, a Conversation.</span></div>
+      <div class="kinds-row"><b>Is it something you keep meaning to do?</b><span>A Habit. If it's something you want to get properly good at, a Skill.</span></div>
+      <div class="kinds-row"><b>Does it have a reader?</b><span>A Document.</span></div>
       <div class="kinds-row"><b>Still not sure?</b><span>Pick the nearest and change it later. It is one click, and nothing on the board is lost.</span></div>
     </div>
-    <p class="dim" style="font-size: 15px; max-width: 720px; padding-top: 20px">Seven is a start, not a limit. A habit to build, a skill to learn, a conversation you are dreading and a piece of writing each want their own questions, and <a href="#paper">the four below</a> have theirs on paper already.</p>
+    <p class="dim" style="font-size: 15px; max-width: 720px; padding-top: 20px">Seven was a start. The four that came later, a habit, a skill, a conversation and a document, each brought two methods of their own, and <a href="#paper">those eight are below</a>: in the app, and as cards that need nothing but a pen.</p>
   </section>
   <section class="cta">
     <div class="card">
@@ -1574,21 +1587,14 @@ KINDS_PAGE = """
 """
 
 # ---------------------------------------------------------------------------
-# Paper-only methods: four more kinds of thing, two methods each, not in the
-# app. Each gets a printable card and a line on the kinds page.
+# The eight methods the four later kinds brought with them. Each is in the app
+# and is a printable card too: name, the kinds page anchor, the app's kind id,
+# and the two card slugs.
 PAPER_KINDS = [
- ("a Habit", "habit", "Something you want to do, or stop doing, without deciding every time.", "Practise before school every day.",
-  "The app has no Habit yet. On paper, the two methods with the strongest evidence behind them are Gabriele Oettingen's WOOP, which makes you name the obstacle inside you before you plan, and Peter Gollwitzer's if-then plans, which tie the action to a moment so you never have to decide.",
-  ["woop", "if-then-plans"]),
- ("a Skill", "skill", "Something you want to get properly good at, not just do.", "Solder a clean joint every time.",
-  "Getting better and spending hours are different things. Anders Ericsson's deliberate practice is the method for working at the edge of what you can do with feedback, and the Feynman technique is the check that you understand a thing rather than recognise it.",
-  ["deliberate-practice", "feynman-technique"]),
- ("a Conversation", "conversation", "Something you have to say to someone, and are dreading.", "Asking the coach why I was dropped.",
-  "Two methods from people who studied how conversations go wrong. Chris Argyris's ladder of inference shows how fast you climb from what you saw to what you concluded, and the three conversations, from the Harvard Negotiation Project, separate what happened from how it felt and from what it says about you.",
-  ["ladder-of-inference", "three-conversations"]),
- ("a Piece of writing", "writing", "Something that has to persuade or explain, and is not yet written.", "The personal statement.",
-  "Answer First covers how to deliver an argument. These two are for the page itself: situation, complication, question, answer is the opening that earns the reader's attention, and the reverse outline is how you find out what a draft actually says once it exists.",
-  ["scqa", "reverse-outline"]),
+ ("a Habit", "habit", "habit", ["woop", "if-then-plans"]),
+ ("a Skill", "skill", "skill", ["deliberate-practice", "feynman-technique"]),
+ ("a Conversation", "conversation", "conversation", ["ladder-of-inference", "three-conversations"]),
+ ("a Document", "writing", "document", ["scqa", "reverse-outline"]),
 ]
 
 PAPER = []
@@ -1711,7 +1717,7 @@ PAPER.append(dict(
 
 PAPER.append(dict(
     slug="three-conversations", name="The three conversations", kind="a Conversation", kind_slug="conversation",
-    lead="Every hard conversation is three at once: what happened, how it feels, and what it says about you. Sort them out on paper before you have them out loud.",
+    lead="Every hard conversation is three at once: what happened, how it feels, and what it says about you. Sort them out before you have them out loud.",
     facts=dict(origin="Stone, Patton and Heen, 1999", best="a Conversation you are dreading", takes="Half an hour"),
     origin_line="Douglas Stone, Bruce Patton and Sheila Heen of the Harvard Negotiation Project, in Difficult Conversations, published in 1999. Their finding from years of watching people argue was that the fight about what happened is rarely the real one, and that the feelings and the threat to how each person sees themselves are doing the work underneath.",
     steps=[
@@ -1733,7 +1739,7 @@ PAPER.append(dict(
 ))
 
 PAPER.append(dict(
-    slug="scqa", name="Situation, complication, question, answer", kind="a Piece of writing", kind_slug="writing",
+    slug="scqa", name="Situation, complication, question, answer", kind="a Document", kind_slug="writing",
     lead="Start where the reader already agrees, say what changed, raise the question that change puts in their mind, and answer it. The opening that earns the rest.",
     facts=dict(origin="The consulting introduction, 1970s", best="a Piece of writing that has to persuade", takes="Twenty minutes for the opening"),
     origin_line="The standard opening of a consulting document, from the same McKinsey writing tradition of the 1970s that produced Answer First. Its logic is that a reader will follow you anywhere as long as you start from something they already believe and take one step at a time.",
@@ -1757,7 +1763,7 @@ PAPER.append(dict(
 ))
 
 PAPER.append(dict(
-    slug="reverse-outline", name="Reverse outline", kind="a Piece of writing", kind_slug="writing",
+    slug="reverse-outline", name="Reverse outline", kind="a Document", kind_slug="writing",
     lead="Take the draft you have and write one sentence per paragraph saying what it actually says. The list is the argument you actually made, which is rarely the one you meant to.",
     facts=dict(origin="Writing centres everywhere; no single author", best="a Piece of writing that exists and isn't working", takes="Half an hour"),
     origin_line="No single author. It is taught by university writing centres the world over as the first thing to do with a draft that isn't working, and it survives because it works: an outline written before the draft says what you intended, and one written after it says what you did.",
@@ -1778,7 +1784,7 @@ PAPER.append(dict(
 ))
 
 PAPER.append(dict(
-    slug="knowledge-audit", name="The knowledge audit", kind="Any kind of thing", kind_slug="audit", in_app=True,
+    slug="knowledge-audit", name="The knowledge audit", kind="Any kind of thing", kind_slug="audit",
     lead="What do you know for certain, what do you believe, what are you assuming, and what would you need to find out? Sort them before any method, so the method works on facts.",
     facts=dict(origin="After Donna Ogle's KWL chart, 1986", best="any kind of thing, before any method", takes="Fifteen minutes"),
     origin_line="Donna Ogle published the KWL chart in 1986 for classrooms: what I know, what I want to know, what I learned. This is that chart with the middle split into beliefs and assumptions, and a source written beside every fact. Greggle's own arrangement of it, not a named method.",
@@ -1812,7 +1818,7 @@ AUDIT_SECTION = """
 """
 
 PAPER.append(dict(
-    slug="decision-journal", name="The decision journal", kind="Any kind of thing, afterwards", kind_slug="journal", in_app=True,
+    slug="decision-journal", name="The decision journal", kind="Any kind of thing, afterwards", kind_slug="journal",
     lead="Write down what you decided, what you expect to happen and how sure you are. Put it away. On a date you set now, write what actually happened. A year of sheets tells you where your judgement can be trusted.",
     facts=dict(origin="Peter Drucker's feedback analysis, 1999", best="a Decision just made; any kind, at the end", takes="Ten minutes now, ten minutes later"),
     origin_line="Peter Drucker called it feedback analysis in Managing Oneself, 1999: write down what you expect when you make a key decision, and compare nine or twelve months later. He traced the habit to sixteenth-century Jesuits and Calvinists. The confidence number comes from Philip Tetlock's forecasting research, and the sheet-per-decision form from Shane Parrish's Farnam Street, which popularised it in 2014.",
@@ -1894,7 +1900,7 @@ def write_paper_card(m):
   </div>
   <footer class="cardfoot">
     <span>{curly(m['origin_line'])}</span>
-    <span>{"On paper, and in the app: www.greggle.app" if m.get("in_app") else "On paper only, for now: greggle.app/kinds/"}</span>
+    <span>On paper, and in the app: www.greggle.app</span>
   </footer>
 </div>
 </body>
@@ -1907,9 +1913,9 @@ def write_paper_card(m):
 PAPER_SECTION = """
   <section class="group" id="paper">
     <div class="group-head">
-      <span class="eyebrow">Four more kinds, on paper for now</span>
-      <h2>Not in the app yet. The cards need nothing but a pen.</h2>
-      <p class="dim">The essay said seven kinds was a start, not a limit. These are the next four, each with the two methods that suit it best, as one-page cards. None of them were invented here either.</p>
+      <span class="eyebrow">The methods the four brought with them</span>
+      <h2>Eight more ways of thinking, in the app and on paper.</h2>
+      <p class="dim">Each of the four later kinds came with the two methods that suit it best. None of them were invented here either. Every one is in the app, offered first for its kind, and every one is a one-page card that needs nothing but a pen.</p>
     </div>
     <div class="grid grid-kinds-page">
 {cards}
@@ -1920,12 +1926,12 @@ PAPER_SECTION = """
 def paper_cards_html():
     by = {m["slug"]: m for m in PAPER}
     out = ""
-    for name, kslug, desc, example, what, slugs in PAPER_KINDS:
+    for name, kslug, kid, slugs in PAPER_KINDS:
         links = ""
-        for s in slugs:
-            m = by[s]
-            links += f'<div class="paper-card"><a href="/cards/{s}/"><b>{html.escape(m["name"])}</b></a> <span class="stated origin">{curly(m["facts"]["origin"])}</span><p class="dim">{curly(m["lead"])}</p><p class="stated"><a href="/cards/{s}/">the card</a> &middot; <a href="/cards/{s}/card.pdf">pdf</a></p></div>'
-        out += f'      <div class="card" id="{kslug}"><h3>{name}</h3><p class="dim">{curly(desc)}</p><p class="stated">say&hellip; {curly(example)}</p><p class="dim what">{curly(what)}</p>{links}</div>\n'
+        for sl in slugs:
+            m = by[sl]
+            links += f'<div class="paper-card"><a href="/cards/{sl}/"><b>{html.escape(m["name"])}</b></a> <span class="stated origin">{curly(m["facts"]["origin"])}</span><p class="dim">{curly(m["lead"])}</p><p class="stated"><a href="/cards/{sl}/">the card</a> &middot; <a href="/cards/{sl}/card.pdf">pdf</a> &middot; <a href="https://www.greggle.app/?kind={kid}&amp;method={sl}">open Greggle with it ready</a></p></div>'
+        out += f'      <div class="card" id="{kslug}"><h3>{name}</h3>{links}</div>\n'
     return out
 
 def write_kinds():
@@ -1937,7 +1943,7 @@ def write_kinds():
     page = KINDS_PAGE.replace("{cards}", cards)
     page = page.replace('  <section class="group">\n    <div class="grid grid-kinds-page">', AUDIT_SECTION + '  <section class="group">\n    <div class="grid grid-kinds-page">', 1)
     page = page.replace('  <section class="cta">', PAPER_SECTION.replace("{cards}", paper_cards_html()) + JOURNAL_SECTION + '  <section class="cta">', 1)
-    write_page("kinds", "Seven kinds of thing", "The seven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests, plus four more kinds on paper.", "methods", page)
+    write_page("kinds", "Eleven kinds of thing", "The eleven kinds of thing Greggle asks about first, what each one changes, and which ways of thinking it suggests, with the eight methods the later kinds brought as cards.", "methods", page)
 
 write_kinds()
 for m in METHODS:
@@ -1958,7 +1964,7 @@ NOT_FOUND = """
         <p>The things people usually want:</p>
         <ul>
           <li><a href="/methods/">The fourteen ways of thinking</a>, each with where it came from and how to run it.</li>
-          <li><a href="/kinds/">The seven kinds of thing</a> Greggle asks about first.</li>
+          <li><a href="/kinds/">The eleven kinds of thing</a> Greggle asks about first.</li>
           <li><a href="/why/">Why methods, and not answers</a>, the idea behind it.</li>
           <li><a href="https://www.greggle.app/">The app itself</a>, free, no account, works offline.</li>
         </ul>
